@@ -1,0 +1,12 @@
+*Frame Rate
+-frame independance
+-physics seperation
+
+*Movement
+-Gravity
+-Physics
+-States
+
+*Collision Detection
+-AABB
+-Events
