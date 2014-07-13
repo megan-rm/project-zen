@@ -3,8 +3,8 @@
 
 #include <map>
 #include <string>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <time.h>
 #include <vector>
 #include "entity.hpp"
@@ -30,11 +30,17 @@ private:
     unsigned short int  month;
     unsigned short int  dayOfMonth;
 
+    unsigned int        screen_width;
+    unsigned int        screen_height;
+    std::string         window_title;
+
+    unsigned short      morning;
+    unsigned short      noon;
+    unsigned short      evening;
+    unsigned short      night;
 
     map<string, SDL_Texture*>
                         textureLibrary;
-    std::vector<SDL_Texture**>
-                        gameVector;
     std::vector<Entity*>
                         gameVec;
 

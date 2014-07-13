@@ -1,5 +1,5 @@
 #include "entity.hpp"
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 Entity::Entity(SDL_Texture** itsTexture)
 {
