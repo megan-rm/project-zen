@@ -15,7 +15,7 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add option="-lSDL2 -lSDL2main -lSDL2_image" />
+					<Add option="-lSDL2 -lSDL2_image" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -43,6 +43,8 @@
 		<Unit filename="entity.hpp" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.hpp" />
+		<Unit filename="graphic_cache.cpp" />
+		<Unit filename="graphic_cache.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

@@ -6,5 +6,6 @@
 int main(int argc, char* args[])
 {
     Game myGame;
+    myGame.run();
     return 0;
 }

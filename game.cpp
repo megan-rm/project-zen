@@ -26,28 +26,13 @@ Game::Game()
 
     gameRenderer = SDL_CreateRenderer(gameWindow, 0, SDL_RENDERER_ACCELERATED);
 
-    loadTexture("raindrop.png");
-    Entity newEntity(&(textureLibrary["raindrop.png"]));
-    gameVec.push_back(&(newEntity));
-    running = true;
-    while(running)
-    {
-        handleInput(gameInput);
-        update();
-        draw();
-        SDL_Delay(16);
-    }
+    images = new Graphic_Cache(gameRenderer);
 };
 
 Game::~Game()
 {
     SDL_DestroyWindow(gameWindow);
     SDL_DestroyRenderer(gameRenderer);
-
-    for ( std::map<string,SDL_Texture*>::iterator iter = textureLibrary.begin(); iter != textureLibrary.end(); iter++ )
-        SDL_DestroyTexture(iter->second);
-
-    textureLibrary.clear();
 };
 
 void Game::handleInput(SDL_Event& event)
@@ -101,16 +86,17 @@ void Game::draw()
     SDL_RenderPresent(gameRenderer);
 };
 
-void Game::loadTexture(std::string filename)
+void Game::run()
 {
-    SDL_Texture* newTexture = NULL;
-
-    SDL_Surface* loadedSurface = IMG_Load(filename.c_str());
-
-    newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
-
-    SDL_FreeSurface(loadedSurface);
-    textureLibrary[filename.c_str()] = newTexture;
-    return;
+    images->getTexture("texture.png");
+    Entity* newEntity = new Entity(images->getTexture("texture.png"));
+    gameVec.push_back(newEntity);
+    running = true;
+    while(running)
+    {
+        handleInput(gameInput);
+        update();
+        draw();
+        SDL_Delay(16);
+    }
 };
-

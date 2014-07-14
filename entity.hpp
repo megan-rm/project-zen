@@ -7,10 +7,10 @@
 class Entity
 {
 private:
-  SDL_Rect*       texRect;
-  SDL_Texture**   texture;
+  SDL_Rect       texRect;
+  SDL_Texture*   texture;
 public:
-  /*ctr*/         Entity(SDL_Texture**);
+  /*ctr*/         Entity(SDL_Texture*);
   /*dtr*/         ~Entity();
 
   void            draw(SDL_Renderer*);

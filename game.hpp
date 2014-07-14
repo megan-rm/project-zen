@@ -8,7 +8,7 @@
 #include <time.h>
 #include <vector>
 #include "entity.hpp"
-
+#include "graphic_cache.hpp"
 
 using std::string;
 using std::map;
@@ -39,20 +39,19 @@ private:
     unsigned short      evening;
     unsigned short      night;
 
-    map<string, SDL_Texture*>
-                        textureLibrary;
     std::vector<Entity*>
                         gameVec;
-
-    void                loadTexture(string);
+    Graphic_Cache*      images;
     void                eventLoop();
     void                update();
     void                draw();
     void                handleInput(SDL_Event&);
 
 public:
-    Game();
-    ~Game();
+    /*ctr*/             Game();
+    /*dtr*/             ~Game();
+
+    void                run();
 };
 
 
