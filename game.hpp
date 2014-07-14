@@ -26,9 +26,9 @@ private:
     unsigned int        hour;
     unsigned int        minute;
     unsigned int        second;
-    unsigned short int  dayOfWeek;
-    unsigned short int  month;
-    unsigned short int  dayOfMonth;
+    unsigned short      dayOfWeek;
+    unsigned short      month;
+    unsigned short      dayOfMonth;
 
     unsigned int        screen_width;
     unsigned int        screen_height;

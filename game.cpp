@@ -5,11 +5,6 @@
 #include <iostream>
 #include <string>
 
-  unsigned short MORNING = 7;
-  unsigned short NOON = 12;
-  unsigned short EVENING = 17;
-  unsigned short NIGHT = 20;
-
 Game::Game()
 {
     time(&gameTime);
@@ -48,6 +43,10 @@ Game::~Game()
 {
     SDL_DestroyWindow(gameWindow);
     SDL_DestroyRenderer(gameRenderer);
+
+    for ( std::map<string,SDL_Texture*>::iterator iter = textureLibrary.begin(); iter != textureLibrary.end(); iter++ )
+        SDL_DestroyTexture(iter->second);
+
     textureLibrary.clear();
 };
 
@@ -95,7 +94,7 @@ void Game::draw()
     else if(hour >= evening && hour < night)
         SDL_SetRenderDrawColor(gameRenderer, 255, 183, 76, 0);
 
-    for(int x = 0; x < gameVec.size(); x++)
+    for(unsigned int x = 0; x < gameVec.size(); x++)
     {
         gameVec.at(x)->draw(gameRenderer);
     }
