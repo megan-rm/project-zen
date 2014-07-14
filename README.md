@@ -8,9 +8,9 @@ I hope this to be a project that I can add onto over a long time, enhancing and 
 
 ToDo:
 ---------
-*Throw .cpp and .hpp into seperate directories
-*Throw images into a directory, allow them to load on multiple OS'
-*Create a Timer class, begin frame managing
+* Throw .cpp and .hpp into seperate directories
+* Throw images into a directory, allow them to load on multiple OS'
+* Create a Timer class, begin frame managing
 
 
 Timeline:
