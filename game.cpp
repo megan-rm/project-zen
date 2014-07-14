@@ -23,8 +23,14 @@ Game::Game()
     gameWindow = SDL_CreateWindow(window_title.c_str(),
               SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
               screen_width, screen_height, SDL_WINDOW_SHOWN);
+    if(!gameWindow)
+        std::cout << "Problem creating window: " << SDL_GetError();
+        std::cout << std::endl();
 
     gameRenderer = SDL_CreateRenderer(gameWindow, 0, SDL_RENDERER_ACCELERATED);
+    if(!gameRenderer)
+        std::cout << "Problem creating renderer: " << SDL_GetError();
+        std::cout << std::endl();
 
     images = new Graphic_Cache(gameRenderer);
 };
@@ -67,6 +73,7 @@ void Game::draw()
 {
 
     SDL_RenderClear(gameRenderer);
+
     hour = timeInfo->tm_hour;
     minute = timeInfo->tm_min;
     second = timeInfo->tm_sec;
