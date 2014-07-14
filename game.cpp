@@ -24,13 +24,17 @@ Game::Game()
               SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
               screen_width, screen_height, SDL_WINDOW_SHOWN);
     if(!gameWindow)
-        std::cout << "Problem creating window: " << SDL_GetError();
-        std::cout << std::endl();
+    {
+        std::cout << "Problem creating window: " << SDL_GetError()
+                  << std::endl;
+    }
 
     gameRenderer = SDL_CreateRenderer(gameWindow, 0, SDL_RENDERER_ACCELERATED);
     if(!gameRenderer)
-        std::cout << "Problem creating renderer: " << SDL_GetError();
-        std::cout << std::endl();
+    {
+        std::cout << "Problem creating renderer: " << SDL_GetError()
+                  << std::endl;
+    }
 
     images = new Graphic_Cache(gameRenderer);
 };

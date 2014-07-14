@@ -12,9 +12,20 @@ SDL_Texture* Graphic_Cache::getTexture(std::string filepath)
     if (iter == textureLibrary.end())
     {
         SDL_Surface* loadedSurface = IMG_Load(filepath.c_str());
-        SDL_Texture* newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
-        iter = textureLibrary.insert(iter, make_pair(filepath, newTexture));
+        if (!loadedSurface)
+        {
+            std::cout << "Error loading surface " << filepath
+                      << " : " << SDL_GetError() << std::endl;
+        }
 
+        SDL_Texture* newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
+        if(!newTexture)
+        {
+            std::cout << "Error creating texture " << filepath
+                      << " : " << SDL_GetError() << std::endl;
+        }
+
+        iter = textureLibrary.insert(iter, make_pair(filepath, newTexture));
         SDL_FreeSurface(loadedSurface);
     }
     return iter->second;

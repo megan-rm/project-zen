@@ -13,7 +13,8 @@ Entity::Entity(SDL_Texture* itsTexture)
 
 Entity::~Entity()
 {
-
+    /// prevent nullifying any existing textures
+    texture = NULL;
 };
 
 void Entity::draw(SDL_Renderer* gameRenderer)
