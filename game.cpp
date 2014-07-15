@@ -70,7 +70,7 @@ void Game::update()
 {
     time(&gameTime);
     timeInfo = localtime(&gameTime);
-    std::string titletime = asctime(timeInfo);
+    //std::string titletime = asctime(timeInfo);
 };
 
 void Game::draw()
@@ -99,9 +99,20 @@ void Game::draw()
 
 void Game::run()
 {
-    images->getTexture("texture.png");
-    Entity* newEntity = new Entity(images->getTexture("texture.png"));
+    images->getTexture("raindrop.png");
+
+    Entity* newEntity = new Entity(images->getTexture("raindrop.png"));
+    newEntity->stretch(48.0, 48.0);
+    newEntity->move(320.0, 240.0);
+    newEntity->rotate(20.0);
     gameVec.push_back(newEntity);
+
+    Entity* newEnt = new Entity(images->getTexture("raindrop.png"));
+    newEnt->stretch(16.0, 16.0);
+    newEnt->move(480.0, 320.0);
+    newEnt->rotate(65.0);
+    gameVec.push_back(newEnt);
+
     running = true;
     while(running)
     {

@@ -7,15 +7,23 @@
 class Entity
 {
 private:
-  SDL_Rect       texRect;
-  SDL_Texture*   texture;
-public:
-  /*ctr*/         Entity(SDL_Texture*);
-  /*dtr*/         ~Entity();
+  SDL_Rect          texRect;
+  SDL_Texture*      texture;
+  double            rotation;
+  float             center_x;
+  float             center_y;
+  SDL_Point         center;
+  SDL_RendererFlip  flip_type;
 
-  void            draw(SDL_Renderer*);
-  void            update();
-  void            stretch();
+public:
+  /*ctr*/           Entity(SDL_Texture*);
+  /*dtr*/           ~Entity();
+
+  void              draw(SDL_Renderer*);
+  void              update();
+  void              stretch(float, float);
+  void              move(float, float);
+  void              rotate(double angle);
 };
 
 #endif

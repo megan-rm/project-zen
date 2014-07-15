@@ -18,6 +18,11 @@ SDL_Texture* Graphic_Cache::getTexture(std::string filepath)
                       << " : " << SDL_GetError() << std::endl;
         }
 
+        /*************************************
+        * Ugly magenta color = transparent
+        *************************************/
+        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0xFF, 0, 0xFF));
+
         SDL_Texture* newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
         if(!newTexture)
         {
