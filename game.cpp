@@ -30,7 +30,7 @@ Game::Game()
     }
 
     gameRenderer = SDL_CreateRenderer(gameWindow, 0, SDL_RENDERER_ACCELERATED);
-    if(!gameRenderer)
+    if (!gameRenderer)
     {
         std::cout << "Problem creating renderer: " << SDL_GetError()
                   << std::endl;
@@ -92,7 +92,7 @@ void Game::draw()
     else if(hour >= evening && hour < night)
         SDL_SetRenderDrawColor(gameRenderer, 255, 183, 76, 0);
 
-    for(unsigned int x = 0; x < gameVec.size(); x++)
+    for (unsigned int x = 0; x < gameVec.size(); x++)
     {
         gameVec.at(x)->draw(gameRenderer);
     }
