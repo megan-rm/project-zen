@@ -43,6 +43,8 @@ Game::~Game()
 {
     SDL_DestroyWindow(gameWindow);
     SDL_DestroyRenderer(gameRenderer);
+    images->cleanup();
+    SDL_Quit();
 };
 
 void Game::handleInput(SDL_Event& event)
