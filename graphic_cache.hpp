@@ -11,10 +11,10 @@ class Graphic_Cache
 {
 private:
     std::map<std::string, SDL_Texture*>
-                        textureLibrary;
-    SDL_Renderer*       gameRenderer;
+                        texture_library;
+    SDL_Renderer*       game_renderer;
 public:
-    SDL_Texture*    getTexture(std::string);
+    SDL_Texture*    get_texture(std::string);
     void            cleanup();
     /*ctr*/         Graphic_Cache(SDL_Renderer*);
     /*dtr*/         ~Graphic_Cache();

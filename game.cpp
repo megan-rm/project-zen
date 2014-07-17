@@ -7,8 +7,8 @@
 
 Game::Game()
 {
-    time(&gameTime);
-    timeInfo = localtime(&gameTime);
+    time(&game_time);
+    time_info = localtime(&game_time);
 
 
     screen_width = 640;
@@ -20,34 +20,34 @@ Game::Game()
     evening = 17;
     night = 20;
 
-    gameWindow = SDL_CreateWindow(window_title.c_str(),
+    game_window = SDL_CreateWindow(window_title.c_str(),
               SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
               screen_width, screen_height, SDL_WINDOW_SHOWN);
-    if(!gameWindow)
+    if(!game_window)
     {
         std::cout << "Problem creating window: " << SDL_GetError()
                   << std::endl;
     }
 
-    gameRenderer = SDL_CreateRenderer(gameWindow, 0, SDL_RENDERER_ACCELERATED);
-    if (!gameRenderer)
+    game_renderer = SDL_CreateRenderer(game_window, 0, SDL_RENDERER_ACCELERATED);
+    if (!game_renderer)
     {
         std::cout << "Problem creating renderer: " << SDL_GetError()
                   << std::endl;
     }
 
-    images = new Graphic_Cache(gameRenderer);
+    texture_cache = new Graphic_Cache(game_renderer);
 };
 
 Game::~Game()
 {
-    SDL_DestroyWindow(gameWindow);
-    SDL_DestroyRenderer(gameRenderer);
-    images->cleanup();
+    SDL_DestroyWindow(game_window);
+    SDL_DestroyRenderer(game_renderer);
+    texture_cache->cleanup();
     SDL_Quit();
 };
 
-void Game::handleInput(SDL_Event& event)
+void Game::handle_input(SDL_Event& event)
 {
     while(SDL_PollEvent(&event))
     {
@@ -70,55 +70,54 @@ void Game::handleInput(SDL_Event& event)
 
 void Game::update()
 {
-    time(&gameTime);
-    timeInfo = localtime(&gameTime);
-    //std::string titletime = asctime(timeInfo);
+    time(&game_time);
+    time_info = localtime(&game_time);
 };
 
 void Game::draw()
 {
 
-    SDL_RenderClear(gameRenderer);
+    SDL_RenderClear(game_renderer);
 
-    hour = timeInfo->tm_hour;
-    minute = timeInfo->tm_min;
-    second = timeInfo->tm_sec;
+    hour = time_info->tm_hour;
+    minute = time_info->tm_min;
+    second = time_info->tm_sec;
     if(hour >= night)
-        SDL_SetRenderDrawColor(gameRenderer, 0, 0, 50, 0);
+        SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
     else if(hour >= morning && hour < noon)
-        SDL_SetRenderDrawColor(gameRenderer, 255, 252, 127, 0);
+        SDL_SetRenderDrawColor(game_renderer, 255, 252, 127, 0);
     else if(hour >= noon && hour < evening)
-        SDL_SetRenderDrawColor(gameRenderer, 64, 156, 255, 0);
+        SDL_SetRenderDrawColor(game_renderer, 64, 156, 255, 0);
     else if(hour >= evening && hour < night)
-        SDL_SetRenderDrawColor(gameRenderer, 255, 183, 76, 0);
+        SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
 
-    for (unsigned int x = 0; x < gameVec.size(); x++)
+    for (unsigned int x = 0; x < entity_vector.size(); x++)
     {
-        gameVec.at(x)->draw(gameRenderer);
+        entity_vector.at(x)->draw(game_renderer);
     }
-    SDL_RenderPresent(gameRenderer);
+    SDL_RenderPresent(game_renderer);
 };
 
 void Game::run()
 {
-    images->getTexture("raindrop.png");
+    texture_cache->get_texture("raindrop.png");
 
-    Entity* newEntity = new Entity(images->getTexture("raindrop.png"));
+    Entity* newEntity = new Entity(texture_cache->get_texture("raindrop.png"));
     newEntity->stretch(48.0, 48.0);
     newEntity->move(320.0, 240.0);
     newEntity->rotate(20.0);
-    gameVec.push_back(newEntity);
+    entity_vector.push_back(newEntity);
 
-    Entity* newEnt = new Entity(images->getTexture("raindrop.png"));
+    Entity* newEnt = new Entity(texture_cache->get_texture("raindrop.png"));
     newEnt->stretch(16.0, 16.0);
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);
-    gameVec.push_back(newEnt);
+    entity_vector.push_back(newEnt);
 
     running = true;
     while(running)
     {
-        handleInput(gameInput);
+        handle_input(game_input);
         update();
         draw();
         SDL_Delay(16);

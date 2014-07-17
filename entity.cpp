@@ -1,35 +1,36 @@
 #include "entity.hpp"
 #include <SDL2/SDL.h>
 
-Entity::Entity(SDL_Texture* itsTexture)
+Entity::Entity(SDL_Texture* entity_texture)
 {
-    texture = itsTexture;
+    texture = entity_texture;
 
-    texRect.x = 0;
-    texRect.y = 0;
+    frame_rect.x = 0;
+    frame_rect.y = 0;
 
     rotation = 0;
 
     flip_type = SDL_FLIP_NONE;
 
-    SDL_QueryTexture(itsTexture, NULL, NULL, &texRect.w, &texRect.h);
+    SDL_QueryTexture(entity_texture, NULL, NULL, &frame_rect.w, &frame_rect.h);
 
-    center_x = (float)texRect.w/2;
-    center_y = (float)texRect.w/2;
+    center_x = (float)frame_rect.w/2;
+    center_y = (float)frame_rect.w/2;
 
-    center.x = texRect.w/2;
-    center.y = texRect.h/2;
+    center.x = frame_rect.w/2;
+    center.y = frame_rect.h/2;
 };
 
 Entity::~Entity()
 {
     /// prevent nullifying any existing textures
+    /// aka 'unload' the gun / pointer.
     texture = NULL;
 };
 
-void Entity::draw(SDL_Renderer* gameRenderer)
+void Entity::draw(SDL_Renderer* game_renderer)
 {
-    SDL_RenderCopyEx(gameRenderer, texture, NULL, &texRect, rotation, &center, flip_type);
+    SDL_RenderCopyEx(game_renderer, texture, NULL, &frame_rect, rotation, &center, flip_type);
 };
 
 void Entity::update()
@@ -39,20 +40,20 @@ void Entity::update()
 
 void Entity::stretch(float new_width, float new_height)
 {
-    texRect.w = (int)new_width;
-    texRect.h = (int)new_height;
+    frame_rect.w = (int)new_width;
+    frame_rect.h = (int)new_height;
 
-    center_x = (float)texRect.w/2;
-    center_y = (float)texRect.w/2;
+    center_x = (float)frame_rect.w/2;
+    center_y = (float)frame_rect.w/2;
 
-    center.x = texRect.w/2;
-    center.y = texRect.h/2;
+    center.x = frame_rect.w/2;
+    center.y = frame_rect.h/2;
 };
 
 void Entity::move(float new_x, float new_y)
 {
-    texRect.x = (int)new_x - center.x;
-    texRect.y = (int)new_y - center.y;
+    frame_rect.x = (int)new_x - center.x;
+    frame_rect.y = (int)new_y - center.y;
 };
 
 void Entity::rotate(double angle)

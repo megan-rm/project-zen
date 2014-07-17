@@ -9,6 +9,7 @@
 #include <vector>
 #include "entity.hpp"
 #include "graphic_cache.hpp"
+#include "timer.hpp"
 
 using std::string;
 using std::map;
@@ -17,18 +18,18 @@ class Game
 {
 private:
     bool                running;
-    SDL_Window*         gameWindow;
-    SDL_Renderer*       gameRenderer;
-    SDL_Event           gameInput;
-    time_t              gameTime;
-    struct tm*          timeInfo;
+    SDL_Window*         game_window;
+    SDL_Renderer*       game_renderer;
+    SDL_Event           game_input;
+    time_t              game_time;
+    struct tm*          time_info;
 
     unsigned int        hour;
     unsigned int        minute;
     unsigned int        second;
-    unsigned short      dayOfWeek;
+    unsigned short      day_of_week;
     unsigned short      month;
-    unsigned short      dayOfMonth;
+    unsigned short      day_of_month;
 
     unsigned int        screen_width;
     unsigned int        screen_height;
@@ -40,12 +41,13 @@ private:
     unsigned short      night;
 
     std::vector<Entity*>
-                        gameVec;
-    Graphic_Cache*      images;
-    void                eventLoop();
+                        entity_vector;
+    Graphic_Cache*      texture_cache;
+    void                event_loop();
     void                update();
     void                draw();
-    void                handleInput(SDL_Event&);
+    void                handle_input(SDL_Event&);
+    Timer               fps;
 
 public:
     /*ctr*/             Game();

@@ -7,7 +7,7 @@
 class Entity
 {
 private:
-    SDL_Rect            texRect;
+    SDL_Rect            frame_rect;
     SDL_Texture*        texture;
     double              rotation;
     float               center_x;

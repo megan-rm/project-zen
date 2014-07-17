@@ -2,17 +2,17 @@
 
 Graphic_Cache::Graphic_Cache(SDL_Renderer* renderer)
 {
-    gameRenderer = renderer;
+    game_renderer = renderer;
 };
 
-SDL_Texture* Graphic_Cache::getTexture(std::string filepath)
+SDL_Texture* Graphic_Cache::get_texture(std::string filepath)
 {
-    std::map<std::string, SDL_Texture*>::iterator iter = textureLibrary.find(filepath);
+    std::map<std::string, SDL_Texture*>::iterator iter = texture_library.find(filepath);
 
-    if (iter == textureLibrary.end())
+    if (iter == texture_library.end())
     {
-        SDL_Surface* loadedSurface = IMG_Load(filepath.c_str());
-        if (!loadedSurface)
+        SDL_Surface* loaded_surface = IMG_Load(filepath.c_str());
+        if (!loaded_surface)
         {
             std::cout << "Error loading surface " << filepath
                       << " : " << SDL_GetError() << std::endl;
@@ -21,28 +21,28 @@ SDL_Texture* Graphic_Cache::getTexture(std::string filepath)
         /*************************************
         * Ugly magenta color = transparent
         *************************************/
-        SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0xFF, 0, 0xFF));
+        SDL_SetColorKey(loaded_surface, SDL_TRUE, SDL_MapRGB(loaded_surface->format, 0xFF, 0, 0xFF));
 
-        SDL_Texture* newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
-        if(!newTexture)
+        SDL_Texture* new_texture = SDL_CreateTextureFromSurface(game_renderer, loaded_surface);
+        if(!new_texture)
         {
             std::cout << "Error creating texture " << filepath
                       << " : " << SDL_GetError() << std::endl;
         }
 
-        iter = textureLibrary.insert(iter, make_pair(filepath, newTexture));
-        SDL_FreeSurface(loadedSurface);
+        iter = texture_library.insert(iter, make_pair(filepath, new_texture));
+        SDL_FreeSurface(loaded_surface);
     }
     return iter->second;
 };
 
 void Graphic_Cache::cleanup()
 {
-    if ( !textureLibrary.empty() )
-        for ( std::map<std::string,SDL_Texture*>::iterator iter = textureLibrary.begin(); iter != textureLibrary.end(); iter++ )
+    if ( !texture_library.empty() )
+        for ( std::map<std::string,SDL_Texture*>::iterator iter = texture_library.begin(); iter != texture_library.end(); iter++ )
             SDL_DestroyTexture(iter->second);
 
-    textureLibrary.clear();
+    texture_library.clear();
 };
 
 Graphic_Cache::~Graphic_Cache()

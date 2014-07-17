@@ -20,7 +20,6 @@ public:
     void            stop();
     void            pause();
     void            unpause();
-    void            reset();
     bool            is_started();
     bool            is_paused();
     int             get_ticks();

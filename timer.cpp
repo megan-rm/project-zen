@@ -46,12 +46,6 @@ void Timer::unpause()
     }
 };
 
-void Timer::reset()
-{
-    start();
-    paused_tick = 0;
-};
-
 int Timer::get_ticks()
 {
     if (is_started())
