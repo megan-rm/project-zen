@@ -20,6 +20,12 @@ ToDo:
 Timeline:
 ===========
 
+7-17-14
+---------
+Organized code and assets, removed dynamic libraries, began boilerplate code for finally
+animated and moving entities.
+
+
 7-14-14
 ---------
 Cleaned up plenty of code, seperated code into new methods, fixed the segfault problem, separated the graphics from the game, added SDL_() checks.
