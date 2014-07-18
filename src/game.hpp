@@ -21,9 +21,9 @@ private:
     SDL_Window*         game_window;
     SDL_Renderer*       game_renderer;
     SDL_Event           game_input;
+
     time_t              game_time;
     struct tm*          time_info;
-
     unsigned int        hour;
     unsigned int        minute;
     unsigned int        second;
@@ -34,6 +34,7 @@ private:
     unsigned int        screen_width;
     unsigned int        screen_height;
     std::string         window_title;
+    unsigned int        frames_per_second;
 
     unsigned short      morning;
     unsigned short      noon;

@@ -14,6 +14,7 @@ Game::Game()
     screen_width = 640;
     screen_height = 480;
     window_title = "Project Zen";
+    frames_per_second = 60;
 
     morning = 7;
     noon = 12;
