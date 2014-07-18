@@ -48,7 +48,6 @@ private:
     void                update();
     void                draw();
     void                handle_input(SDL_Event&);
-    Timer               fps;
 
 public:
     /*ctr*/             Game();

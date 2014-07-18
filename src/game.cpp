@@ -118,9 +118,13 @@ void Game::run()
     running = true;
     while(running)
     {
+        const unsigned int start_time = SDL_GetTicks();
         handle_input(game_input);
         update();
         draw();
-        SDL_Delay(16);
+        const unsigned int elapsed_time = SDL_GetTicks() - start_time;
+
+        if(elapsed_time < 16)
+            SDL_Delay(1000 / frames_per_second - elapsed_time);
     }
 };
