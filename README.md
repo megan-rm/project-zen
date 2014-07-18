@@ -7,12 +7,11 @@ I hope this to be a project that I can add onto over a long time, enhancing and 
 
 
 ### github.io site:
-
 http://doyleman77.github.io/project-zen/
 
 
 
-### Requires SDL2 libraries:
-
-https://www.libsdl.org/download-2.0.php
+### Requires SDL2 and SDL2_image libraries:
+[SDL2](https://www.libsdl.org/download-2.0.php)
+[SDL2_image](https://www.libsdl.org/projects/SDL_image/)
 
