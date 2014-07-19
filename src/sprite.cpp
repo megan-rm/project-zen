@@ -1,14 +1,23 @@
 #include "sprite.hpp"
-
+#include <iostream>
 
 Sprite::Sprite(SDL_Texture* texture)
 {
     sprite_sheet = texture;
     clip_rect.x = 0;
     clip_rect.y = 0;
-    total_clips = 0;
-    current_clip = 0;
 
+    if(sprite_sheet)
+    {
+        total_clips = 1;
+        current_clip = 1;
+    }
+    else
+    {
+        total_clips = 0;
+        current_clip = 0;
+        std::cout << "Error setting up Sprite" << std::endl;
+    }
     SDL_QueryTexture(sprite_sheet, NULL, NULL, &clip_rect.w, &clip_rect.h);
 };
 
@@ -17,9 +26,9 @@ Sprite::~Sprite()
     sprite_sheet = NULL;
 };
 
-SDL_Rect Sprite::get_clip_rect()
+const SDL_Rect* const Sprite::get_clip_rect()
 {
-    return clip_rect;
+    return &clip_rect;
 };
 
 SDL_Texture* Sprite::get_texture()

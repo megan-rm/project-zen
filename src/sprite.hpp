@@ -16,7 +16,9 @@ public:
     /*ctr*/         Sprite(SDL_Texture* texture);
     /*dtr*/         ~Sprite();
 
-    SDL_Rect        get_clip_rect();
+    const SDL_Rect*
+        const       get_clip_rect();
+
     SDL_Texture*    get_texture();
 
     unsigned int    get_sheet_width();

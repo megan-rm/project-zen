@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "sprite.h"
+#include "sprite.hpp"
 
 /************************************
 * Base drawable class. Anything that
@@ -14,9 +14,8 @@
 class Entity
 {
 private:
-    SDL_Rect            frame_rect;
-    SDL_Texture*        texture;
-    Sprite*             sprite;
+    SDL_Rect            position_rect;
+    Sprite              sprite;
     double              rotation;
     float               center_x;
     float               center_y;
@@ -24,7 +23,7 @@ private:
     SDL_RendererFlip    flip_type;
 
 public:
-  /*ctr*/               Entity(SDL_Texture*);
+  /*ctr*/               Entity(SDL_Texture* itsTex);
   /*dtr*/               ~Entity();
 
   void                  draw(SDL_Renderer*);
