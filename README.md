@@ -16,3 +16,5 @@ http://doyleman77.github.io/project-zen/
 
 [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
 
+
+Please feel free to submit any issue on the [issue tracker](https://github.com/doyleman77/project-zen/issues)
