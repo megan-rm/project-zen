@@ -16,8 +16,7 @@ public:
     /*ctr*/         Sprite(SDL_Texture* texture);
     /*dtr*/         ~Sprite();
 
-    const SDL_Rect*
-        const       get_clip_rect();
+    const SDL_Rect* get_clip_rect();
 
     SDL_Texture*    get_texture();
 
@@ -32,5 +31,6 @@ public:
 
     void            set_clip_size(unsigned int, unsigned int);
     void            set_clip(unsigned int, unsigned int);
+    void            set_blend(SDL_BlendMode);
 };
 #endif

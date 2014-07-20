@@ -3,10 +3,12 @@
 
 #include <map>
 #include <string>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <time.h>
 #include <vector>
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
 #include "entity.hpp"
 #include "graphic_cache.hpp"
 #include "timer.hpp"

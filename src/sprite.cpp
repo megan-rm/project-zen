@@ -1,5 +1,7 @@
-#include "sprite.hpp"
 #include <iostream>
+
+#include "sprite.hpp"
+
 
 Sprite::Sprite(SDL_Texture* texture)
 {
@@ -19,6 +21,8 @@ Sprite::Sprite(SDL_Texture* texture)
         std::cout << "Error setting up Sprite" << std::endl;
     }
     SDL_QueryTexture(sprite_sheet, NULL, NULL, &clip_rect.w, &clip_rect.h);
+
+
 };
 
 Sprite::~Sprite()
@@ -26,7 +30,7 @@ Sprite::~Sprite()
     sprite_sheet = NULL;
 };
 
-const SDL_Rect* const Sprite::get_clip_rect()
+const SDL_Rect* Sprite::get_clip_rect()
 {
     return &clip_rect;
 };
@@ -80,12 +84,16 @@ void Sprite::set_clip_size(unsigned int width, unsigned int height)
 
 void Sprite::set_clip(unsigned int row, unsigned int column)
 {
-    if(
-        ((column-1) * clip_rect.w) > (this->get_sheet_width()
-        || ((row-1) * clip_rect.h) > (this->get_sheet_height()))
+    if(((column-1) * clip_rect.w) > (this->get_sheet_width()
+       || ((row-1) * clip_rect.h) > (this->get_sheet_height()))
       )
         return;
 
     clip_rect.x = (column-1) * clip_rect.w;
     clip_rect.y = (row-1) * clip_rect.h;
 };
+
+void Sprite::set_blend(SDL_BlendMode blendmode)
+{
+    SDL_SetTextureBlendMode(sprite_sheet, blendmode);
+}

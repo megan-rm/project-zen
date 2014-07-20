@@ -1,11 +1,12 @@
 #ifndef GRAPHIC_CACHE_H_
 #define GRAPHIC_CACHE_H_
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
 #include <map>
 #include <string>
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 class Graphic_Cache
 {

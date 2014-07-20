@@ -1,9 +1,11 @@
-#include "game.hpp"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <time.h>
 #include <iostream>
 #include <string>
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+#include "game.hpp"
 
 Game::Game()
 {
@@ -22,15 +24,17 @@ Game::Game()
     night = 20;
 
     game_window = SDL_CreateWindow(window_title.c_str(),
-              SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-              screen_width, screen_height, SDL_WINDOW_SHOWN);
+                  SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                  screen_width, screen_height, SDL_WINDOW_SHOWN);
+
     if(!game_window)
     {
         std::cout << "Problem creating window: " << SDL_GetError()
                   << std::endl;
     }
 
-    game_renderer = SDL_CreateRenderer(game_window, 0, SDL_RENDERER_ACCELERATED);
+    game_renderer = SDL_CreateRenderer(game_window, 0,
+                                       SDL_RENDERER_ACCELERATED);
     if (!game_renderer)
     {
         std::cout << "Problem creating renderer: " << SDL_GetError()
@@ -62,6 +66,10 @@ void Game::handle_input(SDL_Event& event)
             {
                 running = false;
             }
+            if(event.key.keysym.sym == SDLK_SPACE)
+            {
+                entity_vector.pop_back();
+            }
             break;
         default:
             break;
@@ -73,6 +81,11 @@ void Game::update()
 {
     time(&game_time);
     time_info = localtime(&game_time);
+
+    for (unsigned int x = 0; x < entity_vector.size(); x++)
+    {
+        entity_vector.at(x)->update();
+    }
 };
 
 void Game::draw()
@@ -101,18 +114,21 @@ void Game::draw()
 
 void Game::run()
 {
-    //texture_cache->get_texture("../../raindrop.png");
-
-    Entity* newEntity = new Entity(texture_cache->get_texture("../../resources/images/raindrop.png"));
+    Entity* newEntity = new Entity(texture_cache->get_texture(
+                                   "../../resources/images/raindrop.png"));
     newEntity->stretch(48.0, 48.0);
     newEntity->move(320.0, 240.0);
     newEntity->rotate(20.0);
+    newEntity->get_sprite()->set_clip_size(4, 4);
     entity_vector.push_back(newEntity);
 
-    Entity* newEnt = new Entity(texture_cache->get_texture("../../resources/images/raindrop.png"));
+    Entity* newEnt = new Entity(texture_cache->get_texture(
+                                "../../resources/images/raindrop.png"));
+
     newEnt->stretch(16.0, 16.0);
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);
+    newEnt->get_sprite()->set_clip_size(4, 4);
     entity_vector.push_back(newEnt);
 
     running = true;
