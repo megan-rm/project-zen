@@ -34,6 +34,8 @@ public:
     void            revive_particle(float, float, float, float);
     void            revive_particle(float, float, float, float, float, float);
     void            set_initial_position(float, float);
+
+    void            draw(SDL_Renderer*);
 };
 
 #endif
