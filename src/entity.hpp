@@ -29,8 +29,9 @@ public:
   /*ctr*/               Entity(SDL_Texture*);
   /*dtr*/               ~Entity();
 
-  void                  draw(SDL_Renderer*);
-  void                  update();
+  virtual void          draw(SDL_Renderer*);
+  virtual void          update();
+
   void                  stretch(float, float);
   void                  move(float, float);
   void                  rotate(double angle);
