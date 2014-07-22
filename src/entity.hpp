@@ -14,7 +14,7 @@
 
 class Entity
 {
-private:
+protected:
     SDL_Rect            position_rect;
     Sprite              sprite;
     double              rotation;
