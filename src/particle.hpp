@@ -10,10 +10,15 @@ class Particle : public Entity
 {
 private:
     float           life_span;
+    float           time_alive;
+
     Mobile_Vector   movement;
     bool            alive;
     float           initial_x;
     float           initial_y;
+
+    SDL_Color       start_color;
+    SDL_Color       end_color;
 
 public:
     /********************************************************
