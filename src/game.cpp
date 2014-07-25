@@ -36,7 +36,7 @@ Game::Game()
                   << std::endl;
     }
 
-    game_renderer = SDL_CreateRenderer(game_window, 0,
+    game_renderer = SDL_CreateRenderer(game_window, -1,
                                        SDL_RENDERER_ACCELERATED);
     if (!game_renderer)
     {
