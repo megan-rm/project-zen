@@ -13,6 +13,8 @@ Game::Game()
     time(&game_time);
     time_info = localtime(&game_time);
 
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
+    IMG_Init(IMG_INIT_PNG);
 
     screen_width = 640;
     screen_height = 480;

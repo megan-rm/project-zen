@@ -27,7 +27,7 @@ protected:
 
 public:
   /*ctr*/               Entity(SDL_Texture*);
-  /*dtr*/               ~Entity();
+  virtual /*dtr*/       ~Entity();
 
   virtual void          draw(SDL_Renderer*);
   virtual void          update();
