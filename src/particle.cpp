@@ -117,8 +117,8 @@ void Particle::set_initial_position(float init_x, float init_y)
     initial_x = init_x;
     initial_y = init_y;
 };
-/*
-void Particle::draw(SDL_Renderer* game_renderer)
+
+bool Particle::is_alive()
 {
-    SDL_RenderCopyEx(game_renderer, this->sprite.get_texture(), this->sprite.get_clip_rect(), &position_rect, rotation, &center, flip_type);
-};*/
+    return alive;
+};
