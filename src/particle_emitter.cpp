@@ -1,57 +1,35 @@
 #include "particle_emitter.hpp"
 
-Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
+void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
 {
     particle_texture = p_texture;
-
-    alive = false;
-
-    particle_life_span = 0.0;
-
-    position_x = 0;
-    position_y = 0;
-
-    max_particles = 0;
-    alive_particles = 0;
-
-    for(int i = 0; i < max_particles; i++)
-        particles[i] = NULL;
-};
-
-Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap)
-{
-    particle_texture = p_texture;
-
-    alive = false;
-
-    particle_life_span = 0.0;
-
-    position_x = 0;
-    position_y = 0;
 
     max_particles = p_cap;
-    alive_particles = 0;
-
-    for(int i = 0; i < max_particles; i++)
-        particles[i] = NULL;
-};
-
-Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
-{
-    particle_texture = p_texture;
-
-    alive = false;
-
-    particle_life_span = 0.0;
 
     position_x = pos_x;
     position_y = pos_y;
 
-    max_particles = p_cap;
     alive_particles = 0;
+    alive = false;
+    particle_life_span = 0.0;
 
     for(int i = 0; i < max_particles; i++)
         particles[i] = NULL;
+};
+
+Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
+{
+    ctr_helper(p_texture, 0, 0, 0);
+};
+
+Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap)
+{
+    ctr_helper(p_texture, p_cap, 0, 0);
+};
+
+Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
+{
+    ctr_helper(p_texture, p_cap, pos_x, pos_y);
 };
 
 Particle_Emitter::~Particle_Emitter()
@@ -77,7 +55,7 @@ int Particle_Emitter::make_new_particle()
     return -1; /// there was no open spot in the particle array
 };
 
-Particle* Particle_Emitter::create_particle()
+void Particle_Emitter::create_particle()
 {
     int new_location = this->make_new_particle();
     /**

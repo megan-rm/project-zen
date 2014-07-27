@@ -22,6 +22,7 @@ private:
     Mobile_Vector       particle_movement_info;
 
     int                 make_new_particle();
+    void                ctr_helper(SDL_Texture*, int, int, int);
 
 public:
     /*************************************
@@ -35,7 +36,7 @@ public:
 
     /*dtr*/             ~Particle_Emitter();
 
-    Particle*           create_particle();
+    void                create_particle();
 
     void                setup(float, float, float, float, float, float);
     void                attach_to_entity(Entity*);
