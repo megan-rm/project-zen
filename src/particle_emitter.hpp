@@ -3,7 +3,7 @@
 
 #include "particle.hpp"
 #include "entity.hpp"
-
+#include "mobile_vector.hpp"
 class Particle_Emitter
 {
 private:
@@ -17,7 +17,11 @@ private:
     float               position_x;
     float               position_y;
 
-    int                make_new_particle();
+    float               particle_life_span;
+
+    Mobile_Vector       particle_movement_info;
+
+    int                 make_new_particle();
 
 public:
     /*************************************
@@ -33,6 +37,7 @@ public:
 
     Particle*           create_particle();
 
+    void                setup(float, float, float, float, float, float);
     void                attach_to_entity(Entity*);
 
 };
