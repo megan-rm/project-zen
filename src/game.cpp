@@ -102,7 +102,7 @@ void Game::draw()
     hour = time_info->tm_hour;
     minute = time_info->tm_min;
     second = time_info->tm_sec;
-    if(hour >= night)
+    if(hour >= night || (hour < morning && hour >= 0))
         SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
     else if(hour >= morning && hour < noon)
         SDL_SetRenderDrawColor(game_renderer, 255, 252, 127, 0);
