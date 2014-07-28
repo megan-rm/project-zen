@@ -49,6 +49,9 @@ Game::Game()
 
 Game::~Game()
 {
+    for(int i = 0; i < entity_vector.size(); i++)
+        delete entity_vector.at(i);
+
     SDL_DestroyWindow(game_window);
     SDL_DestroyRenderer(game_renderer);
     texture_cache->cleanup();

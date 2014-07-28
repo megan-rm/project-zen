@@ -1,27 +1,37 @@
 #ifndef PARTICLE_EMITTER_H_
 #define PARTICLE_EMITTER_H_
 
+#include <vector>
+
 #include "particle.hpp"
 #include "entity.hpp"
 #include "mobile_vector.hpp"
+#include "vector2d.hpp"
+
 class Particle_Emitter
 {
 private:
-    Particle*           particles[];
+    std::vector
+        <Particle*>    particles;
+    SDL_Texture*        particle_texture;
+
+    Entity*             attached_entity;
+
+    Vector2D            acceleration;
+    Vector2D            velocity;
+
     unsigned int        max_particles;
     unsigned int        alive_particles;
-    bool                alive;
 
-    SDL_Texture*        particle_texture;
+    float               interval;
+    float               velocity_cap;
+    bool                alive;
 
     float               position_x;
     float               position_y;
 
     float               particle_life_span;
 
-    Mobile_Vector       particle_movement_info;
-
-    int                 make_new_particle();
     void                ctr_helper(SDL_Texture*, int, int, int);
 
 public:
