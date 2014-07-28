@@ -14,9 +14,6 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     particle_life_span = 0.0;
 
     velocity_cap = 0.0;
-
-    for(int i = 0; i < max_particles; i++)
-        particles[i] = NULL;
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)

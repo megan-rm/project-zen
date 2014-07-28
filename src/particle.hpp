@@ -4,7 +4,6 @@
 #include "SDL2/SDL.h"
 
 #include "entity.hpp"
-#include "mobile_vector.hpp"
 #include "vector2d.hpp"
 
 class Particle : public Entity
