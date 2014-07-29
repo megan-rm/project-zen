@@ -19,6 +19,11 @@ private:
     Vector2D            acceleration;
     Vector2D            velocity;
 
+    /**
+    * Emitters can be a Point or a Rectangle
+    **/
+    SDL_Rect            rect_emitter;
+
     unsigned int        max_particles;
     unsigned int        alive_particles;
 
