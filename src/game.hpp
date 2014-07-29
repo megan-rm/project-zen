@@ -19,33 +19,36 @@ using std::map;
 class Game
 {
 private:
-    bool                running;
     SDL_Window*         game_window;
     SDL_Renderer*       game_renderer;
     SDL_Event           game_input;
 
+    std::vector<Entity*>
+                        entity_vector;
+    Graphic_Cache*      texture_cache;
+
+    std::string         window_title;
+
     time_t              game_time;
     struct tm*          time_info;
-    unsigned int        hour;
-    unsigned int        minute;
-    unsigned int        second;
+    unsigned short      hour;
+    unsigned short      minute;
+    unsigned short      second;
     unsigned short      day_of_week;
     unsigned short      month;
     unsigned short      day_of_month;
 
     unsigned int        screen_width;
     unsigned int        screen_height;
-    std::string         window_title;
     unsigned int        frames_per_second;
+
+    bool                running;
 
     unsigned short      morning;
     unsigned short      noon;
     unsigned short      evening;
     unsigned short      night;
 
-    std::vector<Entity*>
-                        entity_vector;
-    Graphic_Cache*      texture_cache;
     void                event_loop();
     void                update();
     void                draw();

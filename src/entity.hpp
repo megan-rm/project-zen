@@ -17,13 +17,13 @@ class Entity
 protected:
     SDL_Rect            position_rect;
     Sprite              sprite;
+    SDL_Point           center;
+    SDL_RendererFlip    flip_type;
     double              rotation;
     float               center_x;
     float               center_y;
     float               position_x;
     float               position_y;
-    SDL_Point           center;
-    SDL_RendererFlip    flip_type;
 
 public:
   /*ctr*/               Entity(SDL_Texture*);

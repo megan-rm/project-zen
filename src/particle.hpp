@@ -9,17 +9,18 @@
 class Particle : public Entity
 {
 private:
-    float           life_span;  /// Milliseconds
-    float           time_alive; /// Milliseconds
-    float           velocity_cap;
     Vector2D        acceleration;
     Vector2D        velocity;
     Vector2D        initial_position;
 
-    bool            alive;
-
     SDL_Color       start_color;
     SDL_Color       end_color;
+
+    float           life_span;  /// Milliseconds
+    float           time_alive; /// Milliseconds
+    float           velocity_cap;
+
+    bool            alive;
 
 public:
     /********************************************************
