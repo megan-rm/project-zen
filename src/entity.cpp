@@ -31,6 +31,8 @@ Entity::~Entity()
 
 void Entity::draw(SDL_Renderer* game_renderer)
 {
+    SDL_SetRenderDrawColor(game_renderer, 255, 64, 64, 128);
+    SDL_RenderDrawRect(game_renderer, &position_rect); /// For my debugging purposes.
     SDL_RenderCopyEx(game_renderer, this->sprite.get_texture(), this->sprite.get_clip_rect(), &position_rect, rotation, &center, flip_type);
 };
 
@@ -72,8 +74,8 @@ Sprite* const Entity::get_sprite()
 
 void Entity::center_on_clip()
 {
-    center_x = float(position_rect.w/2);
-    center_y = float(position_rect.h/2);
+    center_x = position_rect.w/2;
+    center_y = position_rect.h/2;
 
     center.x = position_rect.w/2;
     center.y = position_rect.w/2;

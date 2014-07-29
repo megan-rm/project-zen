@@ -102,6 +102,11 @@ void Game::draw()
     hour = time_info->tm_hour;
     minute = time_info->tm_min;
     second = time_info->tm_sec;
+
+    for (unsigned int x = 0; x < entity_vector.size(); x++)
+    {
+        entity_vector.at(x)->draw(game_renderer);
+    }
     if(hour >= night || (hour < morning && hour >= 0))
         SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
     else if(hour >= morning && hour < noon)
@@ -110,11 +115,6 @@ void Game::draw()
         SDL_SetRenderDrawColor(game_renderer, 64, 156, 255, 0);
     else if(hour >= evening && hour < night)
         SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
-
-    for (unsigned int x = 0; x < entity_vector.size(); x++)
-    {
-        entity_vector.at(x)->draw(game_renderer);
-    }
     SDL_RenderPresent(game_renderer);
 };
 
@@ -126,6 +126,7 @@ void Game::run()
     newEntity->move(320.0, 240.0);
     newEntity->rotate(20.0);
     newEntity->get_sprite()->set_clip_size(4, 4);
+    newEntity->center_on_clip();
     entity_vector.push_back(newEntity);
 
     Entity* newEnt = new Entity(texture_cache->get_texture(
@@ -137,13 +138,14 @@ void Game::run()
     newPart->rotate(20.0);
     newPart->stretch(32, 32);
     newPart->get_sprite()->set_clip_size(4, 4);
-
+    newPart->center_on_clip();
     entity_vector.push_back(newPart);
 
     newEnt->stretch(16.0, 16.0);
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);
     newEnt->get_sprite()->set_clip_size(4, 4);
+    newEnt->center_on_clip();
     entity_vector.push_back(newEnt);
 
     running = true;
