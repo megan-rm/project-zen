@@ -5,7 +5,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "sprite.hpp"
-
+#include "vector2d.hpp"
 /************************************
 * Base drawable class. Anything that
 * can appear on the screen must be
@@ -18,12 +18,16 @@ protected:
     SDL_Rect            position_rect;
     Sprite              sprite;
     SDL_Point           center;
+    Vector2D            position;
     SDL_RendererFlip    flip_type;
-    double              rotation;
+
+    float               rotation;
+
+    /**
+    * Probably unneeded variables
+    **/
     float               center_x;
     float               center_y;
-    float               position_x;
-    float               position_y;
 
 public:
   /*ctr*/               Entity(SDL_Texture*);
@@ -34,7 +38,7 @@ public:
 
   void                  stretch(float, float);
   void                  move(float, float);
-  void                  rotate(double angle);
+  void                  rotate(float angle);
   void                  center_on_clip();
   void                  set_center(float, float);
   void                  flip_sprite(SDL_RendererFlip);

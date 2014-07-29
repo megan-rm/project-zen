@@ -7,8 +7,7 @@ Entity::Entity(SDL_Texture* entity_texture) : sprite(entity_texture)
     position_rect.x = 0;
     position_rect.y = 0;
 
-    position_x = 0.0;
-    position_y = 0.0;
+    position.set(0.0, 0.0);
 
     rotation = 0;
 
@@ -38,15 +37,16 @@ void Entity::draw(SDL_Renderer* game_renderer)
 void Entity::update()
 {
     rotation += 0.1;
-    position_x += 0.5;
-    position_y += 0.3;
+    Vector2D movement(0.5, 0.3);
 
-    position_rect.x = (int)position_x;
-    position_rect.y = (int)position_y;
-    if(position_x >= 650)
-        move(-10.0, position_y);
+    position = position + movement;
+
+    position_rect.x = (int)position.get_x();
+    position_rect.y = (int)position.get_y();
+    if(position_rect.x >= 650)
+        move(-10.0, position.get_y());
     if(position_rect.y >= 490)
-        move(position_x, -10.0);
+        move(position.get_x(), -10.0);
 };
 
 void Entity::stretch(float new_width, float new_height)
@@ -57,11 +57,10 @@ void Entity::stretch(float new_width, float new_height)
 
 void Entity::move(float new_x, float new_y)
 {
-    position_x = new_x - center.x;
-    position_y = new_y - center.y;
+    position.set(new_x, new_y);
 };
 
-void Entity::rotate(double angle)
+void Entity::rotate(float angle)
 {
     rotation = angle;
 };
