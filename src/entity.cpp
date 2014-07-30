@@ -26,7 +26,7 @@ Entity::~Entity()
 {
     /// prevent nullifying any existing textures
     /// aka 'unload' the gun / pointer.
-    //texture = NULL;
+    /// texture = NULL;
 };
 
 void Entity::draw(SDL_Renderer* game_renderer)
@@ -53,6 +53,9 @@ void Entity::update()
 
 void Entity::stretch(float new_width, float new_height)
 {
+    /**
+    * Possibly re-center here?
+    **/
     position_rect.w = (int)new_width;
     position_rect.h = (int)new_height;
 };

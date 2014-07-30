@@ -22,8 +22,9 @@ private:
     /**
     * Emitters can be a Point or a Rectangle
     **/
-    enum                emitter_type{Point, Rectangle, Circle};
+    enum                emitter_shape{Point, Rectangle, Circle};
 
+    emitter_shape       emitter_type;
     SDL_Rect            rect_emitter;
 
     unsigned int        max_particles;
@@ -56,6 +57,9 @@ public:
 
     void                setup(float, float, float, float, float, float);
     void                attach_to_entity(Entity*);
+
+    void                set_shape(emitter_shape);
+    void                set_rect(SDL_Rect&);
 
 };
 
