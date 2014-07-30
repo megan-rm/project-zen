@@ -22,6 +22,8 @@ private:
     /**
     * Emitters can be a Point or a Rectangle
     **/
+    enum                emitter_type{Point, Rectangle, Circle};
+
     SDL_Rect            rect_emitter;
 
     unsigned int        max_particles;
