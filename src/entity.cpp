@@ -15,9 +15,6 @@ Entity::Entity(SDL_Texture* entity_texture) : sprite(entity_texture)
 
     SDL_QueryTexture(entity_texture, NULL, NULL, &position_rect.w, &position_rect.h);
 
-    center_x = (float)position_rect.w/2;
-    center_y = (float)position_rect.w/2;
-
     center.x = position_rect.w/2;
     center.y = position_rect.h/2;
 };
@@ -77,17 +74,12 @@ Sprite* const Entity::get_sprite()
 
 void Entity::center_on_clip()
 {
-    center_x = position_rect.w/2;
-    center_y = position_rect.h/2;
-
     center.x = position_rect.w/2;
     center.y = position_rect.w/2;
 };
 
 void Entity::set_center(float new_x, float new_y)
 {
-    center_x = new_x;
-    center_y = new_y;
     center.x = (int)new_x;
     center.y = (int)new_y;
 };

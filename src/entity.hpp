@@ -23,11 +23,6 @@ protected:
 
     float               rotation;
 
-    /**
-    * Probably unneeded variables
-    **/
-    float               center_x;
-    float               center_y;
 
 public:
   /*ctr*/               Entity(SDL_Texture*);
