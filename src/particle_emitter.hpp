@@ -11,11 +11,14 @@ class Particle_Emitter
 {
 private:
     std::vector
-        <Particle*>    particles;
+        <Particle*>     particles;
     SDL_Texture*        particle_texture;
-
     Entity*             attached_entity;
 
+    /**Position for emitter**/
+    Vector2D            position;
+
+    /**Data for particles**/
     Vector2D            acceleration;
     Vector2D            velocity;
 
@@ -28,14 +31,11 @@ private:
     SDL_Rect            rect_emitter;
 
     unsigned int        max_particles;
-    unsigned int        alive_particles;
+    unsigned int        alive_particles; /// possibly unusable?
 
     float               interval;
     float               velocity_cap;
     bool                alive;
-
-    float               position_x;
-    float               position_y;
 
     float               particle_life_span;
 
@@ -60,7 +60,7 @@ public:
 
     void                set_shape(emitter_shape);
     void                set_rect(SDL_Rect&);
-
+    void                update();
 };
 
 #endif

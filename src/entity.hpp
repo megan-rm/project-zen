@@ -23,7 +23,6 @@ protected:
 
     float               rotation;
 
-
 public:
   /*ctr*/               Entity(SDL_Texture*);
   virtual /*dtr*/       ~Entity();

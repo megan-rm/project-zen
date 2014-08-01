@@ -6,8 +6,7 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
 
     max_particles = p_cap;
 
-    position_x = pos_x;
-    position_y = pos_y;
+    position.set(pos_x, pos_y);
 
     alive_particles = 0;
     alive = false;
@@ -63,7 +62,17 @@ void Particle_Emitter::create_particle()
         velocity_cap));
 };
 
-void attach_to_entity(Entity*)
+void Particle_Emitter::attach_to_entity(Entity* n_entity)
 {
-
+    if(n_entity)
+        attached_entity = n_entity; /// need to check validity every tick
 };
+
+void Particle_Emitter::update()
+{
+    std::vector<Particle*>::iterator iter;
+    for(iter = particles.begin(); iter != particles.end(); iter++)
+    {
+
+    }
+}

@@ -136,7 +136,7 @@ void Game::run()
                                 "../../resources/images/raindrop.png"));
     newPart->move(120.0, 120.0);
     newPart->rotate(20.0);
-    newPart->stretch(32, 32);
+    newPart->stretch(16,16);
     newPart->get_sprite()->set_clip_size(4, 4);
     newPart->center_on_clip();
     entity_vector.push_back(newPart);
