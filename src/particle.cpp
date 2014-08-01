@@ -67,9 +67,9 @@ Particle::~Particle()
 /************************************
 * Reviving will move the particle
 * back to it's last alive initial
-* position. use set_intial_position
+* position. use set_initial_position
 * to change particle production
-* placement. 3-Ps haha. ha.
+* placement. 3-P's. haha. ha.
 ************************************/
 void Particle::kill_particle()
 {
@@ -141,10 +141,11 @@ void Particle::update()
     position = position + velocity;
     move(position.get_x(), position.get_y());
 
-    position_rect.x = position.get_x();
-    position_rect.y = position.get_y();
 
-    ///DEBUG///
+    /************************************
+    * Debugging.
+    * In the future, Kill the particle.
+    ************************************/
     if(position_rect.x >= 650)
         move(-10.0, position.get_y());
     if(position_rect.y >= 490)

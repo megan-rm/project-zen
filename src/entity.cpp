@@ -39,27 +39,34 @@ void Entity::update()
     Vector2D movement(0.5, 0.3);
 
     position = position + movement;
+    move(position.get_x(), position.get_y());
 
-    position_rect.x = (int)position.get_x();
-    position_rect.y = (int)position.get_y();
     if(position_rect.x >= 650)
         move(-10.0, position.get_y());
     if(position_rect.y >= 490)
         move(position.get_x(), -10.0);
 };
 
-void Entity::stretch(float new_width, float new_height)
+void Entity::stretch(int new_width, int new_height)
 {
-    /**
+    /************************************
     * Possibly re-center here?
-    **/
-    position_rect.w = (int)new_width;
-    position_rect.h = (int)new_height;
+    ************************************/
+    position_rect.w = new_width;
+    position_rect.h = new_height;
+};
+
+void Entity::scale(float scale)
+{
+    position_rect.w *= scale;
+    position_rect.h *= scale;
 };
 
 void Entity::move(float new_x, float new_y)
 {
     position.set(new_x, new_y);
+    position_rect.x = (int)position.get_x();
+    position_rect.y = (int)position.get_y();
 };
 
 void Entity::rotate(float angle)

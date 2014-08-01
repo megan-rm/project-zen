@@ -30,9 +30,12 @@ public:
   virtual void          draw(SDL_Renderer*);
   virtual void          update();
 
-  void                  stretch(float, float);
+  void                  stretch(int, int);
+  void                  scale(float);
+
   void                  move(float, float);
   void                  rotate(float angle);
+
   void                  center_on_clip();
   void                  set_center(float, float);
   void                  flip_sprite(SDL_RendererFlip);

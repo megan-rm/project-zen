@@ -36,12 +36,16 @@ public:
 
     /*dtr*/         ~Particle();
     void            kill_particle();
+    /************************************
+    * Probably should scrap revive_particle
+    /***********************************/
     void            revive_particle();
     void            revive_particle(float, float);
     void            revive_particle(float, float, float, float);
     void            revive_particle(float, float, float, float, float);
+
     void            set_initial_position(float, float);
-    void            update();
+    void            update(); /// need to push delta time into.
     bool            is_alive();
 };
 
