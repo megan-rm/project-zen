@@ -7,6 +7,7 @@
 
 #include "game.hpp"
 #include "particle.hpp"
+#include "sun.hpp"
 
 Game::Game()
 {
@@ -150,6 +151,12 @@ void Game::run()
     newEnt->get_sprite()->set_clip_size(4, 4);
     newEnt->center_on_clip();
     entity_vector.push_back(newEnt);
+
+    Sun* newSun = new Sun(texture_cache->get_texture(
+                        "../../resources/images/sun.png"), game_time);
+    newSun->move(320, 240);
+    newSun->center_on_clip();
+    entity_vector.push_back(newSun);
 
     running = true;
     while(running)
