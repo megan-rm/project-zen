@@ -10,8 +10,7 @@
 
 Game::Game()
 {
-    time(&game_time);
-    time_info = localtime(&game_time);
+    game_time.update();
 
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     IMG_Init(IMG_INIT_PNG);
@@ -85,8 +84,7 @@ void Game::handle_input(SDL_Event& event)
 
 void Game::update()
 {
-    time(&game_time);
-    time_info = localtime(&game_time);
+    game_time.update();
 
     for (unsigned int x = 0; x < entity_vector.size(); x++)
     {
@@ -99,22 +97,26 @@ void Game::draw()
 
     SDL_RenderClear(game_renderer);
 
-    hour = time_info->tm_hour;
-    minute = time_info->tm_min;
-    second = time_info->tm_sec;
-
     for (unsigned int x = 0; x < entity_vector.size(); x++)
     {
         entity_vector.at(x)->draw(game_renderer);
     }
-    if(hour >= night || (hour < morning && hour >= 0))
+    if(game_time.get_hour() >= night
+       || (game_time.get_hour() < morning && game_time.get_hour() >= 0))
         SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
-    else if(hour >= morning && hour < noon)
+
+    else if(game_time.get_hour() >= morning
+            && game_time.get_hour() < noon)
         SDL_SetRenderDrawColor(game_renderer, 255, 252, 127, 0);
-    else if(hour >= noon && hour < evening)
+
+    else if(game_time.get_hour() >= noon
+            && game_time.get_hour() < evening)
         SDL_SetRenderDrawColor(game_renderer, 64, 156, 255, 0);
-    else if(hour >= evening && hour < night)
+
+    else if(game_time.get_hour() >= evening
+            && game_time.get_hour() < night)
         SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
+
     SDL_RenderPresent(game_renderer);
 };
 

@@ -12,6 +12,7 @@
 #include "entity.hpp"
 #include "graphic_cache.hpp"
 #include "timer.hpp"
+#include "realtime.hpp"
 
 using std::string;
 using std::map;
@@ -29,14 +30,7 @@ private:
 
     std::string         window_title;
 
-    time_t              game_time;
-    struct tm*          time_info;
-    unsigned short      hour;
-    unsigned short      minute;
-    unsigned short      second;
-    unsigned short      day_of_week;
-    unsigned short      month;
-    unsigned short      day_of_month;
+    Realtime            game_time;
 
     unsigned int        screen_width;
     unsigned int        screen_height;
