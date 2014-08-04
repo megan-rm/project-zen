@@ -1,6 +1,6 @@
 #include "sun.hpp"
 #include <iostream>
-
+#include <math.h>
 
 Sun::Sun(SDL_Texture* sun_texture, Realtime& game_time) : Entity(sun_texture)
 {
@@ -22,6 +22,8 @@ void Sun::update()
 {
     /************************************
     * Get time in hhmmss format
+    * TODO:
+    *   - Use millisecond time
     ************************************/
     float simple_time = time->get_hour() * 10000;
     simple_time += time->get_minute() * 100;
@@ -33,10 +35,5 @@ void Sun::update()
     float horizontal = (1-cos(simple_time))/2;
 
     move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
-
-    /************************************
-    * More debugging~
-    ************************************/
-    std::cout << position.get_x() << "  " << position.get_y() << std::endl;
 };
 

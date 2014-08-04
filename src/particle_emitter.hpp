@@ -7,7 +7,7 @@
 #include "entity.hpp"
 #include "vector2d.hpp"
 
-class Particle_Emitter
+class Particle_Emitter : public Entity
 {
 private:
     std::vector

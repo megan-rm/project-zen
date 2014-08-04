@@ -15,6 +15,14 @@ private:
     unsigned short      day_of_week;
     unsigned short      month;
     unsigned short      day_of_month;
+
+    unsigned short      morning_time;
+    unsigned short      evening_time;
+    unsigned short      night_time;
+
+    enum                daylight{Morning, Noon, Afternoon, Evening, Night};
+    daylight            time_of_day;
+
 public:
     /*ctr*/             Realtime();
     /*dtr*/             ~Realtime();

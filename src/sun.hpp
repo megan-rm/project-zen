@@ -9,7 +9,9 @@ class Sun : public Entity
 private:
     /************************************
     * TODO:
-    *  -Sun Rays
+    *  -Sun Rays (use emitter?)
+    *  -Sun controls time_of_day in
+    *   Realtime.hpp
     ************************************/
     SDL_Point       movement_center;
     Realtime*       time;
