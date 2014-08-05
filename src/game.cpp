@@ -169,5 +169,6 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
+        std::cout << elapsed_time << std::endl;
     }
 };

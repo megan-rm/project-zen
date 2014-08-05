@@ -31,7 +31,6 @@ private:
     SDL_Rect            rect_emitter;
 
     unsigned int        max_particles;
-    unsigned int        alive_particles; /// possibly unusable?
 
     float               interval;
     float               velocity_cap;
@@ -44,7 +43,7 @@ private:
 public:
     /*************************************
     * Constructor order:
-    * Texture for particles, particle cap,
+    * Texture for particles, max particles,
     * and the x & y coordinates of emitter.
     *************************************/
     /*ctr*/             Particle_Emitter(SDL_Texture*);
@@ -61,6 +60,7 @@ public:
     void                set_shape(emitter_shape);
     void                set_rect(SDL_Rect&);
     void                update();
+    void                draw(){};
 };
 
 #endif

@@ -35,6 +35,8 @@ public:
                     Particle(SDL_Texture*, bool, float, float, float, float, float, float);
 
     /*dtr*/         ~Particle();
+
+    /// probably unneeded
     void            kill_particle();
     /************************************
     * Probably should scrap revive_particle

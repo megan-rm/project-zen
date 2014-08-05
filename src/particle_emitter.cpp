@@ -1,4 +1,6 @@
 #include "particle_emitter.hpp"
+#include <algorithm>
+
 
 void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
 {
@@ -8,7 +10,6 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
 
     position.set(pos_x, pos_y);
 
-    alive_particles = 0;
     alive = false;
     particle_life_span = 0.0;
 
@@ -59,8 +60,15 @@ void Particle_Emitter::attach_to_entity(Entity* n_entity)
 void Particle_Emitter::update()
 {
     std::vector<Particle*>::iterator iter;
-    for(iter = particles.begin(); iter != particles.end(); iter++)
+    for(int i = 0; i < particles.size(); i++)
     {
-        (*iter)->update();
+        particles.at(i)->update();
+        /// check to see if current particle should be killed
+        if(!(*iter)->is_alive())
+        {
+            std::swap(particles.at(i), particles.back());
+            particles.pop_back();
+        }
     }
 }
+
