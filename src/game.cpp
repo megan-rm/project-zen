@@ -135,16 +135,6 @@ void Game::run()
     Entity* newEnt = new Entity(texture_cache->get_texture(
                                 "../../resources/images/raindrop.png"));
 
-    Particle* newPart = new Particle(texture_cache->get_texture(
-                                "../../resources/images/raindrop.png"));
-    newPart->move(120.0, 120.0);
-    newPart->rotate(20.0);
-    newPart->stretch(16,16);
-    newPart->scale(3.0);
-    newPart->get_sprite()->set_clip_size(4, 4);
-    newPart->center_on_clip();
-    entity_vector.push_back(newPart);
-
     newEnt->stretch(16.0, 16.0);
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);

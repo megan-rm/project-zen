@@ -6,22 +6,20 @@
 #include "particle.hpp"
 #include "entity.hpp"
 #include "vector2d.hpp"
+#include "emitter_info.hpp"
 
 class Particle_Emitter : public Entity
 {
 private:
     std::vector
         <Particle*>     particles;
-    SDL_Texture*        particle_texture;
     Entity*             attached_entity;
 
     /**Position for emitter**/
     Vector2D            position;
 
     /**Data for particles**/
-    Vector2D            acceleration;
-    Vector2D            velocity;
-
+    Emitter_Info        emitter_info;
     /**
     * Emitters can be a Point or a Rectangle
     **/

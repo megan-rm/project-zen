@@ -4,8 +4,7 @@
 
 void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
 {
-    particle_texture = p_texture;
-
+    emitter_info.set_particle_texture(p_texture);
     max_particles = p_cap;
 
     position.set(pos_x, pos_y);
@@ -44,11 +43,7 @@ Particle_Emitter::~Particle_Emitter()
 
 void Particle_Emitter::create_particle()
 {
-    particles.push_back(new Particle(
-        particle_texture, alive, particle_life_span,
-        acceleration.get_x(), acceleration.get_y(),
-        velocity.get_x(), velocity.get_y(),
-        velocity_cap));
+    particles.push_back(new Particle(emitter_info));
 };
 
 void Particle_Emitter::attach_to_entity(Entity* n_entity)

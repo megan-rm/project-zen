@@ -5,6 +5,7 @@
 
 #include "entity.hpp"
 #include "vector2d.hpp"
+#include "emitter_info.hpp"
 
 class Particle : public Entity
 {
@@ -13,40 +14,31 @@ private:
     Vector2D        velocity;
     Vector2D        initial_position;
 
+    /******************************
+    * TODO:
+    * consider having a pointer to
+    * emitter_info.this may save on
+    * space forthings like end color,
+    * life_span, vel_cap, and
+    * initial_position
+    *******************************/
     SDL_Color       start_color;
     SDL_Color       end_color;
 
     float           life_span;  /// Milliseconds
-    float           time_alive; /// Milliseconds
     float           velocity_cap;
 
     bool            alive;
 
 public:
-    /********************************************************
-    * Constructor order:
-    * alive, life_span, accel_x, accel_y, vel_x, vel_y,
-    * vel_cap
-    ********************************************************/
-    /*ctr*/         Particle(SDL_Texture*);
-                    Particle(SDL_Texture*, bool, float);
-                    Particle(SDL_Texture*, bool, float, float, float);
-                    Particle(SDL_Texture*, bool, float, float, float, float, float);
-                    Particle(SDL_Texture*, bool, float, float, float, float, float, float);
+    /*ctr*/         Particle(Emitter_Info&);
+
 
     /*dtr*/         ~Particle();
 
     /// probably unneeded
     void            kill_particle();
-    /************************************
-    * Probably should scrap revive_particle
-    /***********************************/
-    void            revive_particle();
-    void            revive_particle(float, float);
-    void            revive_particle(float, float, float, float);
-    void            revive_particle(float, float, float, float, float);
 
-    void            set_initial_position(float, float);
     void            update(); /// need to push delta time into.
     bool            is_alive();
 };
