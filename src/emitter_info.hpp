@@ -42,6 +42,7 @@ public:
 
     void                set_acceleration(float, float);
     void                set_velocity(float, float);
+    void                set_initial_position(float, float);
     void                set_particle_texture(SDL_Texture*);
     void                set_start_color(unsigned int, unsigned int, unsigned int, unsigned int);
     void                set_end_color(unsigned int, unsigned int, unsigned int, unsigned int);

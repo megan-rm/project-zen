@@ -104,6 +104,11 @@ void Emitter_Info::set_velocity(float vel_x, float vel_y)
     velocity.set(vel_x, vel_y);
 };
 
+void Emitter_Info::set_initial_position(float x_pos, float y_pos)
+{
+    initial_position.set(x_pos, y_pos);
+};
+
 void Emitter_Info::set_particle_texture(SDL_Texture* p_texture)
 {
     particle_texture = p_texture;

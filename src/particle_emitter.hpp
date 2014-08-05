@@ -30,11 +30,11 @@ private:
 
     unsigned int        max_particles;
 
-    float               interval;
+    unsigned int        interval;
+    unsigned int        next_spawn;
+
     float               velocity_cap;
     bool                alive;
-
-    float               particle_life_span;
 
     void                ctr_helper(SDL_Texture*, int, int, int);
 
@@ -52,13 +52,20 @@ public:
 
     void                create_particle();
 
-    void                setup(float, float, float, float, float, float);
+    /*********************************
+    * Use this to initialize particle
+    * emission info.
+    * TODO:
+    *  -Make this way more pretty...
+    *********************************/
+    Emitter_Info* const get_info();
+
     void                attach_to_entity(Entity*);
 
     void                set_shape(emitter_shape);
-    void                set_rect(SDL_Rect&);
+    void                set_rect(int, int);
     void                update();
-    void                draw(){};
+    void                draw(SDL_Renderer*);
 };
 
 #endif

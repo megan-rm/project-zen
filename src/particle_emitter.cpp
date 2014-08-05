@@ -5,14 +5,24 @@
 void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
 {
     emitter_info.set_particle_texture(p_texture);
+    emitter_info.set_initial_position(pos_x, pos_y);
+
     max_particles = p_cap;
 
     position.set(pos_x, pos_y);
+    rect_emitter.x = pos_x;
+    rect_emitter.y = pos_y;
 
     alive = false;
-    particle_life_span = 0.0;
 
     velocity_cap = 0.0;
+
+    emitter_type = Point;
+
+    /// DEBUG
+    interval = 250;
+    next_spawn = 0;
+    emitter_info.set_life_span(3000);
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
@@ -43,6 +53,7 @@ Particle_Emitter::~Particle_Emitter()
 
 void Particle_Emitter::create_particle()
 {
+    next_spawn = SDL_GetTicks() + interval;
     particles.push_back(new Particle(emitter_info));
 };
 
@@ -54,16 +65,50 @@ void Particle_Emitter::attach_to_entity(Entity* n_entity)
 
 void Particle_Emitter::update()
 {
-    std::vector<Particle*>::iterator iter;
+    /// update emitter positions
+    rect_emitter.x = position.get_x();
+    rect_emitter.y = position.get_y();
+
+    /// create new particles
+    if( (particles.size() < max_particles)
+       &&(next_spawn < SDL_GetTicks() + interval))
+    {
+        create_particle();
+    }
+
+    /// update existing particles
     for(int i = 0; i < particles.size(); i++)
     {
         particles.at(i)->update();
         /// check to see if current particle should be killed
-        if(!(*iter)->is_alive())
+        if(!particles.at(i)->is_alive())
         {
             std::swap(particles.at(i), particles.back());
             particles.pop_back();
         }
     }
-}
+};
 
+void Particle_Emitter::draw(SDL_Renderer* game_renderer)
+{
+    for (int i = 0; i < particles.size(); i++)
+    {
+        particles.at(i)->draw(game_renderer);
+    }
+};
+
+void Particle_Emitter::set_shape(emitter_shape shape)
+{
+    emitter_type = shape;
+};
+
+void Particle_Emitter::set_rect(int width, int height)
+{
+    rect_emitter.w = width;
+    rect_emitter.h = height;
+};
+
+Emitter_Info* const Particle_Emitter::get_info()
+{
+    return &emitter_info;
+}

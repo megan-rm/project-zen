@@ -12,13 +12,12 @@ class Particle : public Entity
 private:
     Vector2D        acceleration;
     Vector2D        velocity;
-    Vector2D        initial_position;
 
     /******************************
     * TODO:
     * consider having a pointer to
     * emitter_info.this may save on
-    * space forthings like end color,
+    * space for things like end color,
     * life_span, vel_cap, and
     * initial_position
     *******************************/
@@ -27,6 +26,8 @@ private:
 
     float           life_span;  /// Milliseconds
     float           velocity_cap;
+
+    float           scale;
 
     bool            alive;
 
@@ -41,6 +42,9 @@ public:
 
     void            update(); /// need to push delta time into.
     bool            is_alive();
+
+    /// DEBUG
+    static float    DEBUG_MOVEMENT;
 };
 
 #endif

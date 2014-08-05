@@ -6,7 +6,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "game.hpp"
-#include "particle.hpp"
+#include "particle_emitter.hpp"
 #include "sun.hpp"
 
 Game::Game()
@@ -147,6 +147,12 @@ void Game::run()
     newSun->move(320, 240);
     newSun->center_on_clip();
     entity_vector.push_back(newSun);
+
+    Particle_Emitter* emitter = new Particle_Emitter(
+                                texture_cache->get_texture(
+                                "../../resources/images/raindrop.png"),
+                                1000, 320, 240);
+    entity_vector.push_back(emitter);
 
     running = true;
     while(running)

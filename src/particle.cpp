@@ -1,18 +1,30 @@
 #include "particle.hpp"
 
+///DEBUG
+float Particle::DEBUG_MOVEMENT = 0.1;
+
 Particle::Particle(Emitter_Info& emitter_info)
         : Entity(emitter_info.get_texture())
 {
     alive = true;
     acceleration = emitter_info.get_acceleration();
+
+    /// DEBUG
+    acceleration.set(DEBUG_MOVEMENT, DEBUG_MOVEMENT);
+    DEBUG_MOVEMENT += 0.1;
+    if(DEBUG_MOVEMENT > 1)
+        DEBUG_MOVEMENT -= 1;
+
     velocity = emitter_info.get_velocity();
-    initial_position = emitter_info.get_initial_position();
+    position = emitter_info.get_initial_position();
     start_color = emitter_info.get_start_color();
     end_color = emitter_info.get_end_color();
 
     life_span = SDL_GetTicks() + emitter_info.get_life_span();
 
     velocity_cap = emitter_info.get_velocity_cap();
+
+    scale = emitter_info.get_start_size();
 };
 
 Particle::~Particle()
@@ -23,7 +35,6 @@ void Particle::kill_particle()
 {
     alive = false;
 };
-
 
 bool Particle::is_alive()
 {
@@ -38,9 +49,7 @@ void Particle::update()
     *   -transition color
     *    based on time left
     *************************/
-
     ///DEBUG///
-    acceleration.set(0.004, 0.02);
     velocity_cap = 1.0;
     rotation += velocity.get_y();
     if(rotation > 360)
