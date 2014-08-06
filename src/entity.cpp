@@ -58,8 +58,8 @@ void Entity::stretch(int new_width, int new_height)
 
 void Entity::scale(float scale)
 {
-    position_rect.w *= scale;
-    position_rect.h *= scale;
+    position_rect.w = sprite.get_clip_rect()->w * scale;
+    position_rect.h = sprite.get_clip_rect()->h * scale;
 };
 
 void Entity::move(float new_x, float new_y)

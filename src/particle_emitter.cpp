@@ -1,6 +1,6 @@
 #include "particle_emitter.hpp"
 #include <algorithm>
-
+#include <iostream>
 
 void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
 {
@@ -20,25 +20,25 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     emitter_type = Point;
 
     /// DEBUG
-    interval = 250;
+    interval = 200;
     next_spawn = 0;
-    emitter_info.set_life_span(3000);
+    emitter_info.set_life_span(1000);
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
-                 : Entity(NULL)
+                 : Entity(p_texture)
 {
     ctr_helper(p_texture, 0, 0, 0);
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap)
-                 : Entity(NULL)
+                 : Entity(p_texture)
 {
     ctr_helper(p_texture, p_cap, 0, 0);
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
-                 : Entity(NULL)
+                 : Entity(p_texture)
 {
     ctr_helper(p_texture, p_cap, pos_x, pos_y);
 };
@@ -71,7 +71,7 @@ void Particle_Emitter::update()
 
     /// create new particles
     if( (particles.size() < max_particles)
-       &&(next_spawn < SDL_GetTicks() + interval))
+       &&(next_spawn < SDL_GetTicks()))
     {
         create_particle();
     }
@@ -85,6 +85,7 @@ void Particle_Emitter::update()
         {
             std::swap(particles.at(i), particles.back());
             particles.pop_back();
+            i--; /// because we need to check the previous back();
         }
     }
 };

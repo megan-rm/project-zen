@@ -12,7 +12,7 @@ class Particle : public Entity
 private:
     Vector2D        acceleration;
     Vector2D        velocity;
-
+    Emitter_Info*   emitter_info;
     /******************************
     * TODO:
     * consider having a pointer to
@@ -21,13 +21,13 @@ private:
     * life_span, vel_cap, and
     * initial_position
     *******************************/
-    SDL_Color       start_color;
-    SDL_Color       end_color;
+    SDL_Color       color;
 
+    unsigned int    spawn_time;
     float           life_span;  /// Milliseconds
     float           velocity_cap;
 
-    float           scale;
+    float           particle_scale;
 
     bool            alive;
 

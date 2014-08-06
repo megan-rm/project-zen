@@ -17,7 +17,8 @@ Emitter_Info::Emitter_Info()
     velocity_cap = 0.0;
 
     /// No size change
-    start_size = end_size = 1.0;
+    start_size = 1.0;
+    end_size = 1.0;
 };
 
 Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,

@@ -5,6 +5,9 @@
 #include <string>
 #include <time.h>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
+
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -28,7 +31,7 @@ private:
                         entity_vector;
     Graphic_Cache*      texture_cache;
 
-    std::string         window_title;
+    string              window_title;
 
     Realtime            game_time;
 

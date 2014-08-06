@@ -151,7 +151,7 @@ void Game::run()
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture(
                                 "../../resources/images/raindrop.png"),
-                                1000, 320, 240);
+                                400, 320, 240);
     entity_vector.push_back(emitter);
 
     running = true;
@@ -165,6 +165,6 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        std::cout << elapsed_time << std::endl;
+        //std::cout << elapsed_time << std::endl;
     }
 };

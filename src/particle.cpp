@@ -1,30 +1,33 @@
 #include "particle.hpp"
+#include <iostream>
 
 ///DEBUG
 float Particle::DEBUG_MOVEMENT = 0.1;
 
-Particle::Particle(Emitter_Info& emitter_info)
-        : Entity(emitter_info.get_texture())
+Particle::Particle(Emitter_Info& em_info)
+        : Entity(em_info.get_texture())
 {
+    emitter_info = &em_info;
     alive = true;
-    acceleration = emitter_info.get_acceleration();
+    acceleration = emitter_info->get_acceleration();
 
     /// DEBUG
     acceleration.set(DEBUG_MOVEMENT, DEBUG_MOVEMENT);
     DEBUG_MOVEMENT += 0.1;
     if(DEBUG_MOVEMENT > 1)
-        DEBUG_MOVEMENT -= 1;
+        DEBUG_MOVEMENT -= 0.9;
 
-    velocity = emitter_info.get_velocity();
-    position = emitter_info.get_initial_position();
-    start_color = emitter_info.get_start_color();
-    end_color = emitter_info.get_end_color();
+    velocity = emitter_info->get_velocity();
+    position = emitter_info->get_initial_position();
+    color = emitter_info->get_start_color();
 
-    life_span = SDL_GetTicks() + emitter_info.get_life_span();
+    life_span = emitter_info->get_life_span();
 
-    velocity_cap = emitter_info.get_velocity_cap();
+    velocity_cap = emitter_info->get_velocity_cap();
 
-    scale = emitter_info.get_start_size();
+    particle_scale = emitter_info->get_start_size();
+
+    spawn_time = SDL_GetTicks();
 };
 
 Particle::~Particle()
@@ -49,6 +52,24 @@ void Particle::update()
     *   -transition color
     *    based on time left
     *************************/
+
+    unsigned int time_alive = SDL_GetTicks() - spawn_time;
+    float life_percent = time_alive / life_span;
+
+    /// FIX THESE EQUATIONS...
+    /// Make an interpolation function for scale & color
+    color.r += ((emitter_info->get_end_color().r - emitter_info->get_start_color().r) * life_percent);
+    color.g = (emitter_info->get_end_color().g * life_percent);
+    color.b = (emitter_info->get_end_color().b * life_percent);
+    color.a = (emitter_info->get_end_color().a * life_percent);
+
+    particle_scale =
+    (emitter_info->get_start_size() + ((emitter_info->get_end_size() - emitter_info->get_start_size()) * life_percent));
+    this->scale(particle_scale);
+
+    center_on_clip();
+
+
     ///DEBUG///
     velocity_cap = 1.0;
     rotation += velocity.get_y();
@@ -73,6 +94,6 @@ void Particle::update()
     if(position_rect.y >= 490)
         move(position.get_x(), -10.0);
 
-    if(SDL_GetTicks() >= life_span)
+    if(time_alive >= life_span)
         kill_particle();
 }
