@@ -66,7 +66,7 @@ public:
     *********************************/
     Emitter_Info* const get_info();
 
-    void                attach_to_entity(Entity*);
+    void                attach_to_entity(Entity&);
 
     void                set_shape(emitter_shape);
     void                set_rect(int, int);

@@ -42,8 +42,8 @@ public:
   void                  move(float, float);
   void                  rotate(float angle);
 
-  void                  center_on_clip();
-  void                  set_center(float, float);
+  void                  center_on_rect();
+  void                  set_center(int, int);
   void                  flip_sprite(SDL_RendererFlip);
   Sprite* const         get_sprite();
 };

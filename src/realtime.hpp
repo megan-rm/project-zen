@@ -25,7 +25,9 @@ private:
     unsigned short      month;
     unsigned short      day_of_month;
 
+    ///char?
     unsigned short      morning_time;
+    unsigned short      noon_time;
     unsigned short      evening_time;
     unsigned short      night_time;
 
@@ -37,11 +39,16 @@ public:
     /*dtr*/             ~Realtime();
     void                update();
 
-    unsigned int        get_hour();
-    unsigned int        get_minute();
-    unsigned int        get_second();
-    unsigned int        get_day_of_week();
-    unsigned int        get_month();
-    unsigned int        get_day_of_month();
+    /// char?
+    unsigned short      get_hour();
+    unsigned short      get_minute();
+    unsigned short      get_second();
+    unsigned short      get_day_of_week();
+    unsigned short      get_month();
+    unsigned short      get_day_of_month();
+    unsigned short      get_morning_time();
+    unsigned short      get_noon_time();
+    unsigned short      get_evening_time();
+    unsigned short      get_night_time();
 };
 #endif

@@ -83,16 +83,16 @@ Sprite* const Entity::get_sprite()
     return &sprite;
 }
 
-void Entity::center_on_clip() /// Technically, it's position_rect. not clip.
+void Entity::center_on_rect()
 {
     center.x = position_rect.w/2;
     center.y = position_rect.w/2;
 };
 
-void Entity::set_center(float new_x, float new_y) /// use ints.... Pointless conversion.
+void Entity::set_center(int new_x, int new_y)
 {
-    center.x = (int)new_x;
-    center.y = (int)new_y;
+    center.x = new_x;
+    center.y = new_y;
 };
 
 void Entity::flip_sprite(SDL_RendererFlip new_flip)

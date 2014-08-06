@@ -38,17 +38,11 @@ SDL_Texture* Graphic_Cache::get_texture(std::string filepath)
     return iter->second;
 };
 
-/// throw this in the destructor. No need for this function.
-void Graphic_Cache::cleanup()
+Graphic_Cache::~Graphic_Cache()
 {
     if ( !texture_library.empty() )
         for ( std::map<std::string,SDL_Texture*>::iterator iter = texture_library.begin(); iter != texture_library.end(); iter++ )
             SDL_DestroyTexture(iter->second);
 
     texture_library.clear();
-};
-
-Graphic_Cache::~Graphic_Cache()
-{
-    cleanup();
 };

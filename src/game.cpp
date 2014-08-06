@@ -21,12 +21,6 @@ Game::Game()
     window_title = "Project Zen";
     frames_per_second = 60;
 
-    /// move this into realtime. or the sun. something.
-    morning = 7;
-    noon = 12;
-    evening = 17;
-    night = 20;
-
     game_window = SDL_CreateWindow(window_title.c_str(),
                   SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                   screen_width, screen_height, SDL_WINDOW_SHOWN);
@@ -55,7 +49,6 @@ Game::~Game()
 
     SDL_DestroyWindow(game_window);
     SDL_DestroyRenderer(game_renderer);
-    texture_cache->cleanup();
     SDL_Quit();
 };
 
@@ -103,20 +96,21 @@ void Game::draw()
     {
         entity_vector.at(x)->draw(game_renderer);
     }
-    if(game_time.get_hour() >= night
-       || (game_time.get_hour() < morning && game_time.get_hour() >= 0))
+    if(game_time.get_hour() >= game_time.get_evening_time()
+       || (game_time.get_hour() < game_time.get_morning_time()
+        && game_time.get_hour() >= 0))
         SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
 
-    else if(game_time.get_hour() >= morning
-            && game_time.get_hour() < noon)
+    else if(game_time.get_hour() >= game_time.get_morning_time()
+            && game_time.get_hour() < game_time.get_noon_time())
         SDL_SetRenderDrawColor(game_renderer, 255, 252, 127, 0);
 
-    else if(game_time.get_hour() >= noon
-            && game_time.get_hour() < evening)
+    else if(game_time.get_hour() >= game_time.get_noon_time()
+            && game_time.get_hour() < game_time.get_evening_time())
         SDL_SetRenderDrawColor(game_renderer, 64, 156, 255, 0);
 
-    else if(game_time.get_hour() >= evening
-            && game_time.get_hour() < night)
+    else if(game_time.get_hour() >= game_time.get_evening_time()
+            && game_time.get_hour() < game_time.get_night_time())
         SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
 
     SDL_RenderPresent(game_renderer);
@@ -130,7 +124,7 @@ void Game::run()
     newEntity->move(320.0, 240.0);
     newEntity->rotate(20.0);
     newEntity->get_sprite()->set_clip_size(4, 4);
-    newEntity->center_on_clip();
+    newEntity->center_on_rect();
     entity_vector.push_back(newEntity);
 
     Entity* newEnt = new Entity(texture_cache->get_texture(
@@ -140,13 +134,13 @@ void Game::run()
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);
     newEnt->get_sprite()->set_clip_size(4, 4);
-    newEnt->center_on_clip();
+    newEnt->center_on_rect();
     entity_vector.push_back(newEnt);
 
     Sun* newSun = new Sun(texture_cache->get_texture(
                         "../../resources/images/sun.png"), game_time);
     newSun->move(320, 240);
-    newSun->center_on_clip();
+    newSun->center_on_rect();
     entity_vector.push_back(newSun);
 
     Particle_Emitter* emitter = new Particle_Emitter(

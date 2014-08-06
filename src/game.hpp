@@ -51,10 +51,6 @@ private:
     bool                running;
 
     /// This should be part of the Sun/Moon
-    unsigned short      morning;
-    unsigned short      noon;
-    unsigned short      evening;
-    unsigned short      night;
 
     void                event_loop();
     void                update();

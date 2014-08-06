@@ -11,8 +11,10 @@ Particle::Particle(Emitter_Info& em_info)
     velocity = emitter_info->get_velocity();
     position = emitter_info->get_initial_position();
 
-    /// Wrong. This makes a copy SDL_Color struct
-    color = emitter_info->get_start_color();
+    color.r = emitter_info->get_start_color().r;
+    color.g = emitter_info->get_start_color().g;
+    color.b = emitter_info->get_start_color().b;
+    color.a = emitter_info->get_start_color().a;
 
     life_span = emitter_info->get_life_span();
 
@@ -60,7 +62,7 @@ void Particle::update()
     (emitter_info->get_start_size() + ((emitter_info->get_end_size() - emitter_info->get_start_size()) * life_percent));
     this->scale(particle_scale);
 
-    center_on_clip();
+    center_on_rect();
 
 
     ///DEBUG///

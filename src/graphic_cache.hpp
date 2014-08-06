@@ -27,7 +27,6 @@ private:
     SDL_Renderer*       game_renderer;
 public:
     SDL_Texture*    get_texture(std::string);
-    void            cleanup();
     /*ctr*/         Graphic_Cache(SDL_Renderer*);
     /*dtr*/         ~Graphic_Cache();
 };

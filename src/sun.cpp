@@ -24,6 +24,7 @@ void Sun::update()
     * Get time in hhmmss format
     * TODO:
     *   - Use millisecond time
+    * BROKEN. FIX.
     ************************************/
     float simple_time = time->get_hour() * 10000;
     simple_time += time->get_minute() * 100;
