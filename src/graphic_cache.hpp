@@ -8,6 +8,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+
+/******************************************
+* TODO:
+*  -Add a static string for the default
+*   image location, ie: "../../resources/images/"
+*  -Also add static string for the default
+*   image extension: ".png"
+*   (this will allow map keys to be shorter. IE:
+*    "raindrop" instead of the whole path)
+******************************************/
+
 class Graphic_Cache
 {
 private:

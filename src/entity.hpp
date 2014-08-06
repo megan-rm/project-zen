@@ -12,6 +12,12 @@
 * a entity, or variety of.
 ************************************/
 
+
+/************************************
+* TODO:
+*  -Add color & alpha mods
+*  -Add gravity flag & support
+************************************/
 class Entity
 {
 protected:

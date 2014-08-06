@@ -3,7 +3,13 @@
 
 #include <SDL2/SDL.h>
 #include "vector2d.hpp"
-
+/*********************************
+* TODO:
+*  -Add variance for things like:
+*   *spawn_time
+*   *movement_angle (acceleration variance)
+*   *Ability to be affected by gravity
+*********************************/
 class Emitter_Info
 {
 private:

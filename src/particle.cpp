@@ -1,21 +1,12 @@
 #include "particle.hpp"
 #include <iostream>
 
-///DEBUG
-float Particle::DEBUG_MOVEMENT = 0.1;
-
 Particle::Particle(Emitter_Info& em_info)
         : Entity(em_info.get_texture())
 {
     emitter_info = &em_info;
     alive = true;
     acceleration = emitter_info->get_acceleration();
-
-    /// DEBUG
-    acceleration.set(DEBUG_MOVEMENT, DEBUG_MOVEMENT);
-    DEBUG_MOVEMENT += 0.1;
-    if(DEBUG_MOVEMENT > 1)
-        DEBUG_MOVEMENT -= 0.9;
 
     velocity = emitter_info->get_velocity();
     position = emitter_info->get_initial_position();

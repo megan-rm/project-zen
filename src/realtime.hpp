@@ -3,6 +3,15 @@
 
 #include <time.h>
 
+
+/*******************************
+* TODO:
+*  -keep track of daylight, moon,
+*   and sun(maybe?)
+*  -use epoch time for daytime,
+*   like hours, minutes, seconds
+*******************************/
+
 class Realtime
 {
 private:

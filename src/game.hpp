@@ -5,6 +5,8 @@
 #include <string>
 #include <time.h>
 #include <vector>
+
+/// Randomness. Maybe C++11 instead?
 #include <cstdlib>
 #include <ctime>
 
@@ -19,6 +21,13 @@
 
 using std::string;
 using std::map;
+
+/***************************************
+* TODO:
+*  -Separate and move stuff into classes
+*  -Need to throw away the FPS control
+*   for something better.
+***************************************/
 
 class Game
 {
@@ -41,6 +50,7 @@ private:
 
     bool                running;
 
+    /// This should be part of the Sun/Moon
     unsigned short      morning;
     unsigned short      noon;
     unsigned short      evening;

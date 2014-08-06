@@ -7,24 +7,24 @@
 #include "vector2d.hpp"
 #include "emitter_info.hpp"
 
+/******************************
+* TODO:
+* See how much we can pull out
+* of particle, and just grab
+* from emitter_info.
+*******************************/
+
 class Particle : public Entity
 {
 private:
     Vector2D        acceleration;
     Vector2D        velocity;
     Emitter_Info*   emitter_info;
-    /******************************
-    * TODO:
-    * consider having a pointer to
-    * emitter_info.this may save on
-    * space for things like end color,
-    * life_span, vel_cap, and
-    * initial_position
-    *******************************/
+
     SDL_Color       color;
 
-    unsigned int    spawn_time;
-    float           life_span;  /// Milliseconds
+    unsigned int    spawn_time;     /// When it was birthed.
+    float           life_span;      /// Milliseconds
     float           velocity_cap;
 
     float           particle_scale;
@@ -42,9 +42,6 @@ public:
 
     void            update(); /// need to push delta time into.
     bool            is_alive();
-
-    /// DEBUG
-    static float    DEBUG_MOVEMENT;
 };
 
 #endif

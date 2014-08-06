@@ -8,6 +8,16 @@
 #include "vector2d.hpp"
 #include "emitter_info.hpp"
 
+/*************************************
+* TODO:
+*  -attached_entity could probably be
+*   part of entity. (chain links, like
+*   the chomp-chomp in Mario, etc)
+*  -Maybe constructor for default entity
+*   to attach to.
+*  -Burst emission; like fireworks.
+*************************************/
+
 class Particle_Emitter : public Entity
 {
 private:
@@ -15,14 +25,10 @@ private:
         <Particle*>     particles;
     Entity*             attached_entity;
 
-    /**Position for emitter**/
-    Vector2D            position;
-
     /**Data for particles**/
     Emitter_Info        emitter_info;
-    /**
-    * Emitters can be a Point or a Rectangle
-    **/
+
+    /**Emitters can be a Point or a Rectangle**/
     enum                emitter_shape{Point, Rectangle, Circle};
 
     emitter_shape       emitter_type;

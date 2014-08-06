@@ -3,6 +3,11 @@
 
 #include <SDL2/SDL.h>
 
+/************************************
+* TODO:
+*  -Does this class serve a purpose?
+************************************/
+
 class Timer
 {
 private:

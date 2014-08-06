@@ -3,6 +3,14 @@
 
 #include <SDL2/SDL.h>
 
+/********************************
+* TODO:
+*  -set_blend() maybe belongs to
+*   entities...
+*  -Throw current images into a
+*   sprite sheet, save on textures.
+********************************/
+
 class Sprite
 {
 private:

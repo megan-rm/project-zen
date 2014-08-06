@@ -8,6 +8,12 @@
 
 #include "entity.hpp"
 
+/*************************************
+* TODO:
+*  -Figure out what this will do...
+*   (maybe hold world info, and share?)
+*************************************/
+
 class Entity_Manager
 {
 private:

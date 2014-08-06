@@ -20,9 +20,9 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     emitter_type = Point;
 
     /// DEBUG
-    interval = 200;
+    interval = 0;
     next_spawn = 0;
-    emitter_info.set_life_span(1000);
+    emitter_info.set_life_span(0);
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
@@ -85,7 +85,7 @@ void Particle_Emitter::update()
         {
             std::swap(particles.at(i), particles.back());
             particles.pop_back();
-            i--; /// because we need to check the previous back();
+            i--; /// because we need to check the previous back() particle
         }
     }
 };

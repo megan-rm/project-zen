@@ -152,6 +152,7 @@ void Game::run()
                                 texture_cache->get_texture(
                                 "../../resources/images/raindrop.png"),
                                 400, 320, 240);
+    //emitter->get_info()->set
     entity_vector.push_back(emitter);
 
     running = true;
