@@ -21,6 +21,7 @@ Game::Game()
     window_title = "Project Zen";
     frames_per_second = 60;
 
+    /// move this into realtime. or the sun. something.
     morning = 7;
     noon = 12;
     evening = 17;
@@ -67,7 +68,7 @@ void Game::handle_input(SDL_Event& event)
         case SDL_QUIT:
             running = false;
             break;
-        case SDL_KEYDOWN:
+        case SDL_KEYDOWN: /// Use scancodes? and a input config?
             if(event.key.keysym.sym == SDLK_ESCAPE)
             {
                 running = false;

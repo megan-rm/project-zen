@@ -57,7 +57,7 @@ void Particle_Emitter::create_particle()
     particles.push_back(new Particle(emitter_info));
 };
 
-void Particle_Emitter::attach_to_entity(Entity* n_entity)
+void Particle_Emitter::attach_to_entity(Entity* n_entity) /// Reference instead.
 {
     if(n_entity)
         attached_entity = &(*n_entity); /// need to check validity every tick
@@ -83,6 +83,7 @@ void Particle_Emitter::update()
         /// check to see if current particle should be killed
         if(!particles.at(i)->is_alive())
         {
+            delete particles.at(i);
             std::swap(particles.at(i), particles.back());
             particles.pop_back();
             i--; /// because we need to check the previous back() particle

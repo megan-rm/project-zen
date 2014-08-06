@@ -10,6 +10,8 @@ Particle::Particle(Emitter_Info& em_info)
 
     velocity = emitter_info->get_velocity();
     position = emitter_info->get_initial_position();
+
+    /// Wrong. This makes a copy SDL_Color struct
     color = emitter_info->get_start_color();
 
     life_span = emitter_info->get_life_span();
@@ -78,7 +80,6 @@ void Particle::update()
 
     /************************************
     * Debugging.
-    * In the future, Kill the particle.
     ************************************/
     if(position_rect.x >= 650)
         move(-10.0, position.get_y());

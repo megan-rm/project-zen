@@ -5,6 +5,8 @@ Graphic_Cache::Graphic_Cache(SDL_Renderer* renderer)
     game_renderer = renderer;
 };
 
+
+/// I think I can get away with Map[key] = new_value, instead of iterating.
 SDL_Texture* Graphic_Cache::get_texture(std::string filepath)
 {
     std::map<std::string, SDL_Texture*>::iterator iter = texture_library.find(filepath);
@@ -36,6 +38,7 @@ SDL_Texture* Graphic_Cache::get_texture(std::string filepath)
     return iter->second;
 };
 
+/// throw this in the destructor. No need for this function.
 void Graphic_Cache::cleanup()
 {
     if ( !texture_library.empty() )

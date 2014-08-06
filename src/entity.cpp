@@ -35,12 +35,13 @@ void Entity::draw(SDL_Renderer* game_renderer)
 
 void Entity::update()
 {
-    rotation += 0.1;
-    Vector2D movement(0.5, 0.3);
+    rotation += 0.1; /// DEBUG
+    Vector2D movement(0.5, 0.3); /// DEBUG
 
     position = position + movement;
     move(position.get_x(), position.get_y());
 
+    /// Use screen width info. DEBUG.
     if(position_rect.x >= 650)
         move(-10.0, position.get_y());
     if(position_rect.y >= 490)
@@ -58,6 +59,9 @@ void Entity::stretch(int new_width, int new_height)
 
 void Entity::scale(float scale)
 {
+    /************************************
+    * Possibly re-center here, too?
+    ************************************/
     position_rect.w = sprite.get_clip_rect()->w * scale;
     position_rect.h = sprite.get_clip_rect()->h * scale;
 };
@@ -79,13 +83,13 @@ Sprite* const Entity::get_sprite()
     return &sprite;
 }
 
-void Entity::center_on_clip()
+void Entity::center_on_clip() /// Technically, it's position_rect. not clip.
 {
     center.x = position_rect.w/2;
     center.y = position_rect.w/2;
 };
 
-void Entity::set_center(float new_x, float new_y)
+void Entity::set_center(float new_x, float new_y) /// use ints.... Pointless conversion.
 {
     center.x = (int)new_x;
     center.y = (int)new_y;
