@@ -30,8 +30,12 @@ private:
 
     /**Emitters can be a Point or a Rectangle**/
     enum                emitter_shape{Point, Rectangle, Circle};
+    /**Emitters can burst, like fireworks, or spread like smoke**/
+    enum                emitter_type{Burst, Spread};
 
-    emitter_shape       emitter_type;
+    emitter_shape       shape;
+    emitter_type        type;
+
     SDL_Rect            rect_emitter;
 
     unsigned int        max_particles;
@@ -40,7 +44,6 @@ private:
     unsigned int        next_spawn;
 
     float               velocity_cap;
-    bool                alive;
 
     void                ctr_helper(SDL_Texture*, int, int, int);
 

@@ -6,6 +6,7 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
 {
     emitter_info.set_particle_texture(p_texture);
     emitter_info.set_initial_position(pos_x, pos_y);
+    emitter_info.set_life_span(0);
 
     max_particles = p_cap;
 
@@ -13,16 +14,16 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     rect_emitter.x = pos_x;
     rect_emitter.y = pos_y;
 
-    alive = false;
+    alive = true;
 
     velocity_cap = 0.0;
 
-    emitter_type = Point;
+    shape = Point;
+    type = Spread;
 
     /// DEBUG
     interval = 0;
     next_spawn = 0;
-    emitter_info.set_life_span(0);
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
@@ -101,9 +102,9 @@ void Particle_Emitter::draw(SDL_Renderer* game_renderer)
     }
 };
 
-void Particle_Emitter::set_shape(emitter_shape shape)
+void Particle_Emitter::set_shape(emitter_shape new_shape)
 {
-    emitter_type = shape;
+    shape = new_shape;
 };
 
 void Particle_Emitter::set_rect(unsigned int width, unsigned int height)

@@ -34,11 +34,6 @@ void Particle::kill_particle()
     alive = false;
 };
 
-bool Particle::is_alive()
-{
-    return alive;
-};
-
 void Particle::update()
 {
 

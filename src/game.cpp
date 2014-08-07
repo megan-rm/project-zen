@@ -1,6 +1,7 @@
 #include <time.h>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -86,7 +87,14 @@ void Game::update()
     for (unsigned int x = 0; x < entity_vector.size(); x++)
     {
         entity_vector.at(x)->update();
+        if(!entity_vector.at(x)->is_alive())
+        {
+            delete entity_vector.at(x);
+            std::swap(entity_vector.at(x), entity_vector.back());
+            entity_vector.pop_back();
+        }
     }
+
 };
 
 void Game::draw()

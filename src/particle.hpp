@@ -29,8 +29,6 @@ private:
 
     float           particle_scale;
 
-    bool            alive;
-
 public:
     /*ctr*/         Particle(Emitter_Info&);
 
@@ -41,7 +39,6 @@ public:
     void            kill_particle();
 
     void            update(); /// need to push delta time into.
-    bool            is_alive();
 };
 
 #endif

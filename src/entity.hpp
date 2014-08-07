@@ -29,6 +29,8 @@ protected:
 
     float               rotation;
 
+    bool                alive;
+
 public:
   /*ctr*/               Entity(SDL_Texture*);
   virtual /*dtr*/       ~Entity();
@@ -46,6 +48,7 @@ public:
   void                  set_center(int, int);
   void                  flip_sprite(SDL_RendererFlip);
   Sprite* const         get_sprite();
+  bool                  is_alive();
 };
 
 #endif

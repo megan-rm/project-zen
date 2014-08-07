@@ -21,6 +21,7 @@
 
 using std::string;
 using std::map;
+using std::vector;
 
 /***************************************
 * TODO:
@@ -36,8 +37,7 @@ private:
     SDL_Renderer*       game_renderer;
     SDL_Event           game_input;
 
-    std::vector<Entity*>
-                        entity_vector;
+    vector<Entity*>     entity_vector;
     Graphic_Cache*      texture_cache;
 
     string              window_title;

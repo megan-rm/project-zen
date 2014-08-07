@@ -17,6 +17,8 @@ Entity::Entity(SDL_Texture* entity_texture) : sprite(entity_texture)
 
     center.x = position_rect.w/2;
     center.y = position_rect.h/2;
+
+    alive = true;
 };
 
 Entity::~Entity()
@@ -85,6 +87,11 @@ Sprite* const Entity::get_sprite()
     return &sprite;
 }
 
+bool Entity::is_alive()
+{
+    return alive;
+};
+
 void Entity::center_on_rect()
 {
     center.x = position_rect.w/2;
@@ -101,3 +108,4 @@ void Entity::flip_sprite(SDL_RendererFlip new_flip)
 {
     flip_type = new_flip;
 };
+
