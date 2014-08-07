@@ -49,6 +49,7 @@ Game::~Game()
 
     SDL_DestroyWindow(game_window);
     SDL_DestroyRenderer(game_renderer);
+    delete texture_cache;
     SDL_Quit();
 };
 
@@ -68,7 +69,8 @@ void Game::handle_input(SDL_Event& event)
             }
             if(event.key.keysym.sym == SDLK_SPACE)
             {
-                entity_vector.pop_back();
+                if(!entity_vector.empty())
+                    entity_vector.pop_back();
             }
             break;
         default:
@@ -118,8 +120,7 @@ void Game::draw()
 
 void Game::run()
 {
-    Entity* newEntity = new Entity(texture_cache->get_texture(
-                                   "../../resources/images/raindrop.png"));
+    Entity* newEntity = new Entity(texture_cache->get_texture("raindrop"));
     newEntity->stretch(48.0, 48.0);
     newEntity->move(320.0, 240.0);
     newEntity->rotate(20.0);
@@ -127,8 +128,7 @@ void Game::run()
     newEntity->center_on_rect();
     entity_vector.push_back(newEntity);
 
-    Entity* newEnt = new Entity(texture_cache->get_texture(
-                                "../../resources/images/raindrop.png"));
+    Entity* newEnt = new Entity(texture_cache->get_texture("raindrop"));
 
     newEnt->stretch(16.0, 16.0);
     newEnt->move(480.0, 320.0);
@@ -137,30 +137,33 @@ void Game::run()
     newEnt->center_on_rect();
     entity_vector.push_back(newEnt);
 
-    Sun* newSun = new Sun(texture_cache->get_texture(
-                        "../../resources/images/sun.png"), game_time);
+    Sun* newSun = new Sun(texture_cache->get_texture("sun"), game_time);
     newSun->move(320, 240);
     newSun->center_on_rect();
     entity_vector.push_back(newSun);
 
     Particle_Emitter* emitter = new Particle_Emitter(
-                                texture_cache->get_texture(
-                                "../../resources/images/raindrop.png"),
-                                80, 320, 240);
+                                texture_cache->get_texture("raindrop"),
+                                400, 320, 240);
     emitter->get_info()->set_life_span(1000);
     emitter->get_info()->set_acceleration(0.04, -0.08);
-    emitter->set_interval(100);
+    emitter->set_interval(50);
     emitter->get_info()->set_velocity_cap(.30);
     entity_vector.push_back(emitter);
 
     running = true;
+    unsigned int start_time;
+    unsigned int elapsed_time;
+
     while(running)
     {
-        const unsigned int start_time = SDL_GetTicks();
+        start_time = SDL_GetTicks();
+
         handle_input(game_input);
         update();
         draw();
-        const unsigned int elapsed_time = SDL_GetTicks() - start_time;
+
+        elapsed_time = SDL_GetTicks() - start_time;
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);

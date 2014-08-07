@@ -1,5 +1,8 @@
 #include "graphic_cache.hpp"
 
+const std::string Graphic_Cache::image_path = "../../resources/images/";
+const std::string Graphic_Cache::image_extension = ".png";
+
 Graphic_Cache::Graphic_Cache(SDL_Renderer* renderer)
 {
     game_renderer = renderer;
@@ -7,12 +10,14 @@ Graphic_Cache::Graphic_Cache(SDL_Renderer* renderer)
 
 
 /// I think I can get away with Map[key] = new_value, instead of iterating.
-SDL_Texture* Graphic_Cache::get_texture(std::string filepath)
+SDL_Texture* Graphic_Cache::get_texture(std::string filename)
 {
-    std::map<std::string, SDL_Texture*>::iterator iter = texture_library.find(filepath);
+    std::map<std::string, SDL_Texture*>::iterator iter = texture_library.find(filename);
 
     if (iter == texture_library.end())
     {
+        std::string filepath = image_path + filename + image_extension;
+
         SDL_Surface* loaded_surface = IMG_Load(filepath.c_str());
         if (!loaded_surface)
         {

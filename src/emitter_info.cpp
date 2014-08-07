@@ -21,6 +21,7 @@ Emitter_Info::Emitter_Info()
     end_size = 1.0;
 };
 
+/// This needs to be cleaned up, I think.
 Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
              float vel_x, float vel_y, float pos_x, float pos_y, SDL_Color& s_color,
              SDL_Color& e_color, float life, float vel_cap, float s_size, float e_size)
@@ -30,8 +31,6 @@ Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
     velocity.set(vel_x, vel_y);
     initial_position.set(pos_x, pos_y);
 
-    /// This needs to be cleaned up, I think.
-    /// Struct copying is happening.
     start_color = s_color;
     end_color = e_color;
 

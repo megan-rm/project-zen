@@ -23,47 +23,47 @@ Realtime::~Realtime()
 {
 };
 
-unsigned short Realtime::get_day_of_month()
+unsigned char Realtime::get_day_of_month()
 {
     return day_of_month;
 };
 
-unsigned short Realtime::get_day_of_week()
+unsigned char Realtime::get_day_of_week()
 {
     return day_of_week;
 };
 
-unsigned short Realtime::get_hour()
+unsigned char Realtime::get_hour()
 {
     return hour;
 };
 
-unsigned short Realtime::get_minute()
+unsigned char Realtime::get_minute()
 {
     return minute;
 };
 
-unsigned short Realtime::get_second()
+unsigned char Realtime::get_second()
 {
     return second;
 };
 
-unsigned short Realtime::get_morning_time()
+unsigned char Realtime::get_morning_time()
 {
     return morning_time;
 };
 
-unsigned short Realtime::get_noon_time()
+unsigned char Realtime::get_noon_time()
 {
     return noon_time;
 };
 
-unsigned short Realtime::get_evening_time()
+unsigned char Realtime::get_evening_time()
 {
     return evening_time;
 };
 
-unsigned short Realtime::get_night_time()
+unsigned char Realtime::get_night_time()
 {
     return night_time;
 };
