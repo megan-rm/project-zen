@@ -69,7 +69,8 @@ public:
     void                attach_to_entity(Entity&);
 
     void                set_shape(emitter_shape);
-    void                set_rect(int, int);
+    void                set_rect(unsigned int, unsigned int);
+    void                set_interval(unsigned int);
     void                update();
     void                draw(SDL_Renderer*);
 };

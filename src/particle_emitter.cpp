@@ -106,10 +106,15 @@ void Particle_Emitter::set_shape(emitter_shape shape)
     emitter_type = shape;
 };
 
-void Particle_Emitter::set_rect(int width, int height)
+void Particle_Emitter::set_rect(unsigned int width, unsigned int height)
 {
     rect_emitter.w = width;
     rect_emitter.h = height;
+};
+
+void Particle_Emitter::set_interval(unsigned int i_rate) /// i_rate? that's perfect. ha.
+{
+    interval = i_rate; /// it needs to calm down.
 };
 
 Emitter_Info* const Particle_Emitter::get_info()

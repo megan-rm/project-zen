@@ -96,7 +96,7 @@ void Game::draw()
     {
         entity_vector.at(x)->draw(game_renderer);
     }
-    if(game_time.get_hour() >= game_time.get_evening_time()
+    if(game_time.get_hour() >= game_time.get_night_time()
        || (game_time.get_hour() < game_time.get_morning_time()
         && game_time.get_hour() >= 0))
         SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
@@ -146,8 +146,11 @@ void Game::run()
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture(
                                 "../../resources/images/raindrop.png"),
-                                400, 320, 240);
-    //emitter->get_info()->set
+                                80, 320, 240);
+    emitter->get_info()->set_life_span(1000);
+    emitter->get_info()->set_acceleration(0.04, -0.08);
+    emitter->set_interval(100);
+    emitter->get_info()->set_velocity_cap(.30);
     entity_vector.push_back(emitter);
 
     running = true;
@@ -161,6 +164,6 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        //std::cout << elapsed_time << std::endl;
+        std::cout << elapsed_time << std::endl;
     }
 };
