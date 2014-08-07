@@ -9,7 +9,7 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     emitter_info.set_life_span(0);
 
     max_particles = p_cap;
-
+    particles.reserve(p_cap);
     position.set(pos_x, pos_y);
     rect_emitter.x = pos_x;
     rect_emitter.y = pos_y;

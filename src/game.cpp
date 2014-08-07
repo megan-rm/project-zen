@@ -92,6 +92,7 @@ void Game::update()
             delete entity_vector.at(x);
             std::swap(entity_vector.at(x), entity_vector.back());
             entity_vector.pop_back();
+            x--;
         }
     }
 
@@ -148,14 +149,15 @@ void Game::run()
     Sun* newSun = new Sun(texture_cache->get_texture("sun"), game_time);
     newSun->move(320, 240);
     newSun->center_on_rect();
+    newSun->scale(3);
     entity_vector.push_back(newSun);
 
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture("raindrop"),
-                                400, 320, 240);
-    emitter->get_info()->set_life_span(1000);
-    emitter->get_info()->set_acceleration(0.04, -0.08);
-    emitter->set_interval(50);
+                                800, 320, 240);
+    emitter->get_info()->set_life_span(5000);
+    emitter->get_info()->set_acceleration(0.04, 0.08);
+    emitter->set_interval(10);
     emitter->get_info()->set_velocity_cap(.30);
     entity_vector.push_back(emitter);
 
