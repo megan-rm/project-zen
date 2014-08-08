@@ -137,11 +137,12 @@ void Game::run()
 
     Entity* newEnt = new Entity(texture_cache->get_texture("raindrop"));
 
-    newEnt->stretch(16.0, 16.0);
+    newEnt->stretch(48.0, 48.0);
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);
     newEnt->get_sprite()->set_clip_size(4, 4);
     newEnt->center_on_rect();
+    newEnt->set_alpha(125);
     entity_vector.push_back(newEnt);
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
@@ -154,8 +155,8 @@ void Game::run()
 
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture("raindrop"),
-                                1500, 320, 240);
-    emitter->get_info()->set_life_span(10000);
+                                800, 320, 240);
+    emitter->get_info()->set_life_span(8000);
     emitter->get_info()->set_acceleration(0.04, 0.08);
     emitter->set_interval(10);
     emitter->get_info()->set_velocity_cap(0.99);

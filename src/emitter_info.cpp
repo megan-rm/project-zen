@@ -8,9 +8,9 @@ Emitter_Info::Emitter_Info()
 
     /// No Color Change
     start_color.r = start_color.g = start_color.b = 255;
-    start_color.a = 0;
+    start_color.a = 255;
 
-    end_color.r = end_color.g = end_color.b = 0;
+    end_color.r = end_color.g = end_color.b = 255;
     end_color.a = 255;
 
     life_span = 0.0;

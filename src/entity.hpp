@@ -28,7 +28,8 @@ protected:
     SDL_RendererFlip    flip_type;
 
     float               rotation;
-
+    SDL_BlendMode       blending;
+    uint8_t             alpha;
     bool                alive;
 
 public:
@@ -46,6 +47,8 @@ public:
 
   void                  center_on_rect();
   void                  set_center(int, int);
+  void                  set_blending(SDL_BlendMode);
+  void                  set_alpha(uint8_t);
   void                  flip_sprite(SDL_RendererFlip);
   Sprite* const         get_sprite();
   bool                  is_alive();

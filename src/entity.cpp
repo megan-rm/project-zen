@@ -19,6 +19,8 @@ Entity::Entity(SDL_Texture* entity_texture) : sprite(entity_texture)
     center.y = position_rect.h/2;
 
     alive = true;
+    blending = SDL_BLENDMODE_BLEND;
+    alpha = 255;
 };
 
 Entity::~Entity()
@@ -34,8 +36,19 @@ void Entity::draw(SDL_Renderer* game_renderer)
     SDL_SetRenderDrawColor(game_renderer, 255, 64, 64, 128);
     SDL_RenderDrawRect(game_renderer, &position_rect);
     */
+    SDL_BlendMode old_blend;
+    uint8_t old_alpha;
+
+    SDL_GetTextureBlendMode(sprite.get_texture(), &old_blend);
+    SDL_GetTextureAlphaMod(sprite.get_texture(), &old_alpha);
+
+    SDL_SetTextureAlphaMod(this->sprite.get_texture(), alpha);
+    SDL_SetTextureBlendMode(this->sprite.get_texture(), blending);
 
     SDL_RenderCopyEx(game_renderer, this->sprite.get_texture(), this->sprite.get_clip_rect(), &position_rect, rotation, &center, flip_type);
+
+    SDL_SetTextureBlendMode(this->sprite.get_texture(), old_blend);
+    SDL_SetTextureAlphaMod(this->sprite.get_texture(), old_alpha);
 };
 
 void Entity::update()
@@ -103,6 +116,16 @@ void Entity::set_center(int new_x, int new_y)
 {
     center.x = new_x;
     center.y = new_y;
+};
+
+void Entity::set_blending(SDL_BlendMode new_blend)
+{
+    blending = new_blend;
+};
+
+void Entity::set_alpha(uint8_t new_alpha)
+{
+    alpha = new_alpha;
 };
 
 void Entity::flip_sprite(SDL_RendererFlip new_flip)

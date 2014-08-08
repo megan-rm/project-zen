@@ -66,6 +66,7 @@ public:
     * emission info.
     * TODO:
     *  -Make this way more pretty...
+    *  -Probably want revive() back.
     *********************************/
     Emitter_Info* const get_info();
 

@@ -24,8 +24,9 @@ private:
     SDL_Color       color;
 
     unsigned int    spawn_time;     /// When it was birthed.
-    float           life_span;      /// Milliseconds
-    float           velocity_cap;
+    unsigned int    life_span;      /// Milliseconds
+
+    float           velocity_cap; /// may want Vector2D
 
     float           particle_scale;
 

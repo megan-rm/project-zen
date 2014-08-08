@@ -7,8 +7,6 @@
 * TODO:
 *  -set_blend() maybe belongs to
 *   entities...
-*  -Throw current images into a
-*   sprite sheet, save on textures.
 ********************************/
 
 class Sprite
@@ -40,5 +38,6 @@ public:
     void            set_clip_size(unsigned int, unsigned int);
     void            set_clip(unsigned int, unsigned int);
     void            set_blend(SDL_BlendMode);
+    void            set_alpha(unsigned short);
 };
 #endif

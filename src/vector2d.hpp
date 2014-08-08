@@ -1,10 +1,6 @@
 #ifndef VECTOR2D_H_
 #define VECTOR2D_H_
 
-/*****************************
-* TODO:
-*  -Overload equals operator
-*****************************/
 class Vector2D
 {
 private:

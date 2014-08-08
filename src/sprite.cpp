@@ -97,3 +97,8 @@ void Sprite::set_blend(SDL_BlendMode blendmode)
 {
     SDL_SetTextureBlendMode(sprite_sheet, blendmode);
 }
+
+void Sprite::set_alpha(unsigned short alpha)
+{
+    SDL_SetTextureAlphaMod(sprite_sheet, alpha);
+}
