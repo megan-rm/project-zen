@@ -99,8 +99,6 @@ void Game::update()
 
 void Game::draw()
 {
-    unsigned int start_time = SDL_GetTicks();
-    unsigned int elapsed_time;
     SDL_RenderClear(game_renderer);
 
     for (unsigned int x = 0; x < entity_vector.size(); x++)
@@ -125,8 +123,6 @@ void Game::draw()
         SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
 
     SDL_RenderPresent(game_renderer);
-    elapsed_time = SDL_GetTicks() - start_time;
-    std::cout << elapsed_time << std::endl;
 };
 
 void Game::run()
@@ -181,6 +177,6 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        //std::cout << elapsed_time << std::endl;
+        std::cout << elapsed_time << std::endl;
     }
 };
