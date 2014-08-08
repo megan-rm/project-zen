@@ -30,10 +30,10 @@ Entity::~Entity()
 
 void Entity::draw(SDL_Renderer* game_renderer)
 {
-    /// For my debugging purposes.
+    /*/// For my debugging purposes.
     SDL_SetRenderDrawColor(game_renderer, 255, 64, 64, 128);
     SDL_RenderDrawRect(game_renderer, &position_rect);
-
+    */
 
     SDL_RenderCopyEx(game_renderer, this->sprite.get_texture(), this->sprite.get_clip_rect(), &position_rect, rotation, &center, flip_type);
 };

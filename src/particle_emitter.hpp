@@ -29,9 +29,9 @@ private:
     Emitter_Info        emitter_info;
 
     /**Emitters can be a Point or a Rectangle**/
-    enum                emitter_shape{Point, Rectangle, Circle};
+    enum                emitter_shape{POINT, RECTANGLE, CIRCLE};
     /**Emitters can burst, like fireworks, or spread like smoke**/
-    enum                emitter_type{Burst, Spread};
+    enum                emitter_type{BURST, SPREAD};
 
     emitter_shape       shape;
     emitter_type        type;

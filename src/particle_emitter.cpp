@@ -18,8 +18,8 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
 
     velocity_cap = 0.0;
 
-    shape = Point;
-    type = Spread;
+    shape = POINT;
+    type = SPREAD;
 
     /// DEBUG
     interval = 0;

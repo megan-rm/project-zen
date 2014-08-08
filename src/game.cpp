@@ -95,12 +95,12 @@ void Game::update()
             x--;
         }
     }
-
 };
 
 void Game::draw()
 {
-
+    unsigned int start_time = SDL_GetTicks();
+    unsigned int elapsed_time;
     SDL_RenderClear(game_renderer);
 
     for (unsigned int x = 0; x < entity_vector.size(); x++)
@@ -125,6 +125,8 @@ void Game::draw()
         SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
 
     SDL_RenderPresent(game_renderer);
+    elapsed_time = SDL_GetTicks() - start_time;
+    std::cout << elapsed_time << std::endl;
 };
 
 void Game::run()
@@ -146,7 +148,9 @@ void Game::run()
     newEnt->center_on_rect();
     entity_vector.push_back(newEnt);
 
-    Sun* newSun = new Sun(texture_cache->get_texture("sun"), game_time);
+    Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
+    newSun->get_sprite()->set_clip_size(32, 32);
+    newSun->get_sprite()->set_clip(1,2);
     newSun->move(320, 240);
     newSun->center_on_rect();
     newSun->scale(3);
@@ -154,11 +158,11 @@ void Game::run()
 
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture("raindrop"),
-                                800, 320, 240);
-    emitter->get_info()->set_life_span(5000);
+                                1500, 320, 240);
+    emitter->get_info()->set_life_span(10000);
     emitter->get_info()->set_acceleration(0.04, 0.08);
     emitter->set_interval(10);
-    emitter->get_info()->set_velocity_cap(.30);
+    emitter->get_info()->set_velocity_cap(0.99);
     entity_vector.push_back(emitter);
 
     running = true;
@@ -177,6 +181,6 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        std::cout << elapsed_time << std::endl;
+        //std::cout << elapsed_time << std::endl;
     }
 };
