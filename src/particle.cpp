@@ -34,6 +34,31 @@ void Particle::kill_particle()
     alive = false;
 };
 
+void Particle::lerp_size(float life_percent)
+{
+    if(emitter_info->get_start_size() == emitter_info->get_end_size())
+        return;
+
+    particle_scale =
+    (emitter_info->get_start_size() + ((emitter_info->get_end_size() - emitter_info->get_start_size()) * life_percent));
+    return;
+};
+
+void Particle::lerp_colors(float life_percent)
+{
+    color.r =
+    (emitter_info->get_start_color().r + ((emitter_info->get_end_color().r - emitter_info->get_start_color().r) * life_percent));
+
+    color.g =
+    (emitter_info->get_start_color().g + ((emitter_info->get_end_color().g - emitter_info->get_start_color().g) * life_percent));
+
+    color.b =
+    (emitter_info->get_start_color().b + ((emitter_info->get_end_color().b - emitter_info->get_start_color().b) * life_percent));
+
+    color.a =
+    (emitter_info->get_start_color().a + ((emitter_info->get_end_color().a - emitter_info->get_start_color().a) * life_percent));
+
+};
 void Particle::update()
 {
 
@@ -46,16 +71,8 @@ void Particle::update()
     unsigned int time_alive = SDL_GetTicks() - spawn_time;
     float life_percent = time_alive / life_span;
 
-    /// FIX THESE EQUATIONS...
-    /// Make an interpolation function for scale & color
-    color.r += ((emitter_info->get_end_color().r - emitter_info->get_start_color().r) * life_percent);
-    color.g = (emitter_info->get_end_color().g * life_percent);
-    color.b = (emitter_info->get_end_color().b * life_percent);
-    color.a = (emitter_info->get_end_color().a * life_percent);
-
-    particle_scale =
-    (emitter_info->get_start_size() + ((emitter_info->get_end_size() - emitter_info->get_start_size()) * life_percent));
-    this->scale(particle_scale);
+    lerp_size(life_percent);
+    lerp_colors(life_percent);
 
     center_on_rect();
 

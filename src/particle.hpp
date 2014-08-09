@@ -1,6 +1,8 @@
 #ifndef PARTICLE_H_
 #define PARTICLE_H_
 
+#include <math.h>
+
 #include "SDL2/SDL.h"
 
 #include "entity.hpp"
@@ -40,6 +42,9 @@ public:
     void            kill_particle();
 
     void            update(); /// need to push delta time into.
+
+    void            lerp_size(float);
+    void            lerp_colors(float);
 };
 
 #endif

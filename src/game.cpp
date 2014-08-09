@@ -45,7 +45,7 @@ Game::Game()
 
 Game::~Game()
 {
-    for(int i = 0; i < entity_vector.size(); i++)
+    for(unsigned int i = 0; i < entity_vector.size(); i++)
         delete entity_vector.at(i);
 
     SDL_DestroyWindow(game_window);

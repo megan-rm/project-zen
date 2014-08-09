@@ -46,7 +46,7 @@ Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture, int p_cap, int pos_x,
 
 Particle_Emitter::~Particle_Emitter()
 {
-    for(int i = 0; i < particles.size(); i++)
+    for(unsigned int i = 0; i < particles.size(); i++)
       delete particles.at(i);
 
     particles.clear();
@@ -80,7 +80,7 @@ void Particle_Emitter::update()
     }
 
     /// update existing particles
-    for(int i = 0; i < particles.size(); i++)
+    for(unsigned int i = 0; i < particles.size(); i++)
     {
         particles.at(i)->update();
         /// check to see if current particle should be killed
@@ -96,7 +96,7 @@ void Particle_Emitter::update()
 
 void Particle_Emitter::draw(SDL_Renderer* game_renderer)
 {
-    for (int i = 0; i < particles.size(); i++)
+    for (unsigned int i = 0; i < particles.size(); i++)
     {
         particles.at(i)->draw(game_renderer);
     }
