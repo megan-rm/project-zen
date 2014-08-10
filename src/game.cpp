@@ -147,7 +147,7 @@ void Game::run()
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->get_sprite()->set_clip_size(32, 32);
-    newSun->get_sprite()->set_clip(1,2);
+    newSun->get_sprite()->set_clip(0);
     newSun->move(320, 240);
     newSun->center_on_rect();
     newSun->scale(3);
@@ -178,6 +178,6 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        std::cout << elapsed_time << std::endl;
+        std::cout << elapsed_time << "   " << 5%3<< std::endl;
     }
 };

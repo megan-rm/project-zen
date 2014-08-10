@@ -36,5 +36,6 @@ void Sun::update()
     float horizontal = (1-cos(simple_time))/2;
 
     move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
+    move(320, 240);
 };
 

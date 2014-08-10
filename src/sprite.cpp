@@ -84,14 +84,34 @@ void Sprite::set_clip_size(unsigned int width, unsigned int height)
 
 void Sprite::set_clip(unsigned int row, unsigned int column)
 {
-    if(((column-1) * clip_rect.w) > (this->get_sheet_width()
-       || ((row-1) * clip_rect.h) > (this->get_sheet_height()))
+    if( ((column-1) * clip_rect.w) > (this->get_sheet_width())
+       || ((row-1) * clip_rect.h) > (this->get_sheet_height())
       )
         return;
 
     clip_rect.x = (column-1) * clip_rect.w;
     clip_rect.y = (row-1) * clip_rect.h;
 };
+
+void Sprite::set_clip(unsigned int clip)
+{
+    /// total_clips-1 because it's a 0 based 'grid'
+    if (clip > (total_clips - 1))
+        return;
+
+    /// find total rows and columns in sprite_sheet, on a 0 based 'grid'
+    unsigned int row = (this->get_sheet_height() / clip_rect.h) - 1;
+    unsigned int column = (this->get_sheet_width() / clip_rect.w) - 1;
+
+    /// set clip_rect to the appropriate x/y
+    row = (clip % column);
+    column = (clip / column);
+
+    clip_rect.x = column * clip_rect.w;
+    clip_rect.y = row * clip_rect.h;
+    return;
+};
+
 
 void Sprite::set_blend(SDL_BlendMode blendmode)
 {

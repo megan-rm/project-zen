@@ -61,13 +61,6 @@ void Particle::lerp_colors(float life_percent)
 };
 void Particle::update()
 {
-
-    /*************************
-    * TODO:
-    *   -transition color
-    *    based on time left
-    *************************/
-
     unsigned int time_alive = SDL_GetTicks() - spawn_time;
     float life_percent = time_alive / life_span;
 

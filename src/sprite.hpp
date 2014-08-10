@@ -37,6 +37,7 @@ public:
 
     void            set_clip_size(unsigned int, unsigned int);
     void            set_clip(unsigned int, unsigned int);
+    void            set_clip(unsigned int);
     void            set_blend(SDL_BlendMode);
     void            set_alpha(unsigned short);
 };
