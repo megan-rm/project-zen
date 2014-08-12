@@ -2,8 +2,9 @@
 
 #include "entity.hpp"
 
-Entity::Entity(SDL_Texture* entity_texture) : sprite(entity_texture)
+Entity::Entity(Spritesheet& n_spritesheet)
 {
+    spritesheet = &n_spritesheet;
     position_rect.x = 0;
     position_rect.y = 0;
 
@@ -13,7 +14,7 @@ Entity::Entity(SDL_Texture* entity_texture) : sprite(entity_texture)
 
     flip_type = SDL_FLIP_NONE;
 
-    SDL_QueryTexture(entity_texture, NULL, NULL, &position_rect.w, &position_rect.h);
+    SDL_QueryTexture(spritesheet->get_texture(), NULL, NULL, &position_rect.w, &position_rect.h);
 
     center.x = position_rect.w/2;
     center.y = position_rect.h/2;
@@ -39,16 +40,16 @@ void Entity::draw(SDL_Renderer* game_renderer)
     SDL_BlendMode old_blend;
     uint8_t old_alpha;
 
-    SDL_GetTextureBlendMode(sprite.get_texture(), &old_blend);
-    SDL_GetTextureAlphaMod(sprite.get_texture(), &old_alpha);
+    SDL_GetTextureBlendMode(spritesheet->get_texture(), &old_blend);
+    SDL_GetTextureAlphaMod(spritesheet->get_texture(), &old_alpha);
 
-    SDL_SetTextureAlphaMod(this->sprite.get_texture(), alpha);
-    SDL_SetTextureBlendMode(this->sprite.get_texture(), blending);
+    SDL_SetTextureAlphaMod(spritesheet->get_texture(), alpha);
+    SDL_SetTextureBlendMode(spritesheet->get_texture(), blending);
 
-    SDL_RenderCopyEx(game_renderer, this->sprite.get_texture(), this->sprite.get_clip_rect(), &position_rect, rotation, &center, flip_type);
+    SDL_RenderCopyEx(game_renderer, spritesheet->get_texture(), spritesheet->get_clip_rect(), &position_rect, rotation, &center, flip_type);
 
-    SDL_SetTextureBlendMode(this->sprite.get_texture(), old_blend);
-    SDL_SetTextureAlphaMod(this->sprite.get_texture(), old_alpha);
+    SDL_SetTextureBlendMode(spritesheet->get_texture(), old_blend);
+    SDL_SetTextureAlphaMod(spritesheet->get_texture(), old_alpha);
 };
 
 void Entity::update()
@@ -80,8 +81,8 @@ void Entity::scale(float scale)
     /************************************
     * Possibly re-center here, too?
     ************************************/
-    position_rect.w = sprite.get_clip_rect()->w * scale;
-    position_rect.h = sprite.get_clip_rect()->h * scale;
+    position_rect.w = spritesheet->get_clip_rect()->w * scale;
+    position_rect.h = spritesheet->get_clip_rect()->h * scale;
 };
 
 void Entity::move(float new_x, float new_y)
@@ -96,9 +97,9 @@ void Entity::rotate(float angle)
     rotation = angle;
 };
 
-Sprite* const Entity::get_sprite()
+Spritesheet* const Entity::get_spritesheet()
 {
-    return &sprite;
+    return spritesheet;
 }
 
 bool Entity::is_alive()

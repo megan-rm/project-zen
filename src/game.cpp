@@ -9,6 +9,7 @@
 #include "game.hpp"
 #include "particle_emitter.hpp"
 #include "sun.hpp"
+#include "spritesheet.hpp"
 
 Game::Game()
 {
@@ -127,6 +128,7 @@ void Game::draw()
 
 void Game::run()
 {
+    /*
     Entity* newEntity = new Entity(texture_cache->get_texture("raindrop"));
     newEntity->stretch(48.0, 48.0);
     newEntity->move(320.0, 240.0);
@@ -161,7 +163,7 @@ void Game::run()
     emitter->set_interval(10);
     emitter->get_info()->set_velocity_cap(0.99);
     entity_vector.push_back(emitter);
-
+    */
     running = true;
     unsigned int start_time;
     unsigned int elapsed_time;

@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "sprite.hpp"
+#include "spritesheet.hpp"
 #include "vector2d.hpp"
 /************************************
 * Base drawable class. Anything that
@@ -15,14 +15,15 @@
 
 /************************************
 * TODO:
-*  -Add color & alpha mods
+*  -point to spritesheet, hold clip
+*   rect to which sprite in sheet.
 *  -Add gravity flag & support
 ************************************/
 class Entity
 {
 protected:
     SDL_Rect            position_rect;
-    Sprite              sprite;
+    Spritesheet*        spritesheet;
     SDL_Point           center;
     Vector2D            position;
     SDL_RendererFlip    flip_type;
@@ -33,7 +34,7 @@ protected:
     bool                alive;
 
 public:
-  /*ctr*/               Entity(SDL_Texture*);
+  /*ctr*/               Entity(Spritesheet&); /// spritesheet
   virtual /*dtr*/       ~Entity();
 
   virtual void          draw(SDL_Renderer*);
@@ -50,7 +51,7 @@ public:
   void                  set_blending(SDL_BlendMode);
   void                  set_alpha(uint8_t);
   void                  flip_sprite(SDL_RendererFlip);
-  Sprite* const         get_sprite();
+  Spritesheet* const    get_spritesheet();
   bool                  is_alive();
 };
 
