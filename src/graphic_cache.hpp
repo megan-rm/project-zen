@@ -11,7 +11,8 @@
 
 /******************************************
 * TODO:
-*
+*   -default textures as sprites (1 clip
+*    per image.
 ******************************************/
 
 class Graphic_Cache
@@ -19,6 +20,10 @@ class Graphic_Cache
 private:
     std::map<std::string, SDL_Texture*>
                                 texture_library;
+
+    std::map<std::string, Spritesheet>
+                                spritesheet_library;
+
     SDL_Renderer*               game_renderer;
 
     static const std::string    image_path;
@@ -27,5 +32,9 @@ public:
     SDL_Texture*                get_texture(std::string);
     /*ctr*/                     Graphic_Cache(SDL_Renderer*);
     /*dtr*/                     ~Graphic_Cache();
+
+    void                        create_sprite(std::string);
+    void                        create_spritesheet(std::string, int, int);
+    Spritesheet& const          get_spritesheet(std::string);
 };
 #endif

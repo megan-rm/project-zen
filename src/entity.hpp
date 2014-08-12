@@ -18,6 +18,12 @@
 *  -point to spritesheet, hold clip
 *   rect to which sprite in sheet.
 *  -Add gravity flag & support
+*  -entities refer to an image (the
+*   way it was before), have a sprite
+*   component (SDL_rect), which is
+*   automatically set as the clipping
+*   of the entire image, and can later
+*   be set to refer upon a spritesheet.
 ************************************/
 class Entity
 {
