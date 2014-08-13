@@ -1,15 +1,15 @@
 #include <iostream>
 
-#include "sprite.hpp"
+#include "spritesheet.hpp"
 
 
-Sprite::Sprite(SDL_Texture* texture)
+Spritesheet::Spritesheet(SDL_Texture* texture)
 {
-    sprite_sheet = texture;
+    image = texture;
     clip_rect.x = 0;
     clip_rect.y = 0;
 
-    if(sprite_sheet)
+    if(image)
     {
         total_clips = 1;
         current_clip = 1;
@@ -18,63 +18,63 @@ Sprite::Sprite(SDL_Texture* texture)
     {
         total_clips = 0;
         current_clip = 0;
-        std::cout << "Error setting up Sprite" << std::endl;
+        std::cout << "Error setting up Spritesheet" << std::endl;
     }
-    SDL_QueryTexture(sprite_sheet, NULL, NULL, &clip_rect.w, &clip_rect.h);
+    SDL_QueryTexture(image, NULL, NULL, &clip_rect.w, &clip_rect.h);
 
 
 };
 
-Sprite::~Sprite()
+Spritesheet::~Spritesheet()
 {
-    sprite_sheet = NULL;
+    image = NULL;
 };
 
-const SDL_Rect* Sprite::get_clip_rect()
+const SDL_Rect* Spritesheet::get_clip_rect()
 {
     return &clip_rect;
 };
 
-SDL_Texture* Sprite::get_texture()
+SDL_Texture* Spritesheet::get_texture()
 {
-    return sprite_sheet;
+    return image;
 };
 
-unsigned int Sprite::get_sheet_width()
+unsigned int Spritesheet::get_sheet_width()
 {
     int width = 0;
-    SDL_QueryTexture(sprite_sheet, NULL, NULL, &width, NULL);
+    SDL_QueryTexture(image, NULL, NULL, &width, NULL);
     return width;
 };
 
-unsigned int Sprite::get_sheet_height()
+unsigned int Spritesheet::get_sheet_height()
 {
     int height = 0;
-    SDL_QueryTexture(sprite_sheet, NULL, NULL, NULL, &height);
+    SDL_QueryTexture(image, NULL, NULL, NULL, &height);
     return height;
 };
 
-unsigned int Sprite::get_clip_width()
+unsigned int Spritesheet::get_clip_width()
 {
     return clip_rect.w;
 };
 
-unsigned int Sprite::get_clip_height()
+unsigned int Spritesheet::get_clip_height()
 {
     return clip_rect.h;
 };
 
-unsigned int Sprite::get_current_clip()
+unsigned int Spritesheet::get_current_clip()
 {
     return current_clip;
 };
 
-unsigned int Sprite::get_total_clips()
+unsigned int Spritesheet::get_total_clips()
 {
     return total_clips;
 };
 
-void Sprite::set_clip_size(unsigned int width, unsigned int height)
+void Spritesheet::set_clip_size(unsigned int width, unsigned int height)
 {
     clip_rect.w = width;
     clip_rect.h = height;
@@ -82,7 +82,7 @@ void Sprite::set_clip_size(unsigned int width, unsigned int height)
     total_clips = ((this->get_sheet_height()/clip_rect.h) * (this->get_sheet_width()/clip_rect.w));
 };
 
-void Sprite::set_clip(unsigned int row, unsigned int column)
+void Spritesheet::set_clip(unsigned int row, unsigned int column)
 {
     if( ((column-1) * clip_rect.w) > (this->get_sheet_width())
        || ((row-1) * clip_rect.h) > (this->get_sheet_height())
@@ -93,7 +93,7 @@ void Sprite::set_clip(unsigned int row, unsigned int column)
     clip_rect.y = (row-1) * clip_rect.h;
 };
 
-void Sprite::set_clip(unsigned int clip)
+void Spritesheet::set_clip(unsigned int clip)
 {
     /// total_clips-1 because it's a 0 based 'grid'
     if (clip > (total_clips - 1))
@@ -113,12 +113,12 @@ void Sprite::set_clip(unsigned int clip)
 };
 
 
-void Sprite::set_blend(SDL_BlendMode blendmode)
+void Spritesheet::set_blend(SDL_BlendMode blendmode)
 {
-    SDL_SetTextureBlendMode(sprite_sheet, blendmode);
+    SDL_SetTextureBlendMode(image, blendmode);
 }
 
-void Sprite::set_alpha(unsigned short alpha)
+void Spritesheet::set_alpha(unsigned short alpha)
 {
-    SDL_SetTextureAlphaMod(sprite_sheet, alpha);
+    SDL_SetTextureAlphaMod(image, alpha);
 }

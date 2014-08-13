@@ -8,7 +8,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-
+#include "spritesheet.hpp"
 /******************************************
 * TODO:
 *   -default textures as sprites (1 clip
@@ -21,7 +21,7 @@ private:
     std::map<std::string, SDL_Texture*>
                                 texture_library;
 
-    std::map<std::string, Spritesheet>
+    std::map<std::string, Spritesheet*>
                                 spritesheet_library;
 
     SDL_Renderer*               game_renderer;
@@ -35,6 +35,6 @@ public:
 
     void                        create_sprite(std::string);
     void                        create_spritesheet(std::string, int, int);
-    Spritesheet& const          get_spritesheet(std::string);
+    Spritesheet*                get_spritesheet(std::string);
 };
 #endif

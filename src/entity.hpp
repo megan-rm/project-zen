@@ -29,7 +29,8 @@ class Entity
 {
 protected:
     SDL_Rect            position_rect;
-    Spritesheet*        spritesheet;
+    SDL_Rect            sprite;
+    SDL_Texture*        image;
     SDL_Point           center;
     Vector2D            position;
     SDL_RendererFlip    flip_type;
@@ -40,7 +41,7 @@ protected:
     bool                alive;
 
 public:
-  /*ctr*/               Entity(Spritesheet&); /// spritesheet
+  /*ctr*/               Entity(SDL_Texture*);
   virtual /*dtr*/       ~Entity();
 
   virtual void          draw(SDL_Renderer*);
@@ -57,7 +58,7 @@ public:
   void                  set_blending(SDL_BlendMode);
   void                  set_alpha(uint8_t);
   void                  flip_sprite(SDL_RendererFlip);
-  Spritesheet* const    get_spritesheet();
+  const SDL_Rect*       get_sprite();
   bool                  is_alive();
 };
 

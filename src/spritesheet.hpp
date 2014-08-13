@@ -12,14 +12,14 @@
 class Spritesheet
 {
 private:
-    SDL_Texture*    spritesheet;
+    SDL_Texture*    image;
     SDL_Rect        clip_rect; /// just a w/h needed
 
     unsigned int    current_clip; /// unneeded
     unsigned int    total_clips;
 
 public:
-    /*ctr*/         Spritesheet(Spritesheet&);
+    /*ctr*/         Spritesheet(SDL_Texture*);
     /*dtr*/         ~Spritesheet();
 
     /// SDL_Rect    get_clip(index); instead?
