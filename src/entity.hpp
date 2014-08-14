@@ -57,6 +57,7 @@ public:
   void                  set_center(int, int);
   void                  set_blending(SDL_BlendMode);
   void                  set_alpha(uint8_t);
+  void                  set_sprite(unsigned int, unsigned int);
   void                  flip_sprite(SDL_RendererFlip);
   const SDL_Rect*       get_sprite();
   bool                  is_alive();

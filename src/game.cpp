@@ -128,13 +128,15 @@ void Game::draw()
 
 void Game::run()
 {
-    /*
+
     Entity* newEntity = new Entity(texture_cache->get_texture("raindrop"));
     newEntity->stretch(48.0, 48.0);
+    newEntity->scale(7);
     newEntity->move(320.0, 240.0);
     newEntity->rotate(20.0);
-    newEntity->get_sprite()->set_clip_size(4, 4);
+    newEntity->set_sprite(4, 4);
     newEntity->center_on_rect();
+    newEntity->scale(15);
     entity_vector.push_back(newEntity);
 
     Entity* newEnt = new Entity(texture_cache->get_texture("raindrop"));
@@ -142,14 +144,14 @@ void Game::run()
     newEnt->stretch(48.0, 48.0);
     newEnt->move(480.0, 320.0);
     newEnt->rotate(65.0);
-    newEnt->get_sprite()->set_clip_size(4, 4);
+    newEnt->set_sprite(4, 4);
     newEnt->center_on_rect();
     newEnt->set_alpha(125);
+    newEnt->scale(15);
     entity_vector.push_back(newEnt);
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
-    newSun->get_sprite()->set_clip_size(32, 32);
-    newSun->get_sprite()->set_clip(0);
+    newSun->set_sprite(32, 32);
     newSun->move(320, 240);
     newSun->center_on_rect();
     newSun->scale(3);
@@ -163,7 +165,7 @@ void Game::run()
     emitter->set_interval(10);
     emitter->get_info()->set_velocity_cap(0.99);
     entity_vector.push_back(emitter);
-    */
+
     running = true;
     unsigned int start_time;
     unsigned int elapsed_time;

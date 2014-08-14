@@ -5,6 +5,9 @@
 Entity::Entity(SDL_Texture* entity_texture)
 {
     image = entity_texture;
+
+    sprite.x = 0;
+    sprite.y = 0;
     position_rect.x = 0;
     position_rect.y = 0;
 
@@ -14,6 +17,7 @@ Entity::Entity(SDL_Texture* entity_texture)
 
     flip_type = SDL_FLIP_NONE;
 
+    SDL_QueryTexture(image, NULL, NULL, &sprite.w, &sprite.h);
     SDL_QueryTexture(image, NULL, NULL, &position_rect.w, &position_rect.h);
 
     center.x = position_rect.w/2;
@@ -48,6 +52,7 @@ void Entity::draw(SDL_Renderer* game_renderer)
 
     SDL_RenderCopyEx(game_renderer, image, &sprite,
                      &position_rect, rotation, &center, flip_type);
+
 
     SDL_SetTextureBlendMode(image, old_blend);
     SDL_SetTextureAlphaMod(image, old_alpha);
@@ -128,6 +133,12 @@ void Entity::set_blending(SDL_BlendMode new_blend)
 void Entity::set_alpha(uint8_t new_alpha)
 {
     alpha = new_alpha;
+};
+
+void Entity::set_sprite(unsigned int width, unsigned height)
+{
+    sprite.w = width;
+    sprite.h = height;
 };
 
 void Entity::flip_sprite(SDL_RendererFlip new_flip)
