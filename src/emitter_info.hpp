@@ -29,6 +29,13 @@ private:
     float               end_size;
 public:
     /*ctr*/             Emitter_Info();
+    /************************************
+    * Constructor order:
+    *   image, accel_x, accel_y, vel_x,
+    *   vel_y, pos_x, pos_y, start_color,
+    *   end_color, life_span, vel_cap,
+    *   start_size, end_size
+    ************************************/
                         Emitter_Info(SDL_Texture*, float, float,
                                      float, float, float, float,
                                      SDL_Color&, SDL_Color&,

@@ -33,7 +33,8 @@ public:
     /*ctr*/                     Graphic_Cache(SDL_Renderer*);
     /*dtr*/                     ~Graphic_Cache();
 
-    void                        create_sprite(std::string);
+    void                        create_sprite(std::string); /// not sure if this is useful...
+                                /// name of image, width, height
     void                        create_spritesheet(std::string, int, int);
     Spritesheet*                get_spritesheet(std::string);
 };
