@@ -2,8 +2,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <stdlib.h>
-#include <time.h>
+#include <random>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -166,6 +165,7 @@ void Game::run()
                                 800, 320, 240);
     emitter->get_info()->set_life_span(8000);
     emitter->get_info()->set_acceleration(0.04, 0.08);
+    emitter->get_info()->set_variance(1,1);
     emitter->set_interval(100);
     emitter->get_info()->set_velocity_cap(0.99);
     entity_vector.push_back(emitter);

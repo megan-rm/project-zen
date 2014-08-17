@@ -7,6 +7,8 @@ Particle::Particle(Emitter_Info& em_info)
     emitter_info = &em_info;
     alive = true;
     acceleration = emitter_info->get_acceleration();
+    acceleration.set_x(acceleration.get_x() + emitter_info->get_x_variance());
+    acceleration.set_y(acceleration.get_y() + emitter_info->get_y_variance());
 
     velocity = emitter_info->get_velocity();
     position = emitter_info->get_initial_position();

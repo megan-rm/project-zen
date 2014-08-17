@@ -27,6 +27,9 @@ private:
 
     float               start_size;
     float               end_size;
+
+    float               x_variance;
+    float               y_variance;
 public:
     /*ctr*/             Emitter_Info();
     /************************************
@@ -52,6 +55,8 @@ public:
     float               get_velocity_cap();
     float               get_start_size();
     float               get_end_size();
+    float               get_x_variance();
+    float               get_y_variance();
 
     void                set_acceleration(float, float);
     void                set_velocity(float, float);
@@ -63,5 +68,6 @@ public:
     void                set_velocity_cap(float);
     void                set_start_size(float);
     void                set_end_size(float);
+    void                set_variance(float, float);
 };
 #endif

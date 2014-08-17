@@ -4,6 +4,8 @@ Emitter_Info::Emitter_Info()
 {
     particle_texture = NULL;
     acceleration.set(0.0, 0.0);
+    x_variance = y_variance = 0.0;
+
     velocity.set(0.0, 0.0);
 
     /// No Color Change
@@ -96,6 +98,20 @@ float Emitter_Info::get_end_size()
     return end_size;
 };
 
+float Emitter_Info::get_x_variance()
+{
+    float temp = -x_variance + (rand()%(int)(x_variance + -x_variance + 1));
+    x_variance = temp;
+    return x_variance;
+};
+
+float Emitter_Info::get_y_variance()
+{
+    float temp = -y_variance + (rand()%(int)(y_variance + -y_variance + 1));
+    y_variance = temp;
+    return y_variance;
+};
+
 void Emitter_Info::set_acceleration(float accel_x, float accel_y)
 {
     acceleration.set(accel_x, accel_y);
@@ -150,4 +166,10 @@ void Emitter_Info::set_start_size(float scale)
 void Emitter_Info::set_end_size(float scale)
 {
     end_size = scale;
+};
+
+void Emitter_Info::set_variance(float x_val, float y_val)
+{
+    x_variance = x_val;
+    y_variance = y_val;
 };
