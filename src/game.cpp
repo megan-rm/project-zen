@@ -164,8 +164,8 @@ void Game::run()
                                 texture_cache->get_texture("raindrop"),
                                 800, 320, 240);
     emitter->get_info()->set_life_span(8000);
-    emitter->get_info()->set_acceleration(0.04, 0.08);
-    //emitter->get_info()->set_variance(0.8,-0.65);
+    emitter->get_info()->set_acceleration(0.0, 0.0);
+    emitter->get_info()->set_variance(0.09 ,0.09);
     emitter->set_interval(100);
     emitter->get_info()->set_velocity_cap(0.99);
     entity_vector.push_back(emitter);
@@ -188,4 +188,5 @@ void Game::run()
             SDL_Delay(1000 / frames_per_second - elapsed_time);
         std::cout << elapsed_time << std::endl;
     }
+    return;
 };
