@@ -165,7 +165,7 @@ void Game::run()
                                 800, 320, 240);
     emitter->get_info()->set_life_span(8000);
     emitter->get_info()->set_acceleration(0.04, 0.08);
-    emitter->get_info()->set_variance(1,1);
+    //emitter->get_info()->set_variance(0.8,-0.65);
     emitter->set_interval(100);
     emitter->get_info()->set_velocity_cap(0.99);
     entity_vector.push_back(emitter);

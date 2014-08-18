@@ -1,6 +1,8 @@
 #ifndef EMITTER_INFO_H_
 #define EMITTER_INFO_H_
 
+#include <stdlib.h>
+
 #include <SDL2/SDL.h>
 #include "vector2d.hpp"
 /*********************************
