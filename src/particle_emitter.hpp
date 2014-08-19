@@ -45,7 +45,7 @@ private:
 
     float               velocity_cap;
 
-    void                ctr_helper(SDL_Texture*, int, int, int);
+    void                ctr_helper(SDL_Texture* image, int max_particles, int x_position, int y_position);
 
 public:
     /*************************************
@@ -53,9 +53,10 @@ public:
     * Texture for particles, max particles,
     * and the x & y coordinates of emitter.
     *************************************/
-    /*ctr*/             Particle_Emitter(SDL_Texture*);
-                        Particle_Emitter(SDL_Texture*, int);
-                        Particle_Emitter(SDL_Texture*, int, int, int);
+    /*ctr*/             Particle_Emitter(SDL_Texture* image);
+                        Particle_Emitter(SDL_Texture* image, int max_particles);
+                        Particle_Emitter(SDL_Texture* image, int max_particles,
+                                         int x_postion, int y_position);
 
     /*dtr*/             ~Particle_Emitter();
 
@@ -70,13 +71,13 @@ public:
     *********************************/
     Emitter_Info* const get_info();
 
-    void                attach_to_entity(Entity&);
+    void                attach_to_entity(Entity& entity);
 
-    void                set_shape(emitter_shape);
-    void                set_rect(unsigned int, unsigned int);
-    void                set_interval(unsigned int);
+    void                set_shape(emitter_shape shape);
+    void                set_rect(unsigned int width, unsigned int height);
+    void                set_interval(unsigned int rate);
     void                update();
-    void                draw(SDL_Renderer*);
+    void                draw(SDL_Renderer* game_renderer);
 };
 
 #endif

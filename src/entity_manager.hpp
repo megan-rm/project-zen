@@ -25,11 +25,11 @@ public:
     /*ctr*/         Entity_Manager();
     /*dtr*/         ~Entity_Manager();
 
-    void            add(std::string, Entity*);
-    void            remove(std::string);
+    void            add(std::string entity_id, Entity* entity);
+    void            remove(std::string entity_id);
 
     unsigned int    get_entity_count();
-    Entity*         get_entity(std::string) const;
+    Entity*         get_entity(std::string entity_id) const;
 
     void            draw_entities(SDL_Renderer* game_renderer);
 };

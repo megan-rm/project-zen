@@ -118,7 +118,7 @@ void Spritesheet::set_blend(SDL_BlendMode blendmode)
     SDL_SetTextureBlendMode(image, blendmode);
 }
 
-void Spritesheet::set_alpha(unsigned short alpha)
+void Spritesheet::set_alpha(uint8_t alpha)
 {
     SDL_SetTextureAlphaMod(image, alpha);
 }

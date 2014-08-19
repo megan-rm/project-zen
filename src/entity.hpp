@@ -41,24 +41,24 @@ protected:
     bool                alive;
 
 public:
-  /*ctr*/               Entity(SDL_Texture*);
+  /*ctr*/               Entity(SDL_Texture* image);
   virtual /*dtr*/       ~Entity();
 
-  virtual void          draw(SDL_Renderer*);
+  virtual void          draw(SDL_Renderer* renderer);
   virtual void          update();
 
-  void                  stretch(int, int);
-  void                  scale(float);
+  void                  stretch(int width, int height);
+  void                  scale(float scale);
 
-  void                  move(float, float);
+  void                  move(float x, float y);
   void                  rotate(float angle);
 
   void                  center_on_rect();
-  void                  set_center(int, int);
-  void                  set_blending(SDL_BlendMode);
-  void                  set_alpha(uint8_t);
-  void                  set_sprite(unsigned int, unsigned int);
-  void                  flip_sprite(SDL_RendererFlip);
+  void                  set_center(int relative_x, int relative_y);
+  void                  set_blending(SDL_BlendMode blending);
+  void                  set_alpha(uint8_t alpha);
+  void                  set_sprite(unsigned int width, unsigned int height); /// this may be wrong
+  void                  flip_sprite(SDL_RendererFlip flip);
   const SDL_Rect*       get_sprite();
   bool                  is_alive();
 };

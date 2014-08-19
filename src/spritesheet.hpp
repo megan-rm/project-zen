@@ -36,12 +36,12 @@ public:
     unsigned int    get_current_clip(); /// unneeded, used for animations
     unsigned int    get_total_clips();
 
-    void            set_clip_size(unsigned int, unsigned int);
+    void            set_clip_size(unsigned int width, unsigned int height);
 
     ///             these are unneeded
-    void            set_clip(unsigned int, unsigned int);
-    void            set_clip(unsigned int);
+    void            set_clip(unsigned int column, unsigned int row);
+    void            set_clip(unsigned int index);
     void            set_blend(SDL_BlendMode);
-    void            set_alpha(unsigned short);
+    void            set_alpha(uint8_t alpha);
 };
 #endif

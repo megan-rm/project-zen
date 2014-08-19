@@ -23,11 +23,11 @@ private:
 
     bool            visible;
 public:
-    /*ctr*/         Sun(SDL_Texture*, Realtime&);
+    /*ctr*/         Sun(SDL_Texture* image, Realtime& current_time);
     /*dtr*/         ~Sun();
 
 
-    void            init(int, int);
+    void            init(int x_position, int y_position);
 
     void            update();
 };

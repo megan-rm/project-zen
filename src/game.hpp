@@ -55,7 +55,7 @@ private:
     void                event_loop();
     void                update();
     void                draw();
-    void                handle_input(SDL_Event&);
+    void                handle_input(SDL_Event& events);
 
 public:
     /*ctr*/             Game();

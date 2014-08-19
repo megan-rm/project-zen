@@ -29,13 +29,13 @@ private:
     static const std::string    image_path;
     static const std::string    image_extension;
 public:
-    SDL_Texture*                get_texture(std::string);
-    /*ctr*/                     Graphic_Cache(SDL_Renderer*);
+    SDL_Texture*                get_texture(std::string texture_id);
+    /*ctr*/                     Graphic_Cache(SDL_Renderer* game_renderer);
     /*dtr*/                     ~Graphic_Cache();
 
-    void                        create_sprite(std::string); /// not sure if this is useful...
+    void                        create_sprite(std::string sprite_id); /// not sure if this is useful...
                                 /// name of image, width, height
-    void                        create_spritesheet(std::string, int, int);
-    Spritesheet*                get_spritesheet(std::string);
+    void                        create_spritesheet(std::string image_id, int sprite_width, int sprite_height);
+    Spritesheet*                get_spritesheet(std::string spritesheet_id);
 };
 #endif

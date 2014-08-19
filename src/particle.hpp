@@ -33,7 +33,7 @@ private:
     float           particle_scale;
 
 public:
-    /*ctr*/         Particle(Emitter_Info&);
+    /*ctr*/         Particle(Emitter_Info& info);
 
 
     /*dtr*/         ~Particle();
@@ -43,8 +43,8 @@ public:
 
     void            update(); /// need to push delta time into.
 
-    void            lerp_size(float);
-    void            lerp_colors(float);
+    void            lerp_size(float life_percent);
+    void            lerp_colors(float life_percent);
 };
 
 #endif

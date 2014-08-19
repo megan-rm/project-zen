@@ -34,17 +34,12 @@ private:
     float               y_variance;
 public:
     /*ctr*/             Emitter_Info();
-    /************************************
-    * Constructor order:
-    *   image, accel_x, accel_y, vel_x,
-    *   vel_y, pos_x, pos_y, start_color,
-    *   end_color, life_span, vel_cap,
-    *   start_size, end_size
-    ************************************/
-                        Emitter_Info(SDL_Texture*, float, float,
-                                     float, float, float, float,
-                                     SDL_Color&, SDL_Color&,
-                                     float, float, float, float);
+                        Emitter_Info(SDL_Texture* image, float x_acceleration,
+                                     float y_acceleration, float x_velocity,
+                                     float y_velocity, float x_position,
+                                     float y_position, SDL_Color& start_color,
+                                     SDL_Color& end_color, float life_span,
+                                     float velocity_cap, float start_size, float end_size);
     /*dtr*/             ~Emitter_Info();
 
     SDL_Texture*        get_texture();
@@ -60,16 +55,16 @@ public:
     float               get_x_variance();
     float               get_y_variance();
 
-    void                set_acceleration(float, float);
-    void                set_velocity(float, float);
-    void                set_initial_position(float, float);
-    void                set_particle_texture(SDL_Texture*);
-    void                set_start_color(unsigned int, unsigned int, unsigned int, unsigned int);
-    void                set_end_color(unsigned int, unsigned int, unsigned int, unsigned int);
-    void                set_life_span(float);
-    void                set_velocity_cap(float);
-    void                set_start_size(float);
-    void                set_end_size(float);
-    void                set_variance(float, float);
+    void                set_acceleration(float x, float y);
+    void                set_velocity(float x, float y);
+    void                set_initial_position(float x, float y);
+    void                set_particle_texture(SDL_Texture* image);
+    void                set_start_color(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
+    void                set_end_color(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
+    void                set_life_span(float life);
+    void                set_velocity_cap(float cap);
+    void                set_start_size(float scale);
+    void                set_end_size(float scale);
+    void                set_variance(float x_angle, float y_angle);
 };
 #endif
