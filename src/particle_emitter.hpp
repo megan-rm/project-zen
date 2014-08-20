@@ -48,11 +48,6 @@ private:
     void                ctr_helper(SDL_Texture* image, int max_particles, int x_position, int y_position);
 
 public:
-    /*************************************
-    * Constructor order:
-    * Texture for particles, max particles,
-    * and the x & y coordinates of emitter.
-    *************************************/
     /*ctr*/             Particle_Emitter(SDL_Texture* image);
                         Particle_Emitter(SDL_Texture* image, int max_particles);
                         Particle_Emitter(SDL_Texture* image, int max_particles,

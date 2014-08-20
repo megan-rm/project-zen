@@ -155,7 +155,7 @@ void Game::run()
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->set_sprite(32, 32);
-    newSun->move(320, 240);
+    //newSun->move(320, 240);
     newSun->center_on_rect();
     newSun->scale(3);
     entity_vector.push_back(newSun);
@@ -168,6 +168,8 @@ void Game::run()
     emitter->get_info()->set_variance(0.09 ,0.09);
     emitter->set_interval(100);
     emitter->get_info()->set_velocity_cap(0.99);
+    emitter->get_info()->set_start_size(1.0);
+    emitter->get_info()->set_end_size(3.0);
     entity_vector.push_back(emitter);
 
     running = true;
@@ -186,7 +188,7 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        std::cout << elapsed_time << std::endl;
+        ///std::cout << elapsed_time << std::endl;
     }
     return;
 };

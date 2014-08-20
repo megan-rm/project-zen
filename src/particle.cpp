@@ -43,6 +43,8 @@ void Particle::lerp_size(float life_percent)
 
     particle_scale =
     (emitter_info->get_start_size() + ((emitter_info->get_end_size() - emitter_info->get_start_size()) * life_percent));
+
+    this->scale(particle_scale);
     return;
 };
 
@@ -63,9 +65,9 @@ void Particle::lerp_colors(float life_percent)
 };
 void Particle::update()
 {
-    unsigned int time_alive = SDL_GetTicks() - spawn_time;
+    float time_alive = SDL_GetTicks() - spawn_time;
     float life_percent = time_alive / life_span;
-
+   // std::cout << time_alive << std::endl;
     lerp_size(life_percent);
     lerp_colors(life_percent);
 
