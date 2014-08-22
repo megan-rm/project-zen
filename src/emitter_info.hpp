@@ -30,8 +30,19 @@ private:
     float               start_size;
     float               end_size;
 
+    /****DEPRECTATED, REMOVE********/
     float               x_variance;
     float               y_variance;
+    /******************************/
+
+    /*******************************
+    * Pretty sure I use Sine for this
+    * bit...
+    *******************************/
+    float               angle_variance;
+    float               life_variance;
+
+    float               emission_angle;
 public:
     /*ctr*/             Emitter_Info();
                         Emitter_Info(SDL_Texture* image, float x_acceleration,
