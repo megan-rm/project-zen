@@ -36,8 +36,11 @@ void Sun::update()
 
     //simple_time = simple_time * (time->get_minute() * time->get_second());
 
+                    /// convert hours to minutes, and add current minute
     float simple_time = (60 * time->get_hour()) + time->get_minute();
+    /// convert current time into seconds, and add current second
     simple_time *= 60;
+    simple_time += time->get_second();
 
     simple_time /= 86400;
 
@@ -47,6 +50,7 @@ void Sun::update()
     float horizontal = (1-cos(simple_time))/2;
 
     move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
+    std::cout << position.get_x() << " " << position.get_y() << std::endl;
     //move(320, 240);
 };
 
