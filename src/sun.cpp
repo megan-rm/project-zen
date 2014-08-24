@@ -32,9 +32,12 @@ void Sun::update()
     simple_time += time->get_second();
     simple_time /= 235959;*/
 
-    float simple_time = time->get_hour() * time->get_minute() * time->get_second();
+    //float simple_time = time->get_hour() * time->get_minute() * time->get_second();
 
     //simple_time = simple_time * (time->get_minute() * time->get_second());
+
+    float simple_time = (60 * time->get_hour()) + time->get_minute();
+    simple_time *= 60;
 
     simple_time /= 86400;
 
