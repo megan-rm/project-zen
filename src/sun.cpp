@@ -47,7 +47,10 @@ void Sun::update()
     simple_time *= (2 * M_PI);
 
     float vertical = sin(simple_time);
-    float horizontal = (1-cos(simple_time))/2;
+    float horizontal = cos(simple_time);
+
+    //float horizontal = (1-cos(simple_time))/2;
+
 
     move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
     std::cout << position.get_x() << " " << position.get_y() << std::endl;
