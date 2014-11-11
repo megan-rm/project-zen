@@ -161,15 +161,18 @@ void Game::run()
     entity_vector.push_back(newSun);
 
     Particle_Emitter* emitter = new Particle_Emitter(
-                                texture_cache->get_texture("raindrop"),
+                                texture_cache->get_texture("star"),
                                 800, 320, 240);
-    emitter->get_info()->set_life_span(8000);
+    emitter->set_shape(Particle_Emitter::RECTANGLE);
+    emitter->set_rect(640, 10);
+    emitter->move(0,0);
+    emitter->get_info()->set_life_span(7500);
     emitter->get_info()->set_acceleration(0.0, 0.0);
-    emitter->get_info()->set_variance(0.09 ,0.09);
-    emitter->set_interval(100);
+    emitter->get_info()->set_variance(0.001 ,0.09);
+    emitter->set_interval(10);
     emitter->get_info()->set_velocity_cap(0.99);
-    emitter->get_info()->set_start_size(1.0);
-    emitter->get_info()->set_end_size(3.0);
+    emitter->get_info()->set_start_size(.8);
+    emitter->get_info()->set_end_size(1.0);
     entity_vector.push_back(emitter);
 
     running = true;

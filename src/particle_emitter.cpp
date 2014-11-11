@@ -72,6 +72,15 @@ void Particle_Emitter::update()
     rect_emitter.x = position.get_x();
     rect_emitter.y = position.get_y();
 
+    /// rect spawn-zone
+    if(shape == RECTANGLE)
+    {
+        float nx, ny;
+        nx = rand() % rect_emitter.w;
+        ny = rand() % rect_emitter.h;
+
+        emitter_info.set_initial_position(nx, ny);
+    }
     /// create new particles
     if( (particles.size() < max_particles)
        &&(next_spawn < SDL_GetTicks()))
@@ -111,6 +120,8 @@ void Particle_Emitter::set_rect(unsigned int width, unsigned int height)
 {
     rect_emitter.w = width;
     rect_emitter.h = height;
+    rect_emitter.x = position.get_x();
+    rect_emitter.y = position.get_y();
 };
 
 void Particle_Emitter::set_interval(unsigned int i_rate) /// i_rate? that's perfect. ha.

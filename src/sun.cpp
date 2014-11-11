@@ -36,23 +36,27 @@ void Sun::update()
 
     //simple_time = simple_time * (time->get_minute() * time->get_second());
 
-                    /// convert hours to minutes, and add current minute
+    /// convert hours to minutes, and add current minute
     float simple_time = (60 * time->get_hour()) + time->get_minute();
     /// convert current time into seconds, and add current second
     simple_time *= 60;
     simple_time += time->get_second();
 
-    simple_time /= 86400;
+    simple_time /= 86399;
 
-    simple_time *= (2 * M_PI);
+    simple_time *= ( 2 * M_PI);
+    //simple_time += (M_PI/2);
 
+    /*
+    float vertical = sin(simple_time * (180/M_PI));
+    float horizontal = cos(simple_time * (180/M_PI));
+    */
     float vertical = sin(simple_time);
-    float horizontal = cos(simple_time);
-
+    float horizontal = (1-cos(simple_time))/2.0;
     //float horizontal = (1-cos(simple_time))/2;
-
-
-    move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
+    move((640 * horizontal), (440 * vertical));
+    //move(horizontal * 480, vertical * 480);
+    //move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
     std::cout << position.get_x() << " " << position.get_y() << std::endl;
     //move(320, 240);
 };

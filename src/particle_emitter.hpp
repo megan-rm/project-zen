@@ -28,14 +28,6 @@ private:
     /**Data for particles**/
     Emitter_Info        emitter_info;
 
-    /**Emitters can be a Point or a Rectangle**/
-    enum                emitter_shape{POINT, RECTANGLE, CIRCLE};
-    /**Emitters can burst, like fireworks, or spread like smoke**/
-    enum                emitter_type{BURST, SPREAD};
-
-    emitter_shape       shape;
-    emitter_type        type;
-
     SDL_Rect            rect_emitter;
 
     unsigned int        max_particles;
@@ -56,6 +48,14 @@ public:
     /*dtr*/             ~Particle_Emitter();
 
     void                create_particle();
+
+    /**Emitters can be a Point or a Rectangle**/
+    enum                emitter_shape{POINT, RECTANGLE, CIRCLE};
+    /**Emitters can burst, like fireworks, or spread like smoke**/
+    enum                emitter_type{BURST, SPREAD};
+
+    emitter_shape       shape;
+    emitter_type        type;
 
     /*********************************
     * Use this to initialize particle
