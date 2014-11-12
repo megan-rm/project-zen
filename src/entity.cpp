@@ -60,10 +60,10 @@ void Entity::draw(SDL_Renderer* game_renderer)
 
 void Entity::update()
 {
-    rotation += 0.1; /// DEBUG
-    Vector2D movement(0.5, 0.3); /// DEBUG
+    //rotation += 0.1; /// DEBUG
+    //Vector2D movement(0.5, 0.3); /// DEBUG
 
-    position = position + movement;
+    //position = position + movement;
     move(position.get_x(), position.get_y());
 
     /// Use screen width info. DEBUG.

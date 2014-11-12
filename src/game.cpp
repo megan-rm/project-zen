@@ -131,27 +131,24 @@ void Game::draw()
 
 void Game::run()
 {
+    Entity* fakemoon = new Entity(texture_cache->get_texture("celestial_bodies"));
+    fakemoon->set_sprite(32,32);
 
-    Entity* newEntity = new Entity(texture_cache->get_texture("raindrop"));
-    newEntity->stretch(48.0, 48.0);
-    newEntity->scale(7);
-    newEntity->move(320.0, 240.0);
-    newEntity->rotate(20.0);
-    newEntity->set_sprite(4, 4);
-    newEntity->center_on_rect();
-    newEntity->scale(15);
-    entity_vector.push_back(newEntity);
+    fakemoon->stretch(64.0, 64.0);
+    fakemoon->scale(3);
+    fakemoon->move(20, 50.0);
+    fakemoon->rotate(0.0);
+    fakemoon->center_on_rect();
+    entity_vector.push_back(fakemoon);
 
-    Entity* newEnt = new Entity(texture_cache->get_texture("raindrop"));
-
-    newEnt->stretch(48.0, 48.0);
-    newEnt->move(480.0, 320.0);
-    newEnt->rotate(65.0);
-    newEnt->set_sprite(4, 4);
-    newEnt->center_on_rect();
-    newEnt->set_alpha(125);
-    newEnt->scale(15);
-    entity_vector.push_back(newEnt);
+    Entity* fakemoon_glow = new Entity(texture_cache->get_texture("celestial_bodies"));
+    fakemoon_glow->set_sprite(32,32);
+    fakemoon_glow->scale(5);
+    fakemoon_glow->center_on_rect();
+    fakemoon_glow->move(-12.0, 20.0);
+    fakemoon_glow->set_alpha(30);
+    fakemoon_glow->set_blending(SDL_BLENDMODE_ADD);
+    entity_vector.push_back(fakemoon_glow);
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->set_sprite(32, 32);
@@ -167,12 +164,12 @@ void Game::run()
     emitter->set_rect(640, 10);
     emitter->move(0,0);
     emitter->get_info()->set_life_span(7500);
-    emitter->get_info()->set_acceleration(0.0, 0.0);
-    emitter->get_info()->set_variance(0.001 ,0.09);
-    emitter->set_interval(10);
+    emitter->get_info()->set_acceleration(0.1, 0.1);
+    emitter->get_info()->set_variance(0.4 ,0.002);
+    emitter->set_interval(0);
     emitter->get_info()->set_velocity_cap(0.99);
-    emitter->get_info()->set_start_size(.8);
-    emitter->get_info()->set_end_size(1.0);
+    emitter->get_info()->set_start_size(.4);
+    emitter->get_info()->set_end_size(.8);
     entity_vector.push_back(emitter);
 
     running = true;
