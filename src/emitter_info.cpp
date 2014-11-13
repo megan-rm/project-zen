@@ -116,6 +116,10 @@ float Emitter_Info::get_y_variance()
     float temp_variance = y_variance * 1000;
     float proper_variance = rand() % 1000 - temp_variance;
     temp_variance = proper_variance / 1000;
+
+    unsigned int sign = rand() % 2;
+    if(sign == 0) temp_variance*=-1;
+
     return temp_variance;
 };
 

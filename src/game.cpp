@@ -116,7 +116,7 @@ void Game::draw()
 
     else if(game_time.get_hour() >= game_time.get_morning_time()
             && game_time.get_hour() < game_time.get_noon_time())
-        SDL_SetRenderDrawColor(game_renderer, 255, 252, 127, 0);
+        SDL_SetRenderDrawColor(game_renderer, 230, 225, 110, 0);
 
     else if(game_time.get_hour() >= game_time.get_noon_time()
             && game_time.get_hour() < game_time.get_evening_time())
@@ -146,28 +146,30 @@ void Game::run()
     fakemoon_glow->scale(5);
     fakemoon_glow->center_on_rect();
     fakemoon_glow->move(-12.0, 20.0);
-    fakemoon_glow->set_alpha(30);
+    fakemoon_glow->set_alpha(20);
     fakemoon_glow->set_blending(SDL_BLENDMODE_ADD);
     entity_vector.push_back(fakemoon_glow);
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->set_sprite(32, 32);
-    //newSun->move(320, 240);
     newSun->center_on_rect();
     newSun->scale(3);
     entity_vector.push_back(newSun);
 
     Particle_Emitter* emitter = new Particle_Emitter(
-                                texture_cache->get_texture("star"),
+                                texture_cache->get_texture("snow"),
                                 800, 320, 240);
     emitter->set_shape(Particle_Emitter::RECTANGLE);
-    emitter->set_rect(640, 10);
+    emitter->set_blending(SDL_BLENDMODE_MOD);
+    emitter->get_info()->set_start_color(255,255,255, 128);
+    emitter->get_info()->set_end_color(255,255,255, 200);
+    emitter->set_rect(2000, 20);
     emitter->move(0,0);
-    emitter->get_info()->set_life_span(7500);
-    emitter->get_info()->set_acceleration(0.1, 0.1);
-    emitter->get_info()->set_variance(0.4 ,0.002);
+    emitter->get_info()->set_life_span(10000);
+    emitter->get_info()->set_acceleration(-0.001, 0.01);
+    emitter->get_info()->set_variance(0.0 , 0.0);
     emitter->set_interval(0);
-    emitter->get_info()->set_velocity_cap(0.99);
+    emitter->get_info()->set_velocity_cap(0.80);
     emitter->get_info()->set_start_size(.4);
     emitter->get_info()->set_end_size(.8);
     entity_vector.push_back(emitter);
@@ -188,7 +190,7 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        ///std::cout << elapsed_time << std::endl;
+        std::cout << elapsed_time << std::endl;
     }
     return;
 };

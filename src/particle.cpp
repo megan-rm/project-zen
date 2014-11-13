@@ -62,6 +62,7 @@ void Particle::lerp_colors(float life_percent)
     color.a =
     (emitter_info->get_start_color().a + ((emitter_info->get_end_color().a - emitter_info->get_start_color().a) * life_percent));
 
+    set_alpha(color.a);
 };
 void Particle::update()
 {
@@ -86,10 +87,6 @@ void Particle::update()
     /************************************
     * Debugging.
     ************************************/
-    if(position_rect.x >= 650)
-        move(-10.0, position.get_y());
-    if(position_rect.y >= 490)
-        move(position.get_x(), -10.0);
 
     if(time_alive >= life_span)
         kill_particle();

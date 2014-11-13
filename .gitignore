@@ -6,3 +6,4 @@
 doxygen/doxyfile
 *.dll
 *.out
+*.db

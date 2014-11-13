@@ -9,8 +9,11 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     emitter_info.set_life_span(0);
 
     max_particles = p_cap;
-    particles.reserve(p_cap);
+    particles.reserve(max_particles);
+
+
     position.set(pos_x, pos_y);
+
     rect_emitter.x = pos_x;
     rect_emitter.y = pos_y;
 
@@ -76,8 +79,8 @@ void Particle_Emitter::update()
     if(shape == RECTANGLE)
     {
         float nx, ny;
-        nx = rand() % rect_emitter.w;
-        ny = rand() % rect_emitter.h;
+        nx = rand() % rect_emitter.w + position.get_x();
+        ny = rand() % rect_emitter.h + position.get_y();
 
         emitter_info.set_initial_position(nx, ny);
     }

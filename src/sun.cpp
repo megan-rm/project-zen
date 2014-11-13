@@ -55,9 +55,5 @@ void Sun::update()
     float horizontal = (1-cos(simple_time))/2.0;
     //float horizontal = (1-cos(simple_time))/2;
     move((640 * horizontal), (440 * vertical));
-    //move(horizontal * 480, vertical * 480);
-    //move( (0 + (640 - 0) * horizontal), (320 * vertical) + 480);
-    std::cout << position.get_x() << " " << position.get_y() << std::endl;
-    //move(320, 240);
 };
 
