@@ -26,7 +26,7 @@ void Sun::update()
     simple_time *= 60;
     simple_time += time->get_second();
 
-    simple_time += 28800;
+    simple_time += 21600;
     if (simple_time >= 86399)
         simple_time-=86399;
 
@@ -37,7 +37,7 @@ void Sun::update()
     float vertical = sin(simple_time);
     float horizontal = -cos(simple_time);
 
-    move(320 +(280 * horizontal), 480 + (320 * vertical));
+    move(320 - center.x + (280 * horizontal), 480 - center.y + (380 * vertical));
     std::cout << position.get_x() << "\t" << position.get_y() << std::endl;
 };
 

@@ -154,8 +154,8 @@ void Game::run()
 
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->set_sprite(32, 32);
-    newSun->center_on_rect();
     newSun->scale(3);
+    newSun->center_on_rect();
     entity_vector.push_back(newSun);
 
     Particle_Emitter* emitter = new Particle_Emitter(
@@ -165,12 +165,13 @@ void Game::run()
     emitter->set_blending(SDL_BLENDMODE_ADD);
     emitter->get_info()->set_start_color(255,255,255, 200);
     emitter->get_info()->set_end_color(255,255,255, 255);
-    emitter->set_rect(2000, 20);
+    emitter->set_rect(640, 20);
     emitter->move(0,0);
     emitter->get_info()->set_life_span(10000);
     emitter->get_info()->set_velocity(0,0.5);
     emitter->get_info()->set_acceleration(0.0, 0.01);
     emitter->set_interval(0);
+
     emitter->get_info()->set_velocity_cap(0.80);
     emitter->get_info()->set_start_size(.4);
     emitter->get_info()->set_end_size(.8);
