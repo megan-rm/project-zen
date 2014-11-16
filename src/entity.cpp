@@ -61,17 +61,15 @@ void Entity::draw(SDL_Renderer* game_renderer)
 
 void Entity::update()
 {
-    //rotation += 0.1; /// DEBUG
-    //Vector2D movement(0.5, 0.3); /// DEBUG
-
-    //position = position + movement;
     move(position.get_x(), position.get_y());
 
     /// Use screen width info. DEBUG.
+    /********************************
     if(position_rect.x >= 650)
         move(-10.0, position.get_y());
     if(position_rect.y >= 490)
         move(position.get_x(), -10.0);
+    ********************************/
 };
 
 void Entity::stretch(int new_width, int new_height)

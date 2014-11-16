@@ -68,7 +68,7 @@ void Particle::update()
 {
     float time_alive = SDL_GetTicks() - spawn_time;
     float life_percent = time_alive / life_span;
-   // std::cout << time_alive << std::endl;
+
     lerp_size(life_percent);
     lerp_colors(life_percent);
 

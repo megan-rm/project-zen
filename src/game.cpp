@@ -109,22 +109,24 @@ void Game::draw()
     {
         entity_vector.at(x)->draw(game_renderer);
     }
+    SDL_SetRenderDrawBlendMode(game_renderer, SDL_BLENDMODE_BLEND);
+    /// Night
     if(game_time.get_hour() >= game_time.get_night_time()
        || (game_time.get_hour() < game_time.get_morning_time()
         && game_time.get_hour() >= 0))
-        SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 0);
-
+        SDL_SetRenderDrawColor(game_renderer, 0, 0, 50, 255);
+    /// Morning
     else if(game_time.get_hour() >= game_time.get_morning_time()
             && game_time.get_hour() < game_time.get_noon_time())
-        SDL_SetRenderDrawColor(game_renderer, 230, 225, 110, 0);
-
+        SDL_SetRenderDrawColor(game_renderer, 255, 250, 130, 255);
+    /// Afternoon
     else if(game_time.get_hour() >= game_time.get_noon_time()
             && game_time.get_hour() < game_time.get_evening_time())
-        SDL_SetRenderDrawColor(game_renderer, 64, 156, 255, 0);
-
+            SDL_SetRenderDrawColor(game_renderer, 64, 156, 255, 0);
+    /// Evening
     else if(game_time.get_hour() >= game_time.get_evening_time()
             && game_time.get_hour() < game_time.get_night_time())
-        SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 0);
+        SDL_SetRenderDrawColor(game_renderer, 255, 183, 76, 255);
 
     SDL_RenderPresent(game_renderer);
 };
@@ -160,14 +162,14 @@ void Game::run()
                                 texture_cache->get_texture("snow"),
                                 800, 320, 240);
     emitter->set_shape(Particle_Emitter::RECTANGLE);
-    emitter->set_blending(SDL_BLENDMODE_MOD);
-    emitter->get_info()->set_start_color(255,255,255, 128);
-    emitter->get_info()->set_end_color(255,255,255, 200);
+    emitter->set_blending(SDL_BLENDMODE_ADD);
+    emitter->get_info()->set_start_color(255,255,255, 200);
+    emitter->get_info()->set_end_color(255,255,255, 255);
     emitter->set_rect(2000, 20);
     emitter->move(0,0);
     emitter->get_info()->set_life_span(10000);
-    emitter->get_info()->set_acceleration(-0.001, 0.01);
-    emitter->get_info()->set_variance(0.0 , 0.0);
+    emitter->get_info()->set_velocity(0,0.5);
+    emitter->get_info()->set_acceleration(0.0, 0.01);
     emitter->set_interval(0);
     emitter->get_info()->set_velocity_cap(0.80);
     emitter->get_info()->set_start_size(.4);
@@ -190,7 +192,7 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        std::cout << elapsed_time << std::endl;
+        //std::cout << elapsed_time << std::endl;
     }
     return;
 };
