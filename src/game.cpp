@@ -151,7 +151,6 @@ void Game::run()
     fakemoon_glow->set_alpha(20);
     fakemoon_glow->set_blending(SDL_BLENDMODE_ADD);
     entity_vector.push_back(fakemoon_glow);
-
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->set_sprite(32, 32);
     newSun->scale(3);

@@ -24,12 +24,11 @@ private:
     std::vector
         <Particle*>     particles;
     Entity*             attached_entity;
-
+    SDL_Point           attached_point;
     /**Data for particles**/
     Emitter_Info        emitter_info;
 
     SDL_Rect            rect_emitter;
-
     unsigned int        max_particles;
 
     unsigned int        interval;
@@ -66,7 +65,7 @@ public:
     *********************************/
     Emitter_Info* const get_info();
 
-    void                attach_to_entity(Entity& entity);
+    void                attach_to_entity(Entity& entity, SDL_Point);
 
     void                set_shape(emitter_shape shape);
     void                set_rect(unsigned int width, unsigned int height);

@@ -71,9 +71,24 @@ void Particle_Emitter::attach_to_entity(Entity& n_entity)
 
 void Particle_Emitter::update()
 {
-    /// update emitter positions
-    rect_emitter.x = position.get_x();
-    rect_emitter.y = position.get_y();
+    /// Check for attachment
+    if(*attached_entity)
+    {
+        rect_emitter.x = attached_entity->position.get_x() + attached_point.x;
+        rect_emitter.y = attached_entity->position.get_y() + attached_point.y;
+    }
+    /// need to check for attached_entity bool; delete when attached_entity = null, and bool = true;
+    /// else if (*attached_entity == NULL && is_attached == true)
+
+    else
+    {
+        /// update emitter positions individually
+        rect_emitter.x = position.get_x();
+        rect_emitter.y = position.get_y();
+    }
+
+    if(alive == false)
+        return;
 
     /// rect spawn-zone
     if(shape == RECTANGLE)
