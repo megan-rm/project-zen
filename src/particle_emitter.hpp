@@ -53,6 +53,7 @@ public:
     /**Emitters can burst, like fireworks, or spread like smoke**/
     enum                emitter_type{BURST, SPREAD};
 
+    bool                is_attached;
     emitter_shape       shape;
     emitter_type        type;
 

@@ -18,7 +18,7 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     rect_emitter.y = pos_y;
 
     alive = true;
-
+    is_attached = false;
     velocity_cap = 0.0;
 
     shape = POINT;
@@ -78,8 +78,10 @@ void Particle_Emitter::update()
         rect_emitter.y = attached_entity->position.get_y() + attached_point.y;
     }
     /// need to check for attached_entity bool; delete when attached_entity = null, and bool = true;
-    /// else if (*attached_entity == NULL && is_attached == true)
-
+    else if (*attached_entity == NULL && is_attached == true)
+    {
+        alive = false;
+    }
     else
     {
         /// update emitter positions individually

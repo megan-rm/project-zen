@@ -170,12 +170,22 @@ void Game::run()
     emitter->get_info()->set_velocity(0,0.5);
     emitter->get_info()->set_acceleration(0.0, 0.01);
     emitter->set_interval(0);
-
     emitter->get_info()->set_velocity_cap(0.80);
     emitter->get_info()->set_start_size(.4);
     emitter->get_info()->set_end_size(.8);
     entity_vector.push_back(emitter);
 
+
+    Particle_Emitter* newEmit = new Particle_Emitter(
+                                    texture_cache->get_texture("star"),
+                                    100, 0, 0);
+    newEmit->set_shape(Particle_Emitter::POINT);
+    newEmit->set_blending(SDL_BLENDMODE_ADD);
+    newEmit->get_info()->set_start_color(255, 255, 255, 175);
+    newEmit->get_info()->set_end_color(255, 255, 255, 255);
+    newEmit->set_interval(10);
+    ///
+    newEmit->attach_to_entity(Sun);
     running = true;
     unsigned int start_time;
     unsigned int elapsed_time;
