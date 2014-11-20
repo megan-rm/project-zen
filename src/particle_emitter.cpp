@@ -27,6 +27,8 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     /// DEBUG
     interval = 0;
     next_spawn = 0;
+
+    attached_entity = NULL;
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
@@ -63,22 +65,29 @@ void Particle_Emitter::create_particle()
     particles.push_back(new Particle(emitter_info));
 };
 
-void Particle_Emitter::attach_to_entity(Entity& n_entity)
+void Particle_Emitter::attach_to_entity(Entity& n_entity, SDL_Point pin_point)
 {
     if(&n_entity)
+    {
         attached_entity = &n_entity; /// need to check validity every tick
+        attached_point = pin_point;
+        emitter_info.set_initial_position(n_entity.position.get_x() + pin_point.x,
+                                          n_entity.position.get_y() + pin_point.y);
+    }
 };
 
 void Particle_Emitter::update()
 {
     /// Check for attachment
-    if(*attached_entity)
+    if(attached_entity)
     {
+        emitter_info.set_initial_position(attached_entity->position.get_x() + attached_point.x,
+                                          attached_entity->position.get_y() + attached_point.y);
         rect_emitter.x = attached_entity->position.get_x() + attached_point.x;
         rect_emitter.y = attached_entity->position.get_y() + attached_point.y;
     }
     /// need to check for attached_entity bool; delete when attached_entity = null, and bool = true;
-    else if (*attached_entity == NULL && is_attached == true)
+    else if (attached_entity == NULL && is_attached == true)
     {
         alive = false;
     }

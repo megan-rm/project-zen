@@ -32,7 +32,6 @@ protected:
     SDL_Rect            sprite;
     SDL_Texture*        image;
     SDL_Point           center;
-    Vector2D            position;
     SDL_RendererFlip    flip_type;
 
     float               rotation;
@@ -61,6 +60,8 @@ public:
   void                  flip_sprite(SDL_RendererFlip flip);
   const SDL_Rect*       get_sprite();
   bool                  is_alive();
+
+  Vector2D              position;
 };
 
 #endif

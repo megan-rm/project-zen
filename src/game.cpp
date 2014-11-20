@@ -151,11 +151,14 @@ void Game::run()
     fakemoon_glow->set_alpha(20);
     fakemoon_glow->set_blending(SDL_BLENDMODE_ADD);
     entity_vector.push_back(fakemoon_glow);
+
+
     Sun* newSun = new Sun(texture_cache->get_texture("celestial_bodies"), game_time);
     newSun->set_sprite(32, 32);
     newSun->scale(3);
     newSun->center_on_rect();
     entity_vector.push_back(newSun);
+
 
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture("snow"),
@@ -178,14 +181,24 @@ void Game::run()
 
     Particle_Emitter* newEmit = new Particle_Emitter(
                                     texture_cache->get_texture("star"),
-                                    100, 0, 0);
+                                    100);
     newEmit->set_shape(Particle_Emitter::POINT);
     newEmit->set_blending(SDL_BLENDMODE_ADD);
     newEmit->get_info()->set_start_color(255, 255, 255, 175);
     newEmit->get_info()->set_end_color(255, 255, 255, 255);
-    newEmit->set_interval(10);
-    ///
-    newEmit->attach_to_entity(Sun);
+    newEmit->get_info()->set_acceleration(0.001, 1.0);
+    newEmit->get_info()->set_velocity(0, 0.5);
+    newEmit->get_info()->set_velocity_cap(.95);
+    newEmit->get_info()->set_life_span(3000);
+    newEmit->set_interval(0);
+    SDL_Point emit_center;
+    emit_center.x = fakemoon->get_sprite()->w/2;
+    emit_center.y = fakemoon->get_sprite()->h/2;
+    newEmit->attach_to_entity(*fakemoon, emit_center);
+    entity_vector.push_back(newEmit);
+
+
+
     running = true;
     unsigned int start_time;
     unsigned int elapsed_time;
