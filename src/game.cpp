@@ -190,10 +190,10 @@ void Game::run()
     newEmit->get_info()->set_velocity(0, 0.5);
     newEmit->get_info()->set_velocity_cap(.95);
     newEmit->get_info()->set_life_span(3000);
-    newEmit->set_interval(0);
+    newEmit->set_interval(333);
     SDL_Point emit_center;
-    emit_center.x = fakemoon->get_sprite()->w/2;
-    emit_center.y = fakemoon->get_sprite()->h/2;
+    emit_center.x = 48;
+    emit_center.y = 48;
     newEmit->attach_to_entity(*fakemoon, emit_center);
     entity_vector.push_back(newEmit);
 

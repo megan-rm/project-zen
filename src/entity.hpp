@@ -24,6 +24,9 @@
 *   automatically set as the clipping
 *   of the entire image, and can later
 *   be set to refer upon a spritesheet.
+*  -need to be able to get_width()
+*   and height of my entities (after
+*   scaling and such!
 ************************************/
 class Entity
 {

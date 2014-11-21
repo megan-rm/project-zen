@@ -65,41 +65,55 @@ void Particle_Emitter::create_particle()
     particles.push_back(new Particle(emitter_info));
 };
 
-void Particle_Emitter::attach_to_entity(Entity& n_entity, SDL_Point pin_point)
+void Particle_Emitter::attach_to_entity(Entity& n_entity,
+                                        unsigned int relative_x, unsigned int relative_y)
 {
     if(&n_entity)
     {
         attached_entity = &n_entity; /// need to check validity every tick
-        attached_point = pin_point;
-        emitter_info.set_initial_position(n_entity.position.get_x() + pin_point.x,
-                                          n_entity.position.get_y() + pin_point.y);
+        attached_point.x = relative_x;
+        attached_point.y = relative_y;
+        emitter_info.set_initial_position(n_entity.position.get_x() + relative_x,
+                                          n_entity.position.get_y() + relative_y);
     }
 };
 
 void Particle_Emitter::update()
 {
-    /// Check for attachment
-    if(attached_entity)
+    if(alive == false)
+        return;
+
+    if(attached_entity != NULL)
     {
-        emitter_info.set_initial_position(attached_entity->position.get_x() + attached_point.x,
-                                          attached_entity->position.get_y() + attached_point.y);
-        rect_emitter.x = attached_entity->position.get_x() + attached_point.x;
-        rect_emitter.y = attached_entity->position.get_y() + attached_point.y;
+        if (shape == RECTANGLE)
+        {
+            rect_emitter.x = attached_entity->position.get_x() + attached_point.x;
+            rect_emitter.y = attached_entity->position.get_y() + attached_point.y;
+        }
+        else if (shape == POINT)
+        {
+            position.set(attached_entity->position.get_x() + attached_point.x,
+                         attached_entity->position.get_y() + attached_point.y);
+        }
     }
-    /// need to check for attached_entity bool; delete when attached_entity = null, and bool = true;
+    /******************************************************
+    * We may not want to kill emitters attached to their
+    * entities, immediately (smoke from fire, explosions,
+    * etc)
+    *******************************************************/
     else if (attached_entity == NULL && is_attached == true)
     {
         alive = false;
-    }
-    else
-    {
-        /// update emitter positions individually
-        rect_emitter.x = position.get_x();
-        rect_emitter.y = position.get_y();
-    }
-
-    if(alive == false)
         return;
+    }
+    else /// Not Attached to anything
+    {
+        if(shape == RECTANGLE)
+        {
+            rect_emitter.x = position.get_x();
+            rect_emitter.y = position.get_y();
+        }
+    }
 
     /// rect spawn-zone
     if(shape == RECTANGLE)
@@ -109,6 +123,10 @@ void Particle_Emitter::update()
         ny = rand() % rect_emitter.h + position.get_y();
 
         emitter_info.set_initial_position(nx, ny);
+    }
+    else if(shape == POINT)
+    {
+        emitter_info.set_initial_position(position.get_x(), position.get_y());
     }
     /// create new particles
     if( (particles.size() < max_particles)
@@ -153,9 +171,9 @@ void Particle_Emitter::set_rect(unsigned int width, unsigned int height)
     rect_emitter.y = position.get_y();
 };
 
-void Particle_Emitter::set_interval(unsigned int i_rate) /// i_rate? that's perfect. ha.
+void Particle_Emitter::set_interval(unsigned int milliseconds) /// i_rate? that's perfect. ha.
 {
-    interval = i_rate; /// it needs to calm down.
+    interval = milliseconds; /// it needs to calm down.
 };
 
 Emitter_Info* const Particle_Emitter::get_info()

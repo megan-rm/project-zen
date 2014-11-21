@@ -70,7 +70,7 @@ public:
 
     void                set_shape(emitter_shape shape);
     void                set_rect(unsigned int width, unsigned int height);
-    void                set_interval(unsigned int rate);
+    void                set_interval(unsigned int milliseconds);
     void                update();
     void                draw(SDL_Renderer* game_renderer);
 };
