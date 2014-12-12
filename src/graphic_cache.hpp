@@ -34,7 +34,7 @@ public:
     /*dtr*/                     ~Graphic_Cache();
 
     void                        create_sprite(std::string sprite_id); /// not sure if this is useful...
-                                /// name of image, width, height
+                                ///  name of image, width, height
     void                        create_spritesheet(std::string image_id, int sprite_width, int sprite_height);
     Spritesheet*                get_spritesheet(std::string spritesheet_id);
 };

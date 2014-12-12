@@ -10,6 +10,8 @@
 *   and sun(maybe?)
 *  -use epoch time for daytime,
 *   like hours, minutes, seconds
+*  -Most of these variables are
+*   uneeded.
 *******************************/
 
 class Realtime

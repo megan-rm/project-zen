@@ -25,7 +25,7 @@ private:
     SDL_Color           end_color;
 
     float               life_span;
-    float               velocity_cap;
+    Vector2D            velocity_cap;
 
     float               start_size;
     float               end_size;
@@ -50,7 +50,8 @@ public:
                                      float y_velocity, float x_position,
                                      float y_position, SDL_Color& start_color,
                                      SDL_Color& end_color, float life_span,
-                                     float velocity_cap, float start_size, float end_size);
+                                     float velocity_x_cap, float velocity_y_cap,
+                                     float start_size, float end_size);
     /*dtr*/             ~Emitter_Info();
 
     SDL_Texture*        get_texture();
@@ -60,7 +61,7 @@ public:
     SDL_Color           get_start_color();
     SDL_Color           get_end_color();
     float               get_life_span();
-    float               get_velocity_cap();
+    Vector2D            get_velocity_cap();
     float               get_start_size();
     float               get_end_size();
     float               get_x_variance();
@@ -73,7 +74,7 @@ public:
     void                set_start_color(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
     void                set_end_color(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
     void                set_life_span(float life);
-    void                set_velocity_cap(float cap);
+    void                set_velocity_cap(float x_cap, float y_cap);
     void                set_start_size(float scale);
     void                set_end_size(float scale);
     void                set_variance(float x_angle, float y_angle);

@@ -49,9 +49,6 @@ private:
     unsigned int        frames_per_second;
 
     bool                running;
-
-    /// This should be part of the Sun/Moon
-
     void                event_loop();
     void                update();
     void                draw();

@@ -99,10 +99,10 @@ void Particle::update()
     center_on_rect();
 
     velocity = velocity + acceleration;
-    if (velocity.get_x() > velocity_cap)
-        velocity.set_x(velocity_cap);
-    if (velocity.get_y() > velocity_cap)
-        velocity.set_y(velocity_cap);
+    if (velocity.get_x() > velocity_cap.get_x())
+        velocity.set_x(velocity_cap.get_x());
+    if (velocity.get_y() > velocity_cap.get_y())
+        velocity.set_y(velocity_cap.get_y());
 
     position = position + velocity;
     move(position.get_x(), position.get_y());

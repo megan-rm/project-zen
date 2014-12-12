@@ -25,10 +25,11 @@ private:
 
     SDL_Color       color;
 
-    unsigned int    spawn_time;     /// When it was birthed.
-    unsigned int    life_span;      /// Milliseconds
+    /// Time is in milliseconds
+    unsigned int    spawn_time;
+    unsigned int    life_span;
 
-    float           velocity_cap; /// may want Vector2D
+    Vector2D        velocity_cap;
 
     float           particle_scale;
 
@@ -38,10 +39,11 @@ public:
 
     /*dtr*/         ~Particle();
 
-    /// probably unneeded
     void            kill();
     void            revive();
-    void            update(); /// need to push delta time into.
+
+    /// TODO: dt needs to go into update()
+    void            update();
 
     void            lerp_size(float life_percent);
     void            lerp_colors(float life_percent);

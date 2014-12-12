@@ -48,9 +48,7 @@ public:
 
     void                create_particle();
 
-    /**Emitters can be a Point or a Rectangle**/
     enum                emitter_shape{POINT, RECTANGLE, CIRCLE};
-    /**Emitters can burst, like fireworks, or spread like smoke**/
     enum                emitter_type{BURST, SPREAD};
 
     bool                is_attached;
@@ -62,7 +60,6 @@ public:
     * emission info.
     * TODO:
     *  -Make this way more pretty...
-    *  -Probably want revive() back.
     *********************************/
     Emitter_Info* const get_info();
 

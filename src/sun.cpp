@@ -38,6 +38,6 @@ void Sun::update()
     float horizontal = -cos(simple_time);
 
     move(320 - center.x + (280 * horizontal), 480 - center.y + (380 * vertical));
-    std::cout << position.get_x() << "\t" << position.get_y() << std::endl;
+    //std::cout << position.get_x() << "\t" << position.get_y() << std::endl;
 };
 

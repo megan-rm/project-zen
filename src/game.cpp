@@ -173,7 +173,7 @@ void Game::run()
     emitter->get_info()->set_velocity(0,0.5);
     emitter->get_info()->set_acceleration(0.0, 0.01);
     emitter->set_interval(0);
-    emitter->get_info()->set_velocity_cap(0.80);
+    emitter->get_info()->set_velocity_cap(0, 0.80);
     emitter->get_info()->set_start_size(.4);
     emitter->get_info()->set_end_size(.8);
     entity_vector.push_back(emitter);
@@ -188,7 +188,7 @@ void Game::run()
     newEmit->get_info()->set_end_color(255, 255, 255, 255);
     newEmit->get_info()->set_acceleration(0.001, 1.0);
     newEmit->get_info()->set_velocity(0, 0.5);
-    newEmit->get_info()->set_velocity_cap(.95);
+    newEmit->get_info()->set_velocity_cap(0, 0.95);
     newEmit->get_info()->set_life_span(3000);
     newEmit->set_interval(333);
     SDL_Point emit_center;
@@ -215,7 +215,7 @@ void Game::run()
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        //std::cout << elapsed_time << std::endl;
+        std::cout << elapsed_time << std::endl;
     }
     return;
 };

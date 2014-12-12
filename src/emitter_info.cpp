@@ -17,8 +17,7 @@ Emitter_Info::Emitter_Info()
     end_color.a = 255;
 
     life_span = 0.0;
-    velocity_cap = 0.0;
-
+    velocity_cap.set(0,0);
     /// No size change
     start_size = 1.0;
     end_size = 1.0;
@@ -27,7 +26,8 @@ Emitter_Info::Emitter_Info()
 /// This needs to be cleaned up, I think.
 Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
              float vel_x, float vel_y, float pos_x, float pos_y, SDL_Color& s_color,
-             SDL_Color& e_color, float life, float vel_cap, float s_size, float e_size)
+             SDL_Color& e_color, float life, float vel_x_cap, float vel_y_cap,
+             float s_size, float e_size)
 {
     particle_texture = p_texture;
     acceleration.set(accel_x, accel_y);
@@ -38,7 +38,7 @@ Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
     end_color = e_color;
 
     life_span = life;
-    velocity_cap = vel_cap;
+    velocity_cap.set(vel_x_cap, vel_y_cap);
 
     start_size = s_size;
     end_size = e_size;
@@ -84,7 +84,7 @@ float Emitter_Info::get_life_span()
     return life_span;
 };
 
-float Emitter_Info::get_velocity_cap()
+Vector2D Emitter_Info::get_velocity_cap()
 {
     return velocity_cap;
 };
@@ -164,9 +164,9 @@ void Emitter_Info::set_life_span(float life)
     life_span = life;
 };
 
-void Emitter_Info::set_velocity_cap(float vel_cap)
+void Emitter_Info::set_velocity_cap(float vel_x_cap, float vel_y_cap)
 {
-    velocity_cap = vel_cap;
+    velocity_cap.set(vel_x_cap, vel_y_cap);
 };
 
 void Emitter_Info::set_start_size(float scale)
