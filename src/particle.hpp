@@ -39,8 +39,8 @@ public:
     /*dtr*/         ~Particle();
 
     /// probably unneeded
-    void            kill_particle();
-
+    void            kill();
+    void            revive();
     void            update(); /// need to push delta time into.
 
     void            lerp_size(float life_percent);

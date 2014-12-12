@@ -9,6 +9,8 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     emitter_info.set_life_span(0);
 
     max_particles = p_cap;
+    alive_particles = 0;
+
     particles.reserve(max_particles);
 
 
@@ -62,7 +64,12 @@ Particle_Emitter::~Particle_Emitter()
 void Particle_Emitter::create_particle()
 {
     next_spawn = SDL_GetTicks() + interval;
-    particles.push_back(new Particle(emitter_info));
+    if(alive_particles == particles.size())
+        particles.push_back(new Particle(emitter_info));
+    else
+        particles.at(alive_particles)->revive();
+
+    alive_particles++;
 };
 
 void Particle_Emitter::attach_to_entity(Entity& n_entity,
@@ -99,7 +106,7 @@ void Particle_Emitter::update()
     /******************************************************
     * We may not want to kill emitters attached to their
     * entities, immediately (smoke from fire, explosions,
-    * etc)
+    * etc...
     *******************************************************/
     else if (attached_entity == NULL && is_attached == true)
     {
@@ -128,24 +135,33 @@ void Particle_Emitter::update()
     {
         emitter_info.set_initial_position(position.get_x(), position.get_y());
     }
-    /// create new particles
-    if( (particles.size() < max_particles)
-       &&(next_spawn < SDL_GetTicks()))
+
+    /******************************
+    * Creating / Reviving Particles
+    ******************************/
+    if( (alive_particles < max_particles)
+       &&(next_spawn <= SDL_GetTicks()))
     {
         create_particle();
     }
 
     /// update existing particles
-    for(unsigned int i = 0; i < particles.size(); i++)
+    for(unsigned int i = 0; i < alive_particles; i++)
     {
-        particles.at(i)->update();
+        if(particles.at(i)->is_alive() == true)
+            particles.at(i)->update();
         /// check to see if current particle should be killed
-        if(!particles.at(i)->is_alive())
+        if(particles.at(i)->is_alive() == false)
         {
-            delete particles.at(i);
-            std::swap(particles.at(i), particles.back());
-            particles.pop_back();
-            i--; /// because we need to check the previous back() particle
+            if(alive_particles > 0)
+            {
+                std::swap(particles.at(i), particles.at(alive_particles-1));
+                alive_particles--;
+            }
+            else
+                std::cin.get();
+            if(i > 0)
+                i--; /// because we need to check the previous back() particle
         }
     }
 };
@@ -171,9 +187,9 @@ void Particle_Emitter::set_rect(unsigned int width, unsigned int height)
     rect_emitter.y = position.get_y();
 };
 
-void Particle_Emitter::set_interval(unsigned int milliseconds) /// i_rate? that's perfect. ha.
+void Particle_Emitter::set_interval(unsigned int milliseconds)
 {
-    interval = milliseconds; /// it needs to calm down.
+    interval = milliseconds;
 };
 
 Emitter_Info* const Particle_Emitter::get_info()

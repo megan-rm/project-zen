@@ -194,7 +194,7 @@ void Game::run()
     SDL_Point emit_center;
     emit_center.x = 48;
     emit_center.y = 48;
-    newEmit->attach_to_entity(*fakemoon, emit_center);
+    newEmit->attach_to_entity(*fakemoon, emit_center.x, emit_center.y);
     entity_vector.push_back(newEmit);
 
 

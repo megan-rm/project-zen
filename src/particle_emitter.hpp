@@ -30,7 +30,7 @@ private:
 
     SDL_Rect            rect_emitter;
     unsigned int        max_particles;
-
+    unsigned int        alive_particles;
     unsigned int        interval;
     unsigned int        next_spawn;
 
@@ -66,7 +66,9 @@ public:
     *********************************/
     Emitter_Info* const get_info();
 
-    void                attach_to_entity(Entity& entity, SDL_Point);
+    void                attach_to_entity(Entity& entity,
+                                         unsigned int x,
+                                         unsigned int y);
 
     void                set_shape(emitter_shape shape);
     void                set_rect(unsigned int width, unsigned int height);

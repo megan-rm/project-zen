@@ -31,9 +31,33 @@ Particle::~Particle()
 {
 }
 
-void Particle::kill_particle()
+void Particle::kill()
 {
     alive = false;
+};
+
+void Particle::revive()
+{
+    alive = true;
+    acceleration = emitter_info->get_acceleration();
+    acceleration.set_x(acceleration.get_x() + emitter_info->get_x_variance());
+    acceleration.set_y(acceleration.get_y() + emitter_info->get_y_variance());
+
+    velocity = emitter_info->get_velocity();
+    position = emitter_info->get_initial_position();
+
+    color.r = emitter_info->get_start_color().r;
+    color.g = emitter_info->get_start_color().g;
+    color.b = emitter_info->get_start_color().b;
+    color.a = emitter_info->get_start_color().a;
+
+    life_span = emitter_info->get_life_span();
+
+    velocity_cap = emitter_info->get_velocity_cap();
+
+    particle_scale = emitter_info->get_start_size();
+
+    spawn_time = SDL_GetTicks();
 };
 
 void Particle::lerp_size(float life_percent)
@@ -89,5 +113,5 @@ void Particle::update()
     ************************************/
 
     if(time_alive >= life_span)
-        kill_particle();
+        kill();
 }
