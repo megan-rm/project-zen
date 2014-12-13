@@ -26,7 +26,6 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     shape = POINT;
     type = SPREAD;
 
-    /// DEBUG
     interval = 0;
     next_spawn = 0;
 
@@ -157,18 +156,17 @@ void Particle_Emitter::update()
             {
                 std::swap(particles.at(i), particles.at(alive_particles-1));
                 alive_particles--;
+
+                if(i > 0)
+                    i--; /// because we need to check the previous back() particle
             }
-            else
-                std::cin.get();
-            if(i > 0)
-                i--; /// because we need to check the previous back() particle
         }
     }
 };
 
 void Particle_Emitter::draw(SDL_Renderer* game_renderer)
 {
-    for (unsigned int i = 0; i < particles.size(); i++)
+    for (unsigned int i = 0; i < alive_particles; i++)
     {
         particles.at(i)->draw(game_renderer);
     }

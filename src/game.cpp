@@ -162,14 +162,14 @@ void Game::run()
 
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture("snow"),
-                                800, 320, 240);
+                                500, 320, 240);
     emitter->set_shape(Particle_Emitter::RECTANGLE);
     emitter->set_blending(SDL_BLENDMODE_ADD);
     emitter->get_info()->set_start_color(255,255,255, 200);
     emitter->get_info()->set_end_color(255,255,255, 255);
     emitter->set_rect(640, 20);
     emitter->move(0,0);
-    emitter->get_info()->set_life_span(10000);
+    emitter->get_info()->set_life_span(17500);
     emitter->get_info()->set_velocity(0,0.5);
     emitter->get_info()->set_acceleration(0.0, 0.01);
     emitter->set_interval(0);
@@ -194,7 +194,7 @@ void Game::run()
     SDL_Point emit_center;
     emit_center.x = 48;
     emit_center.y = 48;
-    newEmit->attach_to_entity(*fakemoon, emit_center.x, emit_center.y);
+    newEmit->attach_to_entity(*newSun, emit_center.x, emit_center.y);
     entity_vector.push_back(newEmit);
 
 

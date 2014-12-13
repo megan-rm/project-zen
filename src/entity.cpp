@@ -41,7 +41,8 @@ void Entity::draw(SDL_Renderer* game_renderer)
     SDL_SetRenderDrawColor(game_renderer, 255, 64, 64, 128);
     SDL_RenderDrawRect(game_renderer, &position_rect);
     /**/
-
+    if(alive == false)
+        return;
     SDL_BlendMode old_blend;
     uint8_t old_alpha;
 
@@ -62,14 +63,6 @@ void Entity::draw(SDL_Renderer* game_renderer)
 void Entity::update()
 {
     move(position.get_x(), position.get_y());
-
-    /// Use screen width info. DEBUG.
-    /********************************
-    if(position_rect.x >= 650)
-        move(-10.0, position.get_y());
-    if(position_rect.y >= 490)
-        move(position.get_x(), -10.0);
-    ********************************/
 };
 
 void Entity::stretch(int new_width, int new_height)

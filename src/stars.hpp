@@ -4,6 +4,7 @@
 class Star : public Entity
 {
 private:
+    void            update();
     void            twinkle();
     SDL_Color       color;
     unsigned int    animation_cycle
