@@ -43,7 +43,7 @@ public:
     void            revive();
 
     /// TODO: dt needs to go into update()
-    void            update();
+    void            update(float dt);
 
     void            lerp_size(float life_percent);
     void            lerp_colors(float life_percent);

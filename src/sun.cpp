@@ -18,7 +18,7 @@ void Sun::init(int x, int y)
     movement_center.y = y;
 };
 
-void Sun::update()
+void Sun::update(float dt)
 {
     /// convert hours to minutes, and add current minute
     float simple_time = (60 * time->get_hour()) + time->get_minute();
@@ -38,6 +38,9 @@ void Sun::update()
     float horizontal = -cos(simple_time);
 
     move(320 - center.x + (280 * horizontal), 480 - center.y + (380 * vertical));
-    //std::cout << position.get_x() << "\t" << position.get_y() << std::endl;
+    /**********************
+    * DEBUG
+    * std::cout << position.get_x() << "\t" << position.get_y() << std::endl;
+    **********************/
 };
 

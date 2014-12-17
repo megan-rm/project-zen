@@ -64,6 +64,14 @@ Vector2D Vector2D::operator*(Vector2D& rhs)
     return temp;
 };
 
+Vector2D Vector2D::operator*(float rhs)
+{
+    Vector2D temp;
+    temp.x = this->x * rhs;
+    temp.y = this->y * rhs;
+    return temp;
+};
+
 Vector2D Vector2D::operator/(Vector2D& rhs)
 {
     if(rhs.x == 0 && rhs.y == 0)

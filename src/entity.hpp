@@ -27,6 +27,7 @@
 *  -need to be able to get_width()
 *   and height of my entities (after
 *   scaling and such!
+*  -implement move(Vector2D& rhs);
 ************************************/
 class Entity
 {
@@ -47,11 +48,11 @@ public:
   virtual /*dtr*/       ~Entity();
 
   virtual void          draw(SDL_Renderer* renderer);
-  virtual void          update();
+  virtual void          update(float dt);
 
   void                  stretch(int width, int height);
   void                  scale(float scale);
-
+  void                  move(Vector2D& pos);
   void                  move(float x, float y);
   void                  rotate(float angle);
 

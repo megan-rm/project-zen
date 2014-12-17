@@ -60,7 +60,7 @@ void Entity::draw(SDL_Renderer* game_renderer)
     SDL_SetTextureAlphaMod(image, old_alpha);
 };
 
-void Entity::update()
+void Entity::update(float dt)
 {
     move(position.get_x(), position.get_y());
 };

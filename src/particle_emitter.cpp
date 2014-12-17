@@ -84,7 +84,7 @@ void Particle_Emitter::attach_to_entity(Entity& n_entity,
     }
 };
 
-void Particle_Emitter::update()
+void Particle_Emitter::update(float dt)
 {
     if(alive == false)
         return;
@@ -148,7 +148,7 @@ void Particle_Emitter::update()
     for(unsigned int i = 0; i < alive_particles; i++)
     {
         if(particles.at(i)->is_alive() == true)
-            particles.at(i)->update();
+            particles.at(i)->update(dt);
         /// check to see if current particle should be killed
         if(particles.at(i)->is_alive() == false)
         {

@@ -50,7 +50,7 @@ private:
 
     bool                running;
     void                event_loop();
-    void                update();
+    void                update(float dt);
     void                draw();
     void                handle_input(SDL_Event& events);
 

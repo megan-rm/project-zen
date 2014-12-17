@@ -5,13 +5,17 @@
 
 #include <SDL2/SDL.h>
 #include "vector2d.hpp"
-/*********************************
+/*********************************************
 * TODO:
 *  -Add variance for things like:
 *   *spawn_time
 *   *movement_angle (acceleration variance)
 *   *Ability to be affected by gravity
-*********************************/
+*  -Maybe move basic data types into public,
+*   or sub-struct them to remove getters &
+*   setters; this will be lighter on the stack
+*   and stack pointers.
+*********************************************/
 class Emitter_Info
 {
 private:
@@ -29,11 +33,6 @@ private:
 
     float               start_size;
     float               end_size;
-
-    /****DEPRECTATED, REMOVE********/
-    float               x_variance;
-    float               y_variance;
-    /******************************/
 
     /*******************************
     * Pretty sure I use Sine for this
@@ -64,8 +63,8 @@ public:
     Vector2D            get_velocity_cap();
     float               get_start_size();
     float               get_end_size();
-    float               get_x_variance();
-    float               get_y_variance();
+
+    /// float           get_angle_variance();
 
     void                set_acceleration(float x, float y);
     void                set_velocity(float x, float y);
@@ -77,6 +76,6 @@ public:
     void                set_velocity_cap(float x_cap, float y_cap);
     void                set_start_size(float scale);
     void                set_end_size(float scale);
-    void                set_variance(float x_angle, float y_angle);
+    void                set_variance(float degrees);
 };
 #endif

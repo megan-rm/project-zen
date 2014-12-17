@@ -6,6 +6,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <sstream>
 
 #include "game.hpp"
 #include "particle_emitter.hpp"
@@ -84,13 +85,13 @@ void Game::handle_input(SDL_Event& event)
     }
 }
 
-void Game::update()
+void Game::update(float dt)
 {
     game_time.update();
 
     for (unsigned int x = 0; x < entity_vector.size(); x++)
     {
-        entity_vector.at(x)->update();
+        entity_vector.at(x)->update(dt);
         if(!entity_vector.at(x)->is_alive())
         {
             delete entity_vector.at(x);
@@ -162,14 +163,14 @@ void Game::run()
 
     Particle_Emitter* emitter = new Particle_Emitter(
                                 texture_cache->get_texture("snow"),
-                                500, 320, 240);
+                                800, 320, 240);
     emitter->set_shape(Particle_Emitter::RECTANGLE);
     emitter->set_blending(SDL_BLENDMODE_ADD);
     emitter->get_info()->set_start_color(255,255,255, 200);
     emitter->get_info()->set_end_color(255,255,255, 255);
-    emitter->set_rect(640, 20);
+    emitter->set_rect(640, 10);
     emitter->move(0,0);
-    emitter->get_info()->set_life_span(17500);
+    emitter->get_info()->set_life_span(10000);
     emitter->get_info()->set_velocity(0,0.5);
     emitter->get_info()->set_acceleration(0.0, 0.01);
     emitter->set_interval(0);
@@ -201,21 +202,25 @@ void Game::run()
 
     running = true;
     unsigned int start_time;
-    unsigned int elapsed_time;
-
+    unsigned int elapsed_time =0;
+    std::stringstream title;
     while(running)
     {
         start_time = SDL_GetTicks();
 
         handle_input(game_input);
-        update();
+        update(elapsed_time);
         draw();
 
         elapsed_time = SDL_GetTicks() - start_time;
 
         if(elapsed_time < 16)
             SDL_Delay(1000 / frames_per_second - elapsed_time);
-        std::cout << elapsed_time << std::endl;
+        //std::cout << elapsed_time << std::endl;
+
+        title.str("");
+        title << elapsed_time;
+        SDL_SetWindowTitle(game_window, title.str().c_str());
     }
     return;
 };

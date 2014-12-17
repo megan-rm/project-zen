@@ -29,7 +29,7 @@ public:
 
     void            init(int x_position, int y_position);
 
-    void            update();
+    void            update(float dt);
 };
 
 #endif
