@@ -24,10 +24,6 @@
 *   automatically set as the clipping
 *   of the entire image, and can later
 *   be set to refer upon a spritesheet.
-*  -need to be able to get_width()
-*   and height of my entities (after
-*   scaling and such!
-*  -implement move(Vector2D& rhs);
 ************************************/
 class Entity
 {
@@ -63,6 +59,7 @@ public:
   void                  set_sprite(unsigned int width, unsigned int height); /// this may be wrong
   void                  flip_sprite(SDL_RendererFlip flip);
   const SDL_Rect*       get_sprite();
+  const SDL_Rect*       get_size_rect();
   bool                  is_alive();
 
   Vector2D              position;

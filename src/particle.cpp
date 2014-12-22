@@ -6,19 +6,19 @@ Particle::Particle(Emitter_Info& em_info)
 {
     emitter_info = &em_info;
     alive = true;
-    acceleration = emitter_info->get_acceleration();
+    acceleration = emitter_info->acceleration.get();
     /// TODO acceleration.set(float degrees);
-    acceleration.set_x(acceleration.get_x() /*+ emitter_info->get_angle_variance()*/);
-    acceleration.set_y(acceleration.get_y() /*+ emitter_info->get_angle_variance()*/);
+    acceleration.set_x(acceleration.get_x() + emitter_info->get_angle_variance());
+    acceleration.set_y(acceleration.get_y() + emitter_info->get_angle_variance());
 
-    velocity = emitter_info->get_velocity();
-    position = emitter_info->get_initial_position();
+    velocity = emitter_info->velocity.get();
+    position = emitter_info->initial_position.get();
 
-    color = emitter_info->get_start_color();
+    color = emitter_info->start_color;
 
     life_span = emitter_info->get_life_span();
 
-    velocity_cap = emitter_info->get_velocity_cap();
+    velocity_cap = emitter_info->velocity_cap.get();
 
     particle_scale = emitter_info->get_start_size();
 
@@ -39,20 +39,20 @@ void Particle::kill()
 void Particle::revive()
 {
     alive = true;
-    acceleration = emitter_info->get_acceleration();
+    acceleration = emitter_info->acceleration.get();
     /// TODO acceleration.set(float degrees);
-    acceleration.set_x(acceleration.get_x() /*+ emitter_info->get_angle_variance()*/);
-    acceleration.set_y(acceleration.get_y() /*+ emitter_info->get_angle_variance()*/);
+    acceleration.set_x(acceleration.get_x() + emitter_info->get_angle_variance());
+    acceleration.set_y(acceleration.get_y() + emitter_info->get_angle_variance());
 
-    velocity = emitter_info->get_velocity();
-    position = emitter_info->get_initial_position();
+    velocity = emitter_info->velocity.get();
+    position = emitter_info->initial_position.get();
 
-    color = emitter_info->get_start_color();
+    color = emitter_info->start_color;
 
     life_span = emitter_info->get_life_span();
 
     /// probably don't need this
-    velocity_cap = emitter_info->get_velocity_cap();
+    velocity_cap = emitter_info->velocity_cap.get();
 
     particle_scale = emitter_info->get_start_size();
 
@@ -61,14 +61,6 @@ void Particle::revive()
 
 void Particle::lerp_size(float life_percent)
 {
-    /**********************
-    * This was probably slowing us down more than helping us.
-    * Only lerp if they're different?
-    ***********************
-    if(emitter_info->get_start_size() == emitter_info->get_end_size())
-        return;
-    */
-
     particle_scale =
     (emitter_info->get_start_size() + ((emitter_info->get_end_size() - emitter_info->get_start_size()) * life_percent));
 
@@ -80,16 +72,16 @@ void Particle::lerp_size(float life_percent)
 void Particle::lerp_colors(float life_percent)
 {
     color.r =
-    (emitter_info->get_start_color().r + ((emitter_info->get_end_color().r - emitter_info->get_start_color().r) * life_percent));
+    (emitter_info->start_color.r + ((emitter_info->end_color.r - emitter_info->start_color.r) * life_percent));
 
     color.g =
-    (emitter_info->get_start_color().g + ((emitter_info->get_end_color().g - emitter_info->get_start_color().g) * life_percent));
+    (emitter_info->start_color.g + ((emitter_info->end_color.g - emitter_info->start_color.g) * life_percent));
 
     color.b =
-    (emitter_info->get_start_color().b + ((emitter_info->get_end_color().b - emitter_info->get_start_color().b) * life_percent));
+    (emitter_info->start_color.b + ((emitter_info->end_color.b - emitter_info->start_color.b) * life_percent));
 
     color.a =
-    (emitter_info->get_start_color().a + ((emitter_info->get_end_color().a - emitter_info->get_start_color().a) * life_percent));
+    (emitter_info->start_color.a + ((emitter_info->end_color.a - emitter_info->start_color.a) * life_percent));
 
     set_alpha(color.a);
 };

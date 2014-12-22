@@ -26,7 +26,7 @@ Emitter_Info::Emitter_Info()
 Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
              float vel_x, float vel_y, float pos_x, float pos_y, SDL_Color& s_color,
              SDL_Color& e_color, float life, float vel_x_cap, float vel_y_cap,
-             float s_size, float e_size)
+             float s_size, float e_size, float angle_var)
 {
     particle_texture = p_texture;
     acceleration.set(accel_x, accel_y);
@@ -41,6 +41,8 @@ Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
 
     start_size = s_size;
     end_size = e_size;
+
+    angle_variance = angle_var;
 };
 
 Emitter_Info::~Emitter_Info()
@@ -53,39 +55,9 @@ SDL_Texture* Emitter_Info::get_texture()
     return particle_texture;
 };
 
-Vector2D Emitter_Info::get_acceleration()
-{
-    return acceleration;
-};
-
-Vector2D Emitter_Info::get_velocity()
-{
-    return velocity;
-};
-
-Vector2D Emitter_Info::get_initial_position()
-{
-    return initial_position;
-};
-
-SDL_Color Emitter_Info::get_start_color()
-{
-    return start_color;
-};
-
-SDL_Color Emitter_Info::get_end_color()
-{
-    return end_color;
-};
-
 float Emitter_Info::get_life_span()
 {
     return life_span;
-};
-
-Vector2D Emitter_Info::get_velocity_cap()
-{
-    return velocity_cap;
 };
 
 float Emitter_Info::get_start_size()
@@ -98,19 +70,9 @@ float Emitter_Info::get_end_size()
     return end_size;
 };
 
-void Emitter_Info::set_acceleration(float accel_x, float accel_y)
+float Emitter_Info::get_angle_variance()
 {
-    acceleration.set(accel_x, accel_y);
-};
-
-void Emitter_Info::set_velocity(float vel_x, float vel_y)
-{
-    velocity.set(vel_x, vel_y);
-};
-
-void Emitter_Info::set_initial_position(float x_pos, float y_pos)
-{
-    initial_position.set(x_pos, y_pos);
+    return angle_variance;
 };
 
 void Emitter_Info::set_particle_texture(SDL_Texture* p_texture)
@@ -137,11 +99,6 @@ void Emitter_Info::set_end_color(unsigned int r, unsigned int g, unsigned int b,
 void Emitter_Info::set_life_span(float life)
 {
     life_span = life;
-};
-
-void Emitter_Info::set_velocity_cap(float vel_x_cap, float vel_y_cap)
-{
-    velocity_cap.set(vel_x_cap, vel_y_cap);
 };
 
 void Emitter_Info::set_start_size(float scale)

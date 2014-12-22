@@ -24,6 +24,11 @@ float Vector2D::get_y()
     return y;
 };
 
+Vector2D Vector2D::get()
+{
+    return *this;
+};
+
 void Vector2D::set_x(float new_x)
 {
     x = new_x;
@@ -38,6 +43,18 @@ void Vector2D::set(float new_x, float new_y)
 {
     x = new_x;
     y = new_y;
+};
+
+void Vector2D::set(float value)
+{
+    x = value;
+    y = value;
+};
+
+void Vector2D::set(Vector2D& rhs)
+{
+    this->x = rhs.x;
+    this->y = rhs.y;
 };
 
 Vector2D Vector2D::operator+(Vector2D& rhs)

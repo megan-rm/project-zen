@@ -5,7 +5,7 @@
 void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, int pos_y)
 {
     emitter_info.set_particle_texture(p_texture);
-    emitter_info.set_initial_position(pos_x, pos_y);
+    emitter_info.initial_position.set(pos_x, pos_y);
     emitter_info.set_life_span(0);
 
     max_particles = p_cap;
@@ -79,7 +79,7 @@ void Particle_Emitter::attach_to_entity(Entity& n_entity,
         attached_entity = &n_entity; /// need to check validity every tick
         attached_point.x = relative_x;
         attached_point.y = relative_y;
-        emitter_info.set_initial_position(n_entity.position.get_x() + relative_x,
+        emitter_info.initial_position.set(n_entity.position.get_x() + relative_x,
                                           n_entity.position.get_y() + relative_y);
     }
 };
@@ -128,11 +128,11 @@ void Particle_Emitter::update(float dt)
         nx = rand() % rect_emitter.w + position.get_x();
         ny = rand() % rect_emitter.h + position.get_y();
 
-        emitter_info.set_initial_position(nx, ny);
+        emitter_info.initial_position.set(nx, ny);
     }
     else if(shape == POINT)
     {
-        emitter_info.set_initial_position(position.get_x(), position.get_y());
+        emitter_info.initial_position.set(position.get_x(), position.get_y());
     }
 
     /******************************

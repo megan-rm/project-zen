@@ -3,8 +3,6 @@
 
 /**********************************
 * TODO:
-*   -implement set(float) and
-*    set(Vector2D&)
 **********************************/
 
 class Vector2D
@@ -17,6 +15,7 @@ public:
                 Vector2D(float x, float y);
     /*dtr*/     ~Vector2D();
 
+    Vector2D    get();
     float       get_x();
     float       get_y();
     void        set_x(float x);

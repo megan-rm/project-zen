@@ -171,10 +171,10 @@ void Game::run()
     emitter->set_rect(640, 10);
     emitter->move(0,0);
     emitter->get_info()->set_life_span(10000);
-    emitter->get_info()->set_velocity(0,0.5);
-    emitter->get_info()->set_acceleration(0.0, 0.01);
+    emitter->get_info()->velocity.set(0,0.5);
+    emitter->get_info()->acceleration.set(0.0, 0.01);
     emitter->set_interval(0);
-    emitter->get_info()->set_velocity_cap(0, 0.80);
+    emitter->get_info()->velocity_cap.set(0, 0.80);
     emitter->get_info()->set_start_size(.4);
     emitter->get_info()->set_end_size(.8);
     entity_vector.push_back(emitter);
@@ -187,9 +187,9 @@ void Game::run()
     newEmit->set_blending(SDL_BLENDMODE_ADD);
     newEmit->get_info()->set_start_color(255, 255, 255, 175);
     newEmit->get_info()->set_end_color(255, 255, 255, 255);
-    newEmit->get_info()->set_acceleration(0.001, 1.0);
-    newEmit->get_info()->set_velocity(0, 0.5);
-    newEmit->get_info()->set_velocity_cap(0, 0.95);
+    newEmit->get_info()->acceleration.set(0.001, 1.0);
+    newEmit->get_info()->velocity.set(0, 0.5);
+    newEmit->get_info()->velocity_cap.set(0, 0.95);
     newEmit->get_info()->set_life_span(3000);
     newEmit->set_interval(333);
     SDL_Point emit_center;
@@ -199,10 +199,9 @@ void Game::run()
     entity_vector.push_back(newEmit);
 
 
-
     running = true;
     unsigned int start_time;
-    unsigned int elapsed_time =0;
+    unsigned int elapsed_time = 0;
     std::stringstream title;
     while(running)
     {

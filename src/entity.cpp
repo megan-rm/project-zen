@@ -90,6 +90,13 @@ void Entity::move(float new_x, float new_y)
     position_rect.y = (int)position.get_y();
 };
 
+void Entity::move(Vector2D& pos)
+{
+    position.set(pos);
+    position_rect.x = (int)position.get_x();
+    position_rect.y = (int)position.get_y();
+};
+
 void Entity::rotate(float angle)
 {
     rotation = angle;
@@ -98,7 +105,12 @@ void Entity::rotate(float angle)
 const SDL_Rect* Entity::get_sprite()
 {
     return &sprite;
-}
+};
+
+const SDL_Rect* Entity::get_size_rect()
+{
+    return &position_rect;
+};
 
 bool Entity::is_alive()
 {
