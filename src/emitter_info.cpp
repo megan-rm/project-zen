@@ -2,7 +2,7 @@
 
 Emitter_Info::Emitter_Info()
 {
-    particle_texture = NULL;
+    particle_texture = nullptr;
     acceleration.set(0.0, 0.0);
 
     angle_variance = 0.0f;
@@ -45,7 +45,7 @@ Emitter_Info::Emitter_Info(SDL_Texture* p_texture, float accel_x, float accel_y,
 
 Emitter_Info::~Emitter_Info()
 {
-    particle_texture = NULL;
+    particle_texture = nullptr;
 };
 
 SDL_Texture* Emitter_Info::get_texture()

@@ -17,8 +17,8 @@ Entity::Entity(SDL_Texture* entity_texture)
 
     flip_type = SDL_FLIP_NONE;
 
-    SDL_QueryTexture(image, NULL, NULL, &sprite.w, &sprite.h);
-    SDL_QueryTexture(image, NULL, NULL, &position_rect.w, &position_rect.h);
+    SDL_QueryTexture(image, nullptr, nullptr, &sprite.w, &sprite.h);
+    SDL_QueryTexture(image, nullptr, nullptr, &position_rect.w, &position_rect.h);
 
     center.x = position_rect.w/2;
     center.y = position_rect.h/2;
@@ -40,7 +40,7 @@ void Entity::draw(SDL_Renderer* game_renderer)
     /* //For my debugging purposes.
     SDL_SetRenderDrawColor(game_renderer, 255, 64, 64, 128);
     SDL_RenderDrawRect(game_renderer, &position_rect);
-    /**/
+    */
     if(alive == false)
         return;
     SDL_BlendMode old_blend;

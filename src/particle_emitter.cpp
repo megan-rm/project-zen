@@ -29,7 +29,7 @@ void Particle_Emitter::ctr_helper(SDL_Texture* p_texture, int p_cap, int pos_x, 
     interval = 0;
     next_spawn = 0;
 
-    attached_entity = NULL;
+    attached_entity = nullptr;
 };
 
 Particle_Emitter::Particle_Emitter(SDL_Texture* p_texture)
@@ -57,7 +57,7 @@ Particle_Emitter::~Particle_Emitter()
 
     particles.clear();
 
-    attached_entity = NULL;
+    attached_entity = nullptr;
 };
 
 void Particle_Emitter::create_particle()
@@ -89,7 +89,7 @@ void Particle_Emitter::update(float dt)
     if(alive == false)
         return;
 
-    if(attached_entity != NULL)
+    if(attached_entity != nullptr)
     {
         if (shape == RECTANGLE)
         {
@@ -107,7 +107,7 @@ void Particle_Emitter::update(float dt)
     * entities, immediately (smoke from fire, explosions,
     * etc...
     *******************************************************/
-    else if (attached_entity == NULL && is_attached == true)
+    else if (attached_entity == nullptr && is_attached == true)
     {
         alive = false;
         return;

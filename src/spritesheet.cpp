@@ -20,14 +20,14 @@ Spritesheet::Spritesheet(SDL_Texture* texture)
         current_clip = 0;
         std::cout << "Error setting up Spritesheet" << std::endl;
     }
-    SDL_QueryTexture(image, NULL, NULL, &clip_rect.w, &clip_rect.h);
+    SDL_QueryTexture(image, nullptr, nullptr, &clip_rect.w, &clip_rect.h);
 
 
 };
 
 Spritesheet::~Spritesheet()
 {
-    image = NULL;
+    image = nullptr;
 };
 
 const SDL_Rect* Spritesheet::get_clip_rect()
@@ -43,14 +43,14 @@ SDL_Texture* Spritesheet::get_texture()
 unsigned int Spritesheet::get_sheet_width()
 {
     int width = 0;
-    SDL_QueryTexture(image, NULL, NULL, &width, NULL);
+    SDL_QueryTexture(image, nullptr, nullptr, &width, nullptr);
     return width;
 };
 
 unsigned int Spritesheet::get_sheet_height()
 {
     int height = 0;
-    SDL_QueryTexture(image, NULL, NULL, NULL, &height);
+    SDL_QueryTexture(image, nullptr, nullptr, nullptr, &height);
     return height;
 };
 

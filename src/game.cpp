@@ -15,7 +15,7 @@
 
 Game::Game()
 {
-    srand(time(NULL));
+    srand(time(nullptr));
 
     game_time.update();
 
